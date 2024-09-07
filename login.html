@@ -106,6 +106,7 @@
 
 <script>
     function onSignIn(response) {
+        console.log(decodeJwtResponse);
         const responsePayload = decodeJwtResponse(response.credential);
 
         console.log("ID: " + responsePayload.sub);
