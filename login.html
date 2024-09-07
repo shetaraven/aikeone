@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <title>Recette Title Here</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="590697666074-lpreef5a3570n17o8ng6grieifrmf50l.apps.googleusercontent.com">
+</head>
+<style>
+    body {
+        margin: 0;
+        background: #f6f7fc;
+    }
+    
+    .grid-wpr {
+        display: inline-flex;
+        width: 100%;
+        min-height: 100vh;
+    }
+    
+    .grid-cell {
+        width: 100%;
+    }
+    
+    .login-bg {
+        background: url('assets-custom/img/recette-login-img.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .login-content {
+        align-self: center;
+    }
+    
+    .login-content .floating-callout {
+        max-width: 350px;
+        width: 100%;
+        padding: 15px;
+        margin: auto;
+        box-sizing: border-box;
+    }
+    
+    .login-content .floating-callout h1 {
+        margin-top: 0;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 100;
+    }
+    
+    .login-content .floating-callout p {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 100;
+        color: #999;
+    }
+    
+    .mobile-only {
+        display: none;
+    }
+    
+    @media screen and (max-width: 639px) {
+        .mobile-only {
+            display: block;
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .login-bg {
+            display: none;
+        }
+        .grid-wpr {
+            display: block;
+        }
+        .login-content {
+            display: inline-flex;
+            height: calc(100vh - 250px);
+        }
+        .floating-callout {
+            text-align: center;
+        }
+    }
+</style>
+
+<body>
+    <main>
+        <div class="grid-wpr">
+            <img src="assets-custom/img/recette-login-img.jpg" class="mobile-only" />
+            <div class="grid-cell login-content">
+                <div class="floating-callout">
+                    <h1>Login to <b>AikeOne</b></h1>
+                    <p>Please Login using your GMAIL account to enjoy some limited recipe!</p>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+            </div>
+            <div class="grid-cell login-bg"></div>
+        </div>
+    </main>
+</body>
+
+</html>
