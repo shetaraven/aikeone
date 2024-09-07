@@ -2,9 +2,9 @@
 
 <head>
     <title>Recette Title Here</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
     <script src="https://accounts.google.com/gsi/client" async></script>
-    <meta name="google-signin-client_id" content="590697666074-lpreef5a3570n17o8ng6grieifrmf50l.apps.googleusercontent.com">
+    <!-- <meta name="google-signin-client_id" content="590697666074-lpreef5a3570n17o8ng6grieifrmf50l.apps.googleusercontent.com"> -->
 </head>
 <style>
     body {
@@ -105,12 +105,15 @@
 </body>
 
 <script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    function onSignIn(response) {
+        const responsePayload = decodeJwtResponse(response.credential);
+
+        console.log("ID: " + responsePayload.sub);
+        console.log('Full Name: ' + responsePayload.name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
+        console.log("Image URL: " + responsePayload.picture);
+        console.log("Email: " + responsePayload.email);
     }
 </script>
 
