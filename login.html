@@ -38,6 +38,7 @@
         padding: 15px;
         margin: auto;
         box-sizing: border-box;
+        text-align: center;
     }
     
     .login-content .floating-callout h1 {
@@ -56,8 +57,14 @@
         display: none;
     }
     
-    .g-signin2 .abcRioButton {
-        margin-top: 30px;
+    .official-logo {
+        width: 70px;
+        margin: 0 auto 20px;
+        display: block;
+    }
+    
+    .g_id_signin {
+        margin-top: 20px;
     }
     
     @media screen and (max-width: 639px) {
@@ -90,12 +97,13 @@
             <img src="assets-custom/img/recette-login-img.jpg" class="mobile-only" />
             <div class="grid-cell login-content">
                 <div class="floating-callout">
+                    <img src="assets-custom/img/aikeone-logo.svg" class="official-logo" />
                     <h1>Login to <b>AikeOne</b></h1>
                     <p>Please Login using your GMAIL account to enjoy some limited recipe!</p>
                     <div id="g_id_onload" data-client_id="590697666074-lpreef5a3570n17o8ng6grieifrmf50l.apps.googleusercontent.com" data-context="signin" data-ux_mode="popup" data-callback="onSignIn" data-auto_prompt="false">
                     </div>
 
-                    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left">
+                    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="center">
                     </div>
                 </div>
             </div>
