@@ -27,7 +27,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        animation: sideImage 1s ease-in-out;
+        animation: sideImage .8s ease-in-out;
     }
     
     .login-content {
@@ -41,7 +41,7 @@
         margin: auto;
         box-sizing: border-box;
         text-align: center;
-        animation: floatingCallout 1s ease-in-out;
+        animation: floatingCallout 2.5s ease-in-out;
     }
     
     .login-content .floating-callout h1 {
@@ -78,7 +78,7 @@
         @keyframes sideImage {
             0% {
                 opacity: 0;
-                background-position: 5vw;
+                background-position: 3vw;
             }
             100% {
                 opacity: 1;
@@ -106,7 +106,7 @@
             max-height: 30vh;
             object-fit: cover;
             object-position: center;
-            animation: sideImage 1s ease-in-out;
+            animation: sideImage .8s ease-in-out;
         }
         .login-bg {
             display: none;
@@ -120,13 +120,13 @@
         }
         .floating-callout {
             text-align: center;
-            animation: floatingCallout 1s ease-in-out;
+            animation: floatingCallout 2s ease-in-out!important;
         }
         @keyframes sideImage {
             0% {
                 opacity: 0;
                 position: relative;
-                top: -5vh;
+                top: -3vh;
             }
             100% {
                 opacity: 1;
@@ -137,13 +137,13 @@
         @keyframes floatingCallout {
             0% {
                 opacity: 0;
-                position: relative;
-                bottom: -5vw;
+                /* position: relative;
+                bottom: -5vw; */
             }
             100% {
                 opacity: 1;
-                position: relative;
-                bottom: -0vw;
+                /* position: relative;
+                bottom: -0vw; */
             }
         }
     }
