@@ -24,8 +24,10 @@
     
     .login-bg {
         background: url('assets-custom/img/recette-login-img.jpg');
+        background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        animation: sideImage 1s ease-in-out;
     }
     
     .login-content {
@@ -39,6 +41,7 @@
         margin: auto;
         box-sizing: border-box;
         text-align: center;
+        animation: floatingCallout 1s ease-in-out;
     }
     
     .login-content .floating-callout h1 {
@@ -71,13 +74,39 @@
         margin: auto!important;
     }
     
+    @media screen and (min-width: 640px) {
+        @keyframes sideImage {
+            0% {
+                opacity: 0;
+                background-position: 5vw;
+            }
+            100% {
+                opacity: 1;
+                background-position: 0vw;
+            }
+        }
+        @keyframes floatingCallout {
+            0% {
+                opacity: 0;
+                position: relative;
+                left: -5vw;
+            }
+            100% {
+                opacity: 1;
+                position: relative;
+                left: -0vw;
+            }
+        }
+    }
+    
     @media screen and (max-width: 639px) {
         .mobile-only {
             display: block;
             width: 100%;
-            max-height: 250px;
+            max-height: 30vh;
             object-fit: cover;
             object-position: center;
+            animation: sideImage 1s ease-in-out;
         }
         .login-bg {
             display: none;
@@ -87,10 +116,35 @@
         }
         .login-content {
             display: inline-flex;
-            height: calc(100vh - 250px);
+            height: 70vh;
         }
         .floating-callout {
             text-align: center;
+            animation: floatingCallout 1s ease-in-out;
+        }
+        @keyframes sideImage {
+            0% {
+                opacity: 0;
+                position: relative;
+                top: -5vh;
+            }
+            100% {
+                opacity: 1;
+                position: relative;
+                top: 0vh;
+            }
+        }
+        @keyframes floatingCallout {
+            0% {
+                opacity: 0;
+                position: relative;
+                bottom: -5vw;
+            }
+            100% {
+                opacity: 1;
+                position: relative;
+                bottom: -0vw;
+            }
         }
     }
 </style>
