@@ -116,3 +116,9 @@ let menu, animate;
   // Auto update menu collapsed/expanded based on the themeConfig
   window.Helpers.setCollapsed(true, false);
 })();
+
+$(document).ready(function(){
+  $('.unit-selector a.dropdown-item').click(function(){
+    $(this).closest('.input-group').find('.selected-unit').text($(this).text());
+  })
+})
