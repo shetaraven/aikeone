@@ -1,0 +1,277 @@
+<!doctype html>
+
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="assets/" data-style="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Admin Page</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="assets-custom/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets-custom/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets-custom/css/style.css">
+    <link href="assets-custom/css/page.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets-custom/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets-custom/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <style>
+        .custom-search{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%);
+            width: 50%; 
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <main>
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets-custom/img/aikeone-logo.svg" class="official-logo" style="width: 25px;filter: invert();" />
+                    <span>Aikeone</span>
+                </a>
+
+                <div class="d-lg-none ms-auto">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> -->
+
+                <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_1">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_2">Browse Topics</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_3">How it works</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_4">FAQs</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+
+                                <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
+                            </ul>
+                        </li>
+                    </ul> -->
+
+                    <div class="d-none d-lg-block">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="home-banner-main" style="position: relative;">
+            <div class="home-slider owl-carousel js-fullheight">
+                <div class="slider-item js-fullheight" style="background-image:url(assets-custom/img/home-banner1.jpg);">
+                    <div class="overlay"></div>
+                <div class="container">
+                    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+                        <div class="col-md-12 ftco-animate">
+                            <div class="text w-100 text-center">
+                                <h1 class="mb-3">Discover</h1>
+                                <h2>New Recipes</h2>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="slider-item js-fullheight" style="background-image:url(assets-custom/img/home-banner3.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+                            <div class="col-md-12 ftco-animate">
+                                <div class="text w-100 text-center">
+                                    <h1 class="mb-3">Learn</h1>
+                                    <h2>From a Vast Collection</h2>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item js-fullheight" style="background-image:url(assets-custom/img/home-banner2.jpg);">
+                    <div class="overlay"></div>
+                <div class="container">
+                    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+                        <div class="col-md-12 ftco-animate">
+                            <div class="text w-100 text-center">
+                                <h1 class="mb-3">Enjoy</h1>
+                                <h2>the Process</h2>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="custom-search">
+                <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bi-search" id="basic-addon1">
+                        </span>
+                        <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Search for a Recipe Title ..." aria-label="Search">
+                        <button type="submit" class="form-control">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <section class="explore-section section-padding" id="section_2">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-12 text-center">
+                        <h2 class="mb-4">Featured Recipes</h1>
+                    </div> -->
+                    <div class="col-12" style="margin-top: -120px;">
+                        <div class="row">
+                            <div class="col-lg-4 col-4 mb-4 mb-lg-0">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <a href="topics-detail.html">
+                                        <img src="assets-custom/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
+                                        <div class="recipe-content">
+                                            <span class="tag text-white"><i class="bi-star"></i> Featured Recipe</span>
+                                            <h5 class="mb-2 custom-icon text-white">Baked Ala mode</h5>
+                                            <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
+                                            <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-4 mb-4 mb-lg-0">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <a href="topics-detail.html">
+                                        <img src="assets-custom/images/recipes/recipe-img2.jpg" class="custom-block-image img-fluid" alt="">
+                                        <div class="recipe-content">
+                                            <span class="tag text-white"><i class="bi-star"></i> Featured Recipe</span>
+                                            <h5 class="mb-2 custom-icon text-white">Baked Ala mode</h5>
+                                            <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
+                                            <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-4 mb-4 mb-lg-0">
+                                <div class="custom-block bg-white shadow-lg">
+                                    <a href="topics-detail.html">
+                                        <img src="assets-custom/images/recipes/recipe-img3.jpg" class="custom-block-image img-fluid" alt="">
+                                        <div class="recipe-content">
+                                            <span class="tag text-white"><i class="bi-star"></i> Featured Recipe</span>
+                                            <h5 class="mb-2 custom-icon text-white">Baked Ala mode</h5>
+                                            <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
+                                            <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="section-padding" id="section_3" style="background-color: #f2f2f2;">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-12 text-center">
+                        <h2 class="mb-4">Featured Recipes</h1>
+                    </div> -->
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6" style="background-image: url(assets-custom/images/recipes/recipe-img1.jpg);background-size: cover;min-height: 400px;background-position: center;border-radius: 10px;"></div>
+                            <div class="col-6" style="align-self: center;">
+                                <h5 class="text-blue ps-5">RECIPE OF THE DAY</h5>
+                                <h3 class="ps-5">Homemade marshmallows with sugar powder.</h3>
+                                <p class="ps-5">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+                                <a href="#" class="btn custom-btn ms-5">Check out Recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <img src="assets-custom/img/aikeone-logo.svg" class="official-logo" style="width: 25px;" />
+                        <span>Aikeone</span>
+                    </a>
+                </div>
+
+                <div class="col-lg-6 col-md-8 col-12 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 000-000-0000" class="site-footer-link">
+                            000-000-0000
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:emailaddresshere.com" class="site-footer-link">
+                            emailaddresshere.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-12 ms-auto">
+                    <p class="copyright-text">Copyright © 2024 Aikeone.<br/>All rights reserved.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    
+    
+    <!-- JAVASCRIPT FILES -->
+    <script src="assets-custom/js/jquery.min.js"></script>
+    <script src="assets-custom/js/bootstrap.bundle.min.js"></script>
+    <script src="assets-custom/js/jquery.sticky.js"></script>
+    <script src="assets-custom/js/click-scroll.js"></script>
+    <script src="assets-custom/js/custom.js"></script>
+    <script src="assets-custom/js/popper.js"></script>
+    <script src="assets-custom/js/owl.carousel.min.js"></script>
+    <script src="assets-custom/js/main.js"></script>
+    </body>
+</html>
+<!-- basis:
+https://cook-talk-wbs.webflow.io/recipe/homemade-marshmallows-with-sugar-powder -->
