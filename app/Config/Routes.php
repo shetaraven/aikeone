@@ -9,4 +9,12 @@ $routes->get('/', function () {
     return redirect()->to(base_url('/dashboard'));
 });
 
-$routes->get('dashboard', 'dashboard\DefaultController::index');
+# dashboard routes
+$routes->group('dashboard', function ($routes) {
+    $routes->get('/', 'dashboard\DefaultController::index');
+});
+
+# admin routes
+$routes->group('admin', function ($routes) {
+    $routes->get('/', 'admin\DefaultController::index');
+});

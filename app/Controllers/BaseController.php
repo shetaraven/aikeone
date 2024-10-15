@@ -38,6 +38,19 @@ abstract class BaseController extends Controller
     protected $helpers = [];
 
     /**
+     * An array of dynamic data containing info
+     * to be passed to views including module
+     * epecific style and script
+     *
+     * @var list<dynamic>
+     */
+    protected $module_data = [];
+    public function __construct() {
+        $this->module_data['css']   = [];
+        $this->module_data['js']    = [];
+    }
+
+    /**
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */

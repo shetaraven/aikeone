@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\dashboard;
+namespace App\Controllers\admin;
 
 use App\Controllers\BaseController;
 
@@ -9,17 +9,17 @@ class DefaultController extends BaseController
     public function __construct()
     {
         $this->module_data['css'] = [
-            'assets/css/dashboard/dashboard.css'
+            'assets/css/admin/admin.css'
         ];
 
         $this->module_data['js'] = [
-            'assets/js/dashboard/dashboard.js'
+            'assets/js/admin/admin.js'
         ];
     }
 
     public function index()
     {
-        $this->module_data['title'] = 'Dashboard';
-        return view('dashboard/index',  $this->module_data);
+        $this->module_data['title'] = 'Admin';
+        return view('admin/index',  $this->module_data);
     }
 }

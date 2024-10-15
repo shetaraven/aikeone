@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
-<div id="dashboard-page" class="dp-main">
-    dashboard main page
+<div id="admin-page" class="ap-main">
+    admin main page
 </div>
 <?= $this->endSection() ?>
