@@ -14,8 +14,8 @@ class GoogleAuthModel
 
     public function __construct()
     {
-        $this->CLIENT_ID = "";
-        $this->CLIENT_SECRET = "";
+        $this->CLIENT_ID = env('GOOGLE_CLIENT_ID');
+        $this->CLIENT_SECRET = env('GOOGLE_SECRET_KEY');
         $this->REDIRECT_URL = base_url('/auth/google-callback');
     }
 
