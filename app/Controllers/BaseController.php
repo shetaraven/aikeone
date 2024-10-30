@@ -9,6 +9,9 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+helper('menu_helpers');
+helper('common_helpers');
+
 /**
  * Class BaseController
  *
@@ -46,8 +49,8 @@ abstract class BaseController extends Controller
      */
     protected $module_data = [];
     public function __construct() {
-        $this->module_data['css']   = [];
-        $this->module_data['js']    = [];
+        $this->module_data['css']       = [];
+        $this->module_data['js']        = [];
     }
 
     /**
