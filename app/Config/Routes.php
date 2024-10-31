@@ -8,10 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 
 // replace to client home
 $routes->get('/', function () {
-    return redirect()->to(base_url('/admin/dashboard'));
+    return redirect()->to(base_url('/home'));
 });
 
-# dashboard routes
+# authentication routes
 $routes->group('auth', function ($routes) {
     $routes->get('/', function () {
         return redirect()->to(base_url('/auth/login'));
@@ -24,8 +24,10 @@ $routes->group('auth', function ($routes) {
 });
 
 # admin routes
-$routes->group('admin', function ($routes) {
-    $routes->get('/', 'Admin\DefaultController::index');
+$routes->group('admin', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', function () {
+        return redirect()->to(base_url('/admin/dashboard'));
+    });
 
     $routes->group('dashboard', function ($routes) {
         $routes->get('/', 'Admin\DashboardController::index');
@@ -64,4 +66,9 @@ $routes->group('admin', function ($routes) {
         $routes->put('stores/(:num)', 'Admin\Api\V1\StoresController::update/$1');
         $routes->delete('stores/(:num)', 'Admin\Api\V1\StoresController::delete/$1');
     });
+});
+
+# client routes
+$routes->group('home', function ($routes) {
+    $routes->get('/', 'Client\HomeController::index');
 });
