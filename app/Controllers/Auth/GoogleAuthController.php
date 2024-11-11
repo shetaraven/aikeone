@@ -51,11 +51,12 @@ class GoogleAuthController extends Controller
                     $session_data = $user_info;
 
                     $session->set($session_data);
-                    return redirect()->to('./');
+                    return redirect()->to($session->get('PREV_URL'));
                 }
             }
         }
 
-        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        return redirect()->to(base_url('auth/login'));
+        // throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
     }
 }

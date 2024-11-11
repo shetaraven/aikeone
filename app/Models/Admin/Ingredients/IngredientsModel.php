@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Models\Admin\Stores;
+namespace App\Models\Admin\Ingredients;
 
 use App\Models\Traits\BlameableTrait;
 use CodeIgniter\Model;
 
-class StoresModel extends Model
+class IngredientsModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'STORES';
+    protected $table = 'INGREDIENTS';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'NAME',
+        'WEIGHT',
+        'CALORIES',
+        'FAT',
+        'SUGAR',
+        'PROTEIN',
+        'CARBS',
         'COMMENT',
         'CREATED_BY',
         'UPDATED_BY',
@@ -39,11 +45,11 @@ class StoresModel extends Model
 
     public function withCreator() {
         return $this->select([
-            'STORES.*',
+            'INGREDIENTS.*',
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-        ->join('USERS creator', 'STORES.CREATED_BY = creator.ID', 'LEFT')
-        ->join('USERS updator', 'STORES.CREATED_BY = updator.ID', 'LEFT');
+        ->join('USERS creator', 'INGREDIENTS.CREATED_BY = creator.ID', 'LEFT')
+        ->join('USERS updator', 'INGREDIENTS.CREATED_BY = updator.ID', 'LEFT');
     }
 }
