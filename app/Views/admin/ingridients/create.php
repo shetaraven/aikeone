@@ -1,9 +1,8 @@
 <?= $this->extend('layouts/admin/main') ?>
 <?= $this->section('content') ?>
 <!-- Content wrapper -->
-<div class="content-wrapper">
+<div class="content-wrapper form-create_ingredient">
     <!-- Content -->
-
     <div class="container-xxl flex-grow-1 container-p-y">
 
         <div class="card">
@@ -13,29 +12,29 @@
 
             <div class="card-body">
                 <div>
-                    <label for="storeName" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="storeName">
+                    <label for="cii_inp-name" class="form-label">Name</label>
+                    <input type="text" class="form-control cii-name" id="cii_inp-name">
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Volume to Weight (1g = ?ml)</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" placeholder="20">
+                            <input type="text" class="form-control cii-weight" placeholder="20">
                             <span class="input-group-text">ml</span>
                         </div>
                     </div>
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Calories</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" placeholder="2000">
+                            <input type="text" class="form-control cii-cal" placeholder="2000">
                             <span class="input-group-text">kcal</span>
                         </div>
                     </div>
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Fat</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" placeholder="0">
+                            <input type="text" class="form-control cii-fat" placeholder="0">
                             <span class="input-group-text">g</span>
                         </div>
                     </div>
@@ -45,29 +44,29 @@
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Sugar</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" placeholder="0">
+                            <input type="text" class="form-control cii-sugar" placeholder="0">
                             <span class="input-group-text">g</span>
                         </div>
                     </div>
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Protein</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" placeholder="0">
+                            <input type="text" class="form-control cii-protein" placeholder="0">
                             <span class="input-group-text">g</span>
                         </div>
                     </div>
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Carbs</label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" placeholder="0">
+                            <input type="text" class="form-control cii-carbs" placeholder="0">
                             <span class="input-group-text">g</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-3">
-                    <label for="StoreComment" class="form-label">Comment</label>
-                    <textarea class="form-control" id="StoreComment" rows="5"></textarea>
+                    <label for="cii_inp-comment" class="form-label">Comment</label>
+                    <textarea class="form-control cii-comment" id="cii_inp-comment" rows="5"></textarea>
                 </div>
 
                 <div class="divider mt-12">
@@ -175,7 +174,7 @@
 
             <div class="card-footer">
                 <a href="" style="float: right;"></a>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary ci_action-create">
                     <span class="tf-icons bx bx-plus-circle me-2"></span>Create
                     </button>
                 </a>

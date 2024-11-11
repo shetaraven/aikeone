@@ -13,6 +13,7 @@ class AuthenticationFilter implements FilterInterface
         $session = \Config\Services::session();
 
         if (!$session->get('ID')) {
+            $session->set('PREV_URL', current_url());
             return redirect()->to(base_url('/auth/login'));
         }
     }
