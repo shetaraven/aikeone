@@ -44,12 +44,16 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
         # pages
         $routes->get('list', 'Admin\StoresController::list');
         $routes->get('create-form', 'Admin\StoresController::createForm');
+        $routes->post('partial-edit-form', 'Admin\StoresController::partialEditForm');
     });
 
     $routes->group('ingredients', function ($routes) {
-        $routes->get('/', 'Admin\IngridientsController::list');
-        $routes->get('list', 'Admin\IngridientsController::list');
-        $routes->get('create-form', 'Admin\IngridientsController::createForm');
+        $routes->get('/', 'Admin\IngredientsController::list');
+
+        # pages
+        $routes->get('list', 'Admin\IngredientsController::list');
+        $routes->get('create-form', 'Admin\IngredientsController::createForm');
+        $routes->post('partial-edit-form', 'Admin\IngredientsController::partialEditForm');
     });
 
     $routes->group('recipes', function ($routes) {
@@ -65,6 +69,13 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
         $routes->post('stores', 'Admin\Api\V1\StoresController::create');
         $routes->put('stores/(:num)', 'Admin\Api\V1\StoresController::update/$1');
         $routes->delete('stores/(:num)', 'Admin\Api\V1\StoresController::delete/$1');
+
+        # ingredients rest request
+        $routes->get('ingredients', 'Admin\Api\V1\IngredientsController::list');
+        $routes->get('ingredients/(:num)', 'Admin\Api\V1\IngredientsController::show/$1');
+        $routes->post('ingredients', 'Admin\Api\V1\IngredientsController::create');
+        $routes->put('ingredients/(:num)', 'Admin\Api\V1\IngredientsController::update/$1');
+        $routes->delete('ingredients/(:num)', 'Admin\Api\V1\IngredientsController::delete/$1');
     });
 });
 

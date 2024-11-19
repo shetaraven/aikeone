@@ -41,15 +41,17 @@ $(document)
         store_id = self.attr('data-id')
 
         $.ajax({
-            url: '/admin/api/stores/' + store_id,
-            type: 'GET',
+            url: '/admin/stores/partial-edit-form',
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                STORE_ID: store_id
+            },
             success: function (response) {
                 console.log('Success:', response);
-
-                $('#store_edit_modal').find('#store-name').val(response.NAME)
-                $('#store_edit_modal').find('#store-comment').val(response.COMMENT)
-                $('#store_edit_modal').find('.sem-save').attr('data-id', store_id)
-                $('#store_edit_modal').modal('show')
+                
+                $('#edit_modal-ingrid').find('.modal-body').html(response)
+                $('#edit_modal-ingrid').modal('show')
             },
             error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -58,8 +60,8 @@ $(document)
         });
     })
     .on('click', '.sem-save', function () {
-        let store_name = $('#store_edit_modal').find('#store-name').val()
-        let store_comment = $('#store_edit_modal').find('#store-comment').val()
+        let store_name = $('#edit_modal-ingrid').find('.esi-name').val()
+        let store_comment = $('#edit_modal-ingrid').find('.esi-comment').val()
 
         $.ajax({
             url: '/admin/api/stores/' + store_id,
@@ -69,7 +71,7 @@ $(document)
                 COMMENT: store_comment,
             },
             success: function (response) {
-                $('#store_edit_modal').modal('hide')
+                $('#edit_modal-ingrid').modal('hide')
                 location.reload()
             },
             error: function (xhr, status, error) {

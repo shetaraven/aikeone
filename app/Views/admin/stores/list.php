@@ -32,7 +32,7 @@
                                 <td>
                                     <span class="badge bg-label-<?= $store_info['ACTIVE'] ? 'success' : 'primary' ?> me-1"><?= $store_info['ACTIVE'] ? 'ACTIVE' : 'INACTIVE' ?></span>
                                 </td>
-                                <td><?= $store_info['USERNAME'] ?></td>
+                                <td><?= $store_info['CREATOR'] ?></td>
                                 <td><?= $store_info['CREATED_AT'] ?></td>
                                 <td>
                                     <div class="dropdown">
@@ -54,7 +54,7 @@
 
     </div>
 
-    <div class="modal fade" id="store_edit_modal" aria-labelledby="EditModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="edit_modal-ingrid" aria-labelledby="EditModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -62,14 +62,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <label for="store-name" class="form-label">Store Name</label>
-                        <input type="text" class="form-control" id="store-name">
-                    </div>
-                    <div>
-                        <label for="store-comment" class="form-label">Comment</label>
-                        <textarea class="form-control" id="store-comment" rows="5"></textarea>
-                    </div>
+                    <!-- contents here -->
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary sem-save">

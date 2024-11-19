@@ -27,8 +27,21 @@ class StoresController extends BaseController
         $this->module_data['title'] = 'Stores List';
 
         $stores_model = new StoresModel();
-        $this->module_data['store_list'] = $stores_model->withUser()->findAll();
+        $this->module_data['store_list'] = $stores_model->withCreator()->findAll();
 
         return view('admin/stores/list',  $this->module_data);
+    }
+
+    public function partialEditForm()
+    {
+        $request = \Config\Services::request();
+        $post_data = $request->getPost();
+
+        $stores_model = new StoresModel();
+        $store_info = $stores_model->where('ID', $post_data['STORE_ID'])->first();
+
+        return view('admin/stores/_template_edit_store', [
+            'store_info' => $store_info
+        ]);
     }
 }
