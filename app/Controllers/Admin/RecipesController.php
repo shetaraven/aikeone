@@ -16,6 +16,7 @@ class RecipesController extends BaseController
     public function createForm()
     {
         $this->module_data['title'] = 'Create Recipes';
+        $this->module_data['js'] = ['assets/admin/js/create-recipe.js'];
         return view('admin/recipes/create',  $this->module_data);
     }
 

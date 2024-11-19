@@ -16,6 +16,7 @@ class IngridientsController extends BaseController
     public function createForm()
     {
         $this->module_data['title'] = 'Create Ingridient';
+        $this->module_data['js'] = ['assets/admin/js/create-ingrids.js'];
         return view('admin/ingridients/create',  $this->module_data);
     }
 
