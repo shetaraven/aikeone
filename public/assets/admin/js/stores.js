@@ -1,5 +1,5 @@
 $(document)
-    .on('click', '.cs_action-create', function () {
+    .on('click', '.cs_action-create', function() {
         let store_name = $('.form-create_store').find('#csi-name').val()
         let store_comment = $('.form-create_store').find('#csi-comment').val()
 
@@ -10,33 +10,38 @@ $(document)
                 NAME: store_name,
                 COMMENT: store_comment,
             },
-            success: function (response) {
-                console.log('Success:', response);
+            success: function(response) {
+                // console.log('Success:', response);
+                $('#success-alert').addClass('show');
+                $('.form-control').val('');
+                setTimeout(function() {
+                    $('#success-alert .btn-close').click();
+                }, 2000)
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
         });
     })
-    .on('click', '.sta-delete', function () {
+    .on('click', '.sta-delete', function() {
         let self = $(this)
         store_id = self.attr('data-id')
 
         $.ajax({
             url: '/admin/api/stores/' + store_id,
             type: 'DELETE',
-            success: function (response) {
+            success: function(response) {
                 // console.log('Success:', response);
                 location.reload()
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
         });
     })
-    .on('click', '.sta-edit', function () {
+    .on('click', '.sta-edit', function() {
         let self = $(this)
         store_id = self.attr('data-id')
 
@@ -47,19 +52,19 @@ $(document)
             data: {
                 STORE_ID: store_id
             },
-            success: function (response) {
+            success: function(response) {
                 console.log('Success:', response);
-                
+
                 $('#edit_modal-ingrid').find('.modal-body').html(response)
                 $('#edit_modal-ingrid').modal('show')
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
         });
     })
-    .on('click', '.sem-save', function () {
+    .on('click', '.sem-save', function() {
         let store_name = $('#edit_modal-ingrid').find('.esi-name').val()
         let store_comment = $('#edit_modal-ingrid').find('.esi-comment').val()
 
@@ -70,11 +75,11 @@ $(document)
                 NAME: store_name,
                 COMMENT: store_comment,
             },
-            success: function (response) {
+            success: function(response) {
                 $('#edit_modal-ingrid').modal('hide')
                 location.reload()
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
