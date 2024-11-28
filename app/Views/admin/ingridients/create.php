@@ -72,103 +72,36 @@
                 <div class="divider mt-12">
                     <div class="divider-text">Prices per Shop</div>
                 </div>
-
+                
                 <div class="shop-prices">
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-label">Landers</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Price</span>
-                                <input type="text" class="form-control" placeholder="1000">
-                                <span class="input-group-text">SEK</span>
+                    <?php foreach ($store_list as $key => $store_info) : ?>
+                        <div class="row mt-3 store_row" data-id="<?=$store_info['ID']?>">
+                            <div class="col-6">
+                                <label class="form-label"><?=$store_info['NAME']?></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Price</span>
+                                    <input type="text" class="form-control sr-price" placeholder="1000">
+                                    <span class="input-group-text">SEK</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label">&nbsp;</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Volume</span>
-                                <input type="text" class="form-control" placeholder="100">
-                                <span class="input-group-text selected-unit">g</span>
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end unit-selector">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">g</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">mg</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Kg</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">ml</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">L</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Whole</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Half</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">pc/pcs</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <label class="form-label">SM</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Price</span>
-                                <input type="text" class="form-control" placeholder="1000">
-                                <span class="input-group-text">SEK</span>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label">&nbsp;</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Volume</span>
-                                <input type="text" class="form-control" placeholder="100">
-                                <span class="input-group-text selected-unit">g</span>
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end unit-selector">
-                                        <li><a class="dropdown-item" href="javascript:void(0);">g</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">mg</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Kg</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">ml</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">L</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Whole</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Half</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">pc/pcs</a></li>
+                            <div class="col-6">
+                                <label class="form-label">&nbsp;</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Volume</span>
+                                    <input type="text" class="form-control sr-volume" placeholder="100">
+                                    <span class="input-group-text selected-unit">g</span>
+                                    <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end unit-selector" data-selected="1">
+                                        <?php foreach ($units_measure_list as $key => $units_measure_info) :?>
+                                            <li><a class="dropdown-item" data-id="<?=$units_measure_info['ID']?>"><?=$units_measure_info['LABEL']?></a></li>
+                                        <?php endforeach; ?>
                                     </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <label class="form-label">Robinsons</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Price</span>
-                                <input type="text" class="form-control" placeholder="1000">
-                                <span class="input-group-text">SEK</span>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label">&nbsp;</label>
-                            <div class="input-group">
-                                <span class="input-group-text">Volume</span>
-                                <input type="text" class="form-control" placeholder="100">
-                                <span class="input-group-text selected-unit">g</span>
-                                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end unit-selector">
-                                        <li><a class="dropdown-item" href="javascript:void(0);">g</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">mg</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Kg</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">ml</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">L</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Whole</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Half</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">pc/pcs</a></li>
-                                    </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
@@ -176,7 +109,7 @@
                 <a href="" style="float: right;"></a>
                 <button type="button" class="btn btn-primary ci_action-create">
                     <span class="tf-icons bx bx-plus-circle me-2"></span>Create
-                    </button>
+                </button>
                 </a>
             </div>
         </div>
@@ -188,4 +121,3 @@
 </div>
 <!-- Content wrapper -->
 <?= $this->endSection() ?>
-            

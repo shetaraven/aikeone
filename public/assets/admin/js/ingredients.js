@@ -1,4 +1,14 @@
 $(document)
+    .ready(function () {
+
+    })
+    .on('click', '.dropdown-item', function () {
+        console.log("Asdasd")
+        $('.unit-selector').attr('data-selected', $(this).attr('data-id'))
+
+        var measure = $(this).text();
+        $('.shop-prices').find('.selected-unit').text(measure);
+    })
     .on('click', '.ci_action-create', function () {
         let ingred_name = $('.form-create_ingredient').find('.cii-name').val()
         let ingred_weight = $('.form-create_ingredient').find('.cii-weight').val()
@@ -9,18 +19,31 @@ $(document)
         let ingred_carbs = $('.form-create_ingredient').find('.cii-carbs').val()
         let ingred_comment = $('.form-create_ingredient').find('.cii-comment').val()
 
+        let store_prices = []
+        $('.store_row').each(function () {
+            if ($(this).find('.sr-price').val() && $(this).find('.sr-volume').val()) {
+                store_prices.push({
+                    'store_id': $(this).attr('data-id'),
+                    'price': $(this).find('.sr-price').val(),
+                    'volume': $(this).find('.sr-volume').val(),
+                    'unit_measure': $(this).find('.unit-selector').attr('data-selected'),
+                })
+            }
+        })
+
         $.ajax({
             url: '/admin/api/ingredients',
             type: 'POST',
             data: {
-                NAME        : ingred_name,
-                WEIGHT      : ingred_weight,
-                CALORIES    : ingred_cal,
-                FAT         : ingred_fat,
-                SUGAR       : ingred_sugar,
-                PROTEIN     : ingred_protein,
-                CARBS       : ingred_carbs,
-                COMMENT     : ingred_comment,
+                NAME: ingred_name,
+                WEIGHT: ingred_weight,
+                CALORIES: ingred_cal,
+                FAT: ingred_fat,
+                SUGAR: ingred_sugar,
+                PROTEIN: ingred_protein,
+                CARBS: ingred_carbs,
+                COMMENT: ingred_comment,
+                STORE_PRICES: store_prices
             },
             success: function (response) {
                 console.log('Success:', response);
@@ -31,7 +54,7 @@ $(document)
             }
         });
     })
-    .on('click', '.ita-edit', function() {
+    .on('click', '.ita-edit', function () {
         let self = $(this)
         let ingrid_id = self.attr('data-id')
         $.ajax({
@@ -69,7 +92,7 @@ $(document)
             }
         });
     })
-    .on('click', '.ema-save', function() {
+    .on('click', '.ema-save', function () {
         let ingred_name = $('.form-create_ingredient').find('.eii-name').val()
         let ingred_weight = $('.form-create_ingredient').find('.eii-weight').val()
         let ingred_cal = $('.form-create_ingredient').find('.eii-cal').val()
@@ -79,6 +102,19 @@ $(document)
         let ingred_carbs = $('.form-create_ingredient').find('.eii-carbs').val()
         let ingred_comment = $('.form-create_ingredient').find('.eii-comment').val()
 
+        let store_prices = []
+        $('.store_row').each(function () {
+            if ($(this).find('.sr-price').val() && $(this).find('.sr-volume').val()) {
+                store_prices.push({
+                    'id': $(this).attr('data-key'),
+                    'store_id': $(this).attr('data-id'),
+                    'price': $(this).find('.sr-price').val(),
+                    'volume': $(this).find('.sr-volume').val(),
+                    'unit_measure': $(this).find('.unit-selector').attr('data-selected'),
+                })
+            }
+        })
+
         let self = $(this)
         let ingrid_id = self.attr('data-id')
 
@@ -87,17 +123,18 @@ $(document)
             type: 'PUT',
             dataType: 'json',
             data: {
-                NAME        : ingred_name,
-                WEIGHT      : ingred_weight,
-                CALORIES    : ingred_cal,
-                FAT         : ingred_fat,
-                SUGAR       : ingred_sugar,
-                PROTEIN     : ingred_protein,
-                CARBS       : ingred_carbs,
-                COMMENT     : ingred_comment,
+                ID: ingrid_id,
+                NAME: ingred_name,
+                WEIGHT: ingred_weight,
+                CALORIES: ingred_cal,
+                FAT: ingred_fat,
+                SUGAR: ingred_sugar,
+                PROTEIN: ingred_protein,
+                CARBS: ingred_carbs,
+                COMMENT: ingred_comment,
+                STORE_PRICES: store_prices,
             },
             success: function (response) {
-                console.log('Success:', response);
                 $('#store_edit_modal').modal('hide')
                 location.reload()
             },

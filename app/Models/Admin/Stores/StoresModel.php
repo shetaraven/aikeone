@@ -13,6 +13,7 @@ class StoresModel extends Model
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'NAME',
+        'ACTIVE',
         'COMMENT',
         'CREATED_BY',
         'UPDATED_BY',

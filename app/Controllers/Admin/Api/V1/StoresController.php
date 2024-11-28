@@ -2,8 +2,11 @@
 
 namespace App\Controllers\Admin\Api\V1;
 
+use CodeIgniter\Database\Config;
+use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
+use Exception;
 
 class StoresController extends ResourceController
 {
@@ -47,26 +50,39 @@ class StoresController extends ResourceController
         $post_data = $this->request->getPost();
         $valid = $this->validate(
             [
-                'NAME' => 'required',
-            ]
+                'NAME' => 'required|is_unique[STORES.NAME]',
+            ],
         );
 
         if (! $valid) {
             return $this->failValidationErrors($this->validator->getErrors());
         }
 
-        $insert_data = [
-            'NAME' => $post_data['NAME'],
-            'COMMENT' => $post_data['COMMENT'],
-        ];
+        $db = Config::connect();
+        $db->transStart();
+        try {
+            $insert_data = [
+                'NAME' => $post_data['NAME'],
+                'COMMENT' => $post_data['COMMENT'],
+            ];
 
-        $insert_id = $this->model->insert($insert_data);
+            $insert_id = $this->model->insert($insert_data);
 
-        if (! $insert_id) {
-            return $this->failServerError('Failed to create store record');
+            if (! $insert_id) {
+                return $this->failServerError('Failed to create store record');
+            }
+
+            $db->transComplete();
+            return $this->respondCreated([
+                'message' => 'Store created successfully'
+            ]);
+        } catch (DatabaseException $e) {
+            $db->transRollback();
+            return $this->failServerError($e->getMessage());
+        } catch (Exception $e) {
+            $db->transRollback();
+            return $this->failServerError($e->getMessage());
         }
-
-        return $this->respondCreated([], 'Store created successfully');
     }
 
     /**
@@ -86,7 +102,7 @@ class StoresController extends ResourceController
 
         $valid = $this->validate(
             [
-                'NAME' => 'required',
+                'NAME' => 'required|is_unique[INGREDIENTS.NAME]',
             ]
         );
 
@@ -94,13 +110,26 @@ class StoresController extends ResourceController
             return $this->failValidationErrors($this->validator->getErrors());
         }
 
-        $update_data = [
-            'NAME' => $post_data['NAME'],
-            'COMMENT' => $post_data['COMMENT'],
-        ];
+        $db = Config::connect();
+        $db->transStart();
+        try {
 
-        $this->model->update($id, $update_data);
-        return $this->respond(['message' => 'Store updated successfully'], 200);
+            $update_data = [
+                'NAME' => $post_data['NAME'],
+                'COMMENT' => $post_data['COMMENT'],
+            ];
+
+            $this->model->update($id, $update_data);
+
+            $db->transCommit();
+            return $this->respond(['message' => 'Store updated successfully'], 200);
+        } catch (DatabaseException $e) {
+            $db->transRollback();
+            return $this->failServerError($e->getMessage());
+        } catch (Exception $e) {
+            $db->transRollback();
+            return $this->failServerError($e->getMessage());
+        }
     }
 
     /**
@@ -116,7 +145,19 @@ class StoresController extends ResourceController
         if (!$store_info) {
             return $this->failNotFound('Store not found');
         }
-        $this->model->delete($id);
-        return $this->respond(['message' => 'Store deleted successfully'], 200);
+        $db = Config::connect();
+        $db->transStart();
+        try {
+            $this->model->update($id, ['ACTIVE' => 0]);
+
+            $db->transCommit();
+            return $this->respond(['message' => 'Store deleted successfully'], 200);
+        } catch (DatabaseException $e) {
+            $db->transRollback();
+            return $this->failServerError($e->getMessage());
+        } catch (Exception $e) {
+            $db->transRollback();
+            return $this->failServerError($e->getMessage());
+        }
     }
 }

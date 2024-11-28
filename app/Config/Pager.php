@@ -24,6 +24,7 @@ class Pager extends BaseConfig
         'default_full'   => 'CodeIgniter\Pager\Views\default_full',
         'default_simple' => 'CodeIgniter\Pager\Views\default_simple',
         'default_head'   => 'CodeIgniter\Pager\Views\default_head',
+        'admin'          => 'App\Views\layouts\pager\admin_pager.php',
     ];
 
     /**
@@ -33,5 +34,18 @@ class Pager extends BaseConfig
      *
      * The default number of results shown in a single page.
      */
-    public int $perPage = 20;
+    public int $perPage = 10;
+
+    public $pagerGroup = [
+        'default' => [
+            'perPage'       => 10,
+            'template'      => 'default_full',
+            'uriSegment'    => 3,
+        ],
+        'admin' => [
+            'perPage'       => 5,
+            'template'      => 'admin',
+            'uriSegment'    => 1,
+        ],
+    ];
 }
