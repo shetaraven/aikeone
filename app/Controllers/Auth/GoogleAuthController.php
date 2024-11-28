@@ -51,7 +51,7 @@ class GoogleAuthController extends Controller
                     $session_data = $user_info;
 
                     $session->set($session_data);
-                    return redirect()->to($session->get('PREV_URL'));
+                    return redirect()->to($session->get('PREV_URL') ? $session->get('PREV_URL') : base_url());
                 }
             }
         }

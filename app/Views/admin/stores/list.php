@@ -51,39 +51,10 @@
                 </table>
             </div>
 
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center m-10">
-                    <li class="page-item first">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left bx-sm"></i></a>
-                    </li>
-                    <li class="page-item prev">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left bx-sm"></i></a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">2</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="javascript:void(0);">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">5</a>
-                    </li>
-                    <li class="page-item next">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right bx-sm"></i></a>
-                    </li>
-                    <li class="page-item last">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right bx-sm"></i></a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="paginate">
+                <?=$pager->links('admin', 'admin')?>
+            </div>
         </div>
-
     </div>
 
     <div class="modal fade" id="edit_modal-ingrid" aria-labelledby="EditModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
@@ -106,5 +77,6 @@
     </div>
 
     <div class="content-backdrop fade"></div>
+
 </div>
 <?= $this->endSection() ?>
