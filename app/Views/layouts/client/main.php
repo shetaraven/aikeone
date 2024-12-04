@@ -1,7 +1,5 @@
 <?= $this->include('layouts/client/header') ?>
 
-<?= $this->include('layouts/client/aside') ?>
-
 <?= $this->renderSection('content') ?>
 
 
