@@ -194,7 +194,7 @@
 <body>
     <main>
         <div class="grid-wpr">
-            <img src="<?= base_url('assets/main/img/recette-login-img.jpg') ?>" class="mobile-only" />
+            <img src="<?= base_url('assets/main/images/recette-login-img.jpg') ?>" class="mobile-only" />
             <div class="grid-cell login-content">
                 <div class="floating-callout">
                     <img src="<?= base_url('assets/admin/img/aikeone-logo.svg') ?>" class="official-logo" />
