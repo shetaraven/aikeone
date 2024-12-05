@@ -1,31 +1,35 @@
 <?php
 
-namespace App\Models\Admin\Ingredients;
+namespace App\Models\Admin\Recipes;
 
 use App\Models\Traits\BlameableTrait;
 use CodeIgniter\Model;
 
-class IngredientsModel extends Model
+class RecipesModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'INGREDIENTS';
+    protected $table = 'RECIPES';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
-        'NAME',
-        'VOLUME',
-        'UNIT_MEASURE_ID',
-        'WEIGHT',
-        'CALORIES',
-        'FAT',
-        'SUGAR',
-        'PROTEIN',
-        'CARBS',
-        'COMMENT',
+        'TITLE',
+        'DETAILS',
+        'VISIBILITY',
+        'PREP_TIME',
+        'SERVINGS',
         'CREATED_BY',
         'UPDATED_BY',
     ];
     protected $useTimestamps = true;
+
+    public $emptyForm = [
+        'ID'            => '',
+        'TITLE'         => '',
+        'DETAILS'       => '',
+        'PREP_TIME'     => '',
+        'SERVINGS'      => '',
+        'VISIBILITY'    => 1,
+    ];
 
     public function insert($row = null, $returnID = true)
     {
@@ -45,23 +49,15 @@ class IngredientsModel extends Model
         return parent::update($id, $row);
     }
 
+    
+
     public function withCreator() {
         return $this->select([
-            'INGREDIENTS.*',
+            'RECIPES.*',
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-        ->join('USERS creator', 'INGREDIENTS.CREATED_BY = creator.ID', 'LEFT')
-        ->join('USERS updator', 'INGREDIENTS.CREATED_BY = updator.ID', 'LEFT');
-    }
-
-    public function withUnitMeasure() {
-        $existingSelects = $this->QBSelect ?? ['INGREDIENTS.*'];
-
-        return $this->select([
-            ...$existingSelects,
-            'um.LABEL UNIT_MEASURE_LABEL'
-        ])
-        ->join('UNITS_MEASURE um', 'INGREDIENTS.UNIT_MEASURE_ID = um.ID', 'LEFT');
+        ->join('USERS creator', 'RECIPES.CREATED_BY = creator.ID', 'LEFT')
+        ->join('USERS updator', 'RECIPES.CREATED_BY = updator.ID', 'LEFT');
     }
 }

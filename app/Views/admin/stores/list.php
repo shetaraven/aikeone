@@ -5,7 +5,7 @@
         <div class="card">
             <h5 class="card-header">
                 Store List
-                <a href="<?=base_url('admin/stores/create-form')?>" style="float: right;">
+                <a href="<?=base_url('admin/stores/form')?>" style="float: right;">
                     <button type="button" class="btn btn-primary">
                         <span class="tf-icons bx bx-plus-circle me-2"></span>Create Store
                     </button>

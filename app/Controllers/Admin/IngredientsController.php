@@ -19,7 +19,7 @@ class IngredientsController extends BaseController
         $this->module_data['menu_list'] = get_menu_list();
     }
 
-    public function createForm()
+    public function form()
     {
         $this->module_data['title'] = 'Create Ingridient';
 
@@ -49,10 +49,10 @@ class IngredientsController extends BaseController
         $post_data = $request->getPost();
         
         $ingreds_model = new IngredientsModel();
-        $this->module_data['ingredient_info'] = $ingreds_model->where('ID', $post_data['INGRID_ID'])->first();
+        $this->module_data['ingredient_info'] = $ingreds_model->where('INGREDIENTS.ID', $post_data['INGRID_ID'])->withUnitMeasure()->first();
         
         $isp_model = new IngredientStorePricesModel();
-        $this->module_data['ingred_store_prices'] = $isp_model->where(['INGREDIENT_ID' => $this->module_data['ingredient_info']['ID']])->withStore()->withUnitMeasure()->findAll();
+        $this->module_data['ingred_store_prices'] = $isp_model->where(['INGREDIENT_ID' => $this->module_data['ingredient_info']['ID']])->withStore()->findAll();
 
         $units_measure_model = new UnitsMeasureModel();
         $this->module_data['units_measure_list'] = $units_measure_model->findAll();

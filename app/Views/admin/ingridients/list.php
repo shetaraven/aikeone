@@ -10,7 +10,7 @@
         <div class="card">
             <h5 class="card-header">
                 Ingredient List
-                <a href="<?=base_url('admin/ingredients/create-form')?>" style="float: right;">
+                <a href="<?=base_url('admin/ingredients/form')?>" style="float: right;">
                     <button type="button" class="btn btn-primary">
                         <span class="tf-icons bx bx-plus-circle me-2"></span>Create Ingredient
                     </button>

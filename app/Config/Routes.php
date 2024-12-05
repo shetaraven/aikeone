@@ -43,7 +43,7 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
         # pages
         $routes->get('list', 'Admin\StoresController::list');
-        $routes->get('create-form', 'Admin\StoresController::createForm');
+        $routes->get('form', 'Admin\StoresController::form');
         $routes->post('partial-edit-form', 'Admin\StoresController::partialEditForm');
     });
 
@@ -52,14 +52,16 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 
         # pages
         $routes->get('list', 'Admin\IngredientsController::list');
-        $routes->get('create-form', 'Admin\IngredientsController::createForm');
+        $routes->get('form', 'Admin\IngredientsController::form');
         $routes->post('partial-edit-form', 'Admin\IngredientsController::partialEditForm');
     });
 
     $routes->group('recipes', function ($routes) {
         $routes->get('/', 'Admin\RecipesController::list');
         $routes->get('list', 'Admin\RecipesController::list');
-        $routes->get('create-form', 'Admin\RecipesController::createForm');
+        $routes->get('form', 'Admin\RecipesController::form');
+        $routes->get('partial-ingreds-list', 'Admin\RecipesController::partialIngredsList');
+        $routes->post('partial-ingreds-set', 'Admin\RecipesController::partialIngredsSet');
     });
 
     $routes->group('api', function ($routes) {
@@ -76,6 +78,16 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
         $routes->post('ingredients', 'Admin\Api\V1\IngredientsController::create');
         $routes->put('ingredients/(:num)', 'Admin\Api\V1\IngredientsController::update/$1');
         $routes->delete('ingredients/(:num)', 'Admin\Api\V1\IngredientsController::delete/$1');
+
+        # recipes rest request
+        $routes->get('recipes', 'Admin\Api\V1\RecipesController::list');
+        $routes->get('recipes/(:num)', 'Admin\Api\V1\RecipesController::show/$1');
+        $routes->post('recipes', 'Admin\Api\V1\RecipesController::create');
+        $routes->post('recipes/(:num)', 'Admin\Api\V1\RecipesController::update/$1');
+        $routes->delete('recipes/(:num)', 'Admin\Api\V1\RecipesController::delete/$1');
+        
+        # recipe ingridient request
+        $routes->delete('recipe-ingridients/(:num)', 'Admin\Api\V1\RecipeIngredientController::delete/$1');
     });
 });
 

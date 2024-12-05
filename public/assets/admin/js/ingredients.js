@@ -11,6 +11,8 @@ $(document)
     })
     .on('click', '.ci_action-create', function () {
         let ingred_name = $('.form-create_ingredient').find('.cii-name').val()
+        let ingred_vol = $('.form-create_ingredient').find('.cii-vol').val()
+        let ingred_unit_measure = $('.form-create_ingredient').find('.unit-selector').attr('data-selected')
         let ingred_weight = $('.form-create_ingredient').find('.cii-weight').val()
         let ingred_cal = $('.form-create_ingredient').find('.cii-cal').val()
         let ingred_fat = $('.form-create_ingredient').find('.cii-fat').val()
@@ -21,12 +23,10 @@ $(document)
 
         let store_prices = []
         $('.store_row').each(function () {
-            if ($(this).find('.sr-price').val() && $(this).find('.sr-volume').val()) {
+            if ($(this).find('.sr-price').val()) {
                 store_prices.push({
                     'store_id': $(this).attr('data-id'),
                     'price': $(this).find('.sr-price').val(),
-                    'volume': $(this).find('.sr-volume').val(),
-                    'unit_measure': $(this).find('.unit-selector').attr('data-selected'),
                 })
             }
         })
@@ -36,6 +36,8 @@ $(document)
             type: 'POST',
             data: {
                 NAME: ingred_name,
+                VOLUME: ingred_vol,
+                UNIT_MEASURE_ID: ingred_unit_measure,
                 WEIGHT: ingred_weight,
                 CALORIES: ingred_cal,
                 FAT: ingred_fat,
@@ -94,6 +96,8 @@ $(document)
     })
     .on('click', '.ema-save', function () {
         let ingred_name = $('.form-create_ingredient').find('.eii-name').val()
+        let ingred_vol = $('.form-create_ingredient').find('.cii-vol').val()
+        let ingred_unit_measure = $('.form-create_ingredient').find('.unit-selector').attr('data-selected')
         let ingred_weight = $('.form-create_ingredient').find('.eii-weight').val()
         let ingred_cal = $('.form-create_ingredient').find('.eii-cal').val()
         let ingred_fat = $('.form-create_ingredient').find('.eii-fat').val()
@@ -104,13 +108,11 @@ $(document)
 
         let store_prices = []
         $('.store_row').each(function () {
-            if ($(this).find('.sr-price').val() && $(this).find('.sr-volume').val()) {
+            if ($(this).find('.sr-price').val()) {
                 store_prices.push({
                     'id': $(this).attr('data-key'),
                     'store_id': $(this).attr('data-id'),
                     'price': $(this).find('.sr-price').val(),
-                    'volume': $(this).find('.sr-volume').val(),
-                    'unit_measure': $(this).find('.unit-selector').attr('data-selected'),
                 })
             }
         })
@@ -125,6 +127,8 @@ $(document)
             data: {
                 ID: ingrid_id,
                 NAME: ingred_name,
+                VOLUME: ingred_vol,
+                UNIT_MEASURE_ID: ingred_unit_measure,
                 WEIGHT: ingred_weight,
                 CALORIES: ingred_cal,
                 FAT: ingred_fat,

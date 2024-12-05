@@ -16,7 +16,7 @@ class StoresController extends BaseController
         $this->module_data['menu_list'] = get_menu_list();
     }
 
-    public function createForm()
+    public function form()
     {
         $this->module_data['title'] = 'Create Stores';
         return view('admin/stores/create',  $this->module_data);
