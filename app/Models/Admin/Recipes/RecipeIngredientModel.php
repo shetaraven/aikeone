@@ -1,27 +1,21 @@
 <?php
 
-namespace App\Models\Admin\Ingredients;
+namespace App\Models\Admin\Recipes;
 
 use App\Models\Traits\BlameableTrait;
 use CodeIgniter\Model;
 
-class IngredientsModel extends Model
+class RecipeIngredientModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'INGREDIENTS';
+    protected $table = 'RECIPE_INGREDIENTS';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
-        'NAME',
+        'RECIPE_ID',
+        'INGREDIENT_ID',
         'VOLUME',
         'UNIT_MEASURE_ID',
-        'WEIGHT',
-        'CALORIES',
-        'FAT',
-        'SUGAR',
-        'PROTEIN',
-        'CARBS',
-        'COMMENT',
         'CREATED_BY',
         'UPDATED_BY',
     ];
@@ -45,23 +39,23 @@ class IngredientsModel extends Model
         return parent::update($id, $row);
     }
 
-    public function withCreator() {
+    public function withIngredient() {
+        $existingSelects = $this->QBSelect ?? ['RECIPE_INGREDIENTS.*'];
+
         return $this->select([
-            'INGREDIENTS.*',
-            'creator.GIVEN_NAME as CREATOR',
-            'updator.GIVEN_NAME as UPDATOR'
+            ...$existingSelects,
+            'i.NAME'
         ])
-        ->join('USERS creator', 'INGREDIENTS.CREATED_BY = creator.ID', 'LEFT')
-        ->join('USERS updator', 'INGREDIENTS.CREATED_BY = updator.ID', 'LEFT');
+        ->join('INGREDIENTS i', 'RECIPE_INGREDIENTS.INGREDIENT_ID = i.ID', 'LEFT');
     }
 
     public function withUnitMeasure() {
-        $existingSelects = $this->QBSelect ?? ['INGREDIENTS.*'];
+        $existingSelects = $this->QBSelect ?? ['RECIPE_INGREDIENTS.*'];
 
         return $this->select([
             ...$existingSelects,
             'um.LABEL UNIT_MEASURE_LABEL'
         ])
-        ->join('UNITS_MEASURE um', 'INGREDIENTS.UNIT_MEASURE_ID = um.ID', 'LEFT');
+        ->join('UNITS_MEASURE um', 'RECIPE_INGREDIENTS.UNIT_MEASURE_ID = um.ID', 'LEFT');
     }
 }

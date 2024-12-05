@@ -102,7 +102,7 @@ class StoresController extends ResourceController
 
         $valid = $this->validate(
             [
-                'NAME' => 'required|is_unique[INGREDIENTS.NAME]',
+                'NAME' => 'required|is_unique[STORES.NAME,ID,'.$id.']',
             ]
         );
 

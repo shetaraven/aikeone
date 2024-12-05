@@ -61,20 +61,20 @@ class IngredientsController extends ResourceController
         $post_data = $this->request->getPost();
 
         $rules = [
-            'NAME'      => 'required|is_unique[INGREDIENTS.NAME]',
-            'WEIGHT'    => 'required',
-            'CALORIES'  => 'required',
-            'FAT'       => 'required',
-            'SUGAR'     => 'required',
-            'PROTEIN'   => 'required',
-            'COMMENT'   => 'required',
-            'CARBS'     => 'required',
+            'NAME'              => 'required|is_unique[INGREDIENTS.NAME]',
+            'VOLUME'            => 'required',
+            'UNIT_MEASURE_ID'   => 'required',
+            'WEIGHT'            => 'required',
+            'CALORIES'          => 'required',
+            'FAT'               => 'required',
+            'SUGAR'             => 'required',
+            'PROTEIN'           => 'required',
+            'CARBS'             => 'required',
         ];
 
         if (isset($post_data['STORE_PRICES'])) {
             foreach ($post_data['STORE_PRICES'] as $key => $price_data) {
                 $rules['STORE_PRICES.' . $key . '.price'] = 'required';
-                $rules['STORE_PRICES.' . $key . '.volume'] = 'required';
             }
         }
 
@@ -86,17 +86,22 @@ class IngredientsController extends ResourceController
         $db->transStart();
         try {
             $insert_data = [
-                'NAME'      => $post_data['NAME'],
-                'WEIGHT'    => $post_data['WEIGHT'],
-                'CALORIES'  => $post_data['CALORIES'],
-                'FAT'       => $post_data['FAT'],
-                'SUGAR'     => $post_data['SUGAR'],
-                'PROTEIN'   => $post_data['PROTEIN'],
-                'CARBS'     => $post_data['CARBS'],
-                'COMMENT'   => $post_data['COMMENT'],
+                'NAME'              => $post_data['NAME'],
+                'VOLUME'            => $post_data['VOLUME'],
+                'UNIT_MEASURE_ID'   => $post_data['UNIT_MEASURE_ID'],
+                'WEIGHT'            => $post_data['WEIGHT'],
+                'CALORIES'          => $post_data['CALORIES'],
+                'FAT'               => $post_data['FAT'],
+                'SUGAR'             => $post_data['SUGAR'],
+                'PROTEIN'           => $post_data['PROTEIN'],
+                'CARBS'             => $post_data['CARBS'],
+                'COMMENT'           => $post_data['COMMENT'],
             ];
 
             $insert_id = $this->ingredients_model->insert($insert_data);
+            if ($this->ingredients_model->error()['code']) {
+                throw new DatabaseException($this->ingredients_model->error()['message']);
+            }
             if ($insert_id) {
                 if (isset($post_data['STORE_PRICES'])) {
                     foreach ($post_data['STORE_PRICES'] as $key => $store_price_data) {
@@ -104,8 +109,6 @@ class IngredientsController extends ResourceController
                             'INGREDIENT_ID'     => $insert_id,
                             'STORE_ID'          => $store_price_data['store_id'],
                             'PRICE'             => $store_price_data['price'],
-                            'VOLUME'            => $store_price_data['volume'],
-                            'UNIT_MEASURE_ID'   => $store_price_data['unit_measure'],
                         ];
                         $this->isp_model->insert($insert_data);
 
@@ -147,13 +150,14 @@ class IngredientsController extends ResourceController
         $rules = [
             'ID'        => 'max_length[11]|is_natural_no_zero',
             'NAME'      => 'required|is_unique[INGREDIENTS.NAME,ID,'.$id.']',
+            'VOLUME'            => 'required',
+            'UNIT_MEASURE_ID'   => 'required',
             'WEIGHT'    => 'required',
             'CALORIES'  => 'required',
             'FAT'       => 'required',
             'SUGAR'     => 'required',
             'PROTEIN'   => 'required',
             'CARBS'     => 'required',
-            'COMMENT'   => 'required',
         ];
 
         $valid = $this->validate($rules);
@@ -161,7 +165,6 @@ class IngredientsController extends ResourceController
         if (isset($post_data['STORE_PRICES'])) {
             foreach ($post_data['STORE_PRICES'] as $key => $price_data) {
                 $rules['STORE_PRICES.' . $key . '.price'] = 'required';
-                $rules['STORE_PRICES.' . $key . '.volume'] = 'required';
             }
         }
 
@@ -174,6 +177,8 @@ class IngredientsController extends ResourceController
         try {
             $update_data = [
                 'NAME'      => $post_data['NAME'],
+                'VOLUME'            => $post_data['VOLUME'],
+                'UNIT_MEASURE_ID'   => $post_data['UNIT_MEASURE_ID'],
                 'WEIGHT'    => $post_data['WEIGHT'],
                 'CALORIES'  => $post_data['CALORIES'],
                 'FAT'       => $post_data['FAT'],
@@ -191,8 +196,6 @@ class IngredientsController extends ResourceController
             foreach ($post_data['STORE_PRICES'] as $key => $price_data) {
                 $update_data = [
                     'PRICE' => $price_data['price'],
-                    'VOLUME' => $price_data['volume'],
-                    'UNIT_MEASURE_ID' => $price_data['unit_measure'],
                 ];
 
                 $this->isp_model->update((int)$price_data['id'], $update_data);

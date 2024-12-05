@@ -11,9 +11,28 @@
             </h5>
 
             <div class="card-body">
-                <div>
-                    <label for="cii_inp-name" class="form-label">Name</label>
-                    <input type="text" class="form-control cii-name" id="cii_inp-name">
+                <div class="row">
+                    <div class="col-md-8 mt-3">
+                        <label for="cii_inp-name" class="form-label">Name</label>
+                        <input type="text" class="form-control cii-name" id="cii_inp-name">
+                    </div>
+
+                    <div class="col-md-4 mt-3">
+                        <label for="cii_inp-name" class="form-label">Unit of measure</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Volume</span>
+                            <input type="text" class="form-control cii-vol" placeholder="100">
+                            <span class="input-group-text selected-unit">g</span>
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end unit-selector" data-selected="1">
+                                <?php foreach ($units_measure_list as $key => $units_measure_info) : ?>
+                                    <li><a class="dropdown-item" data-id="<?= $units_measure_info['ID'] ?>"><?= $units_measure_info['LABEL'] ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -72,32 +91,16 @@
                 <div class="divider mt-12">
                     <div class="divider-text">Prices per Shop</div>
                 </div>
-                
+
                 <div class="shop-prices">
                     <?php foreach ($store_list as $key => $store_info) : ?>
-                        <div class="row mt-3 store_row" data-id="<?=$store_info['ID']?>">
-                            <div class="col-6">
-                                <label class="form-label"><?=$store_info['NAME']?></label>
+                        <div class="row mt-3 store_row" data-id="<?= $store_info['ID'] ?>">
+                            <div class="col-12">
+                                <label class="form-label"><?= $store_info['NAME'] ?></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Price</span>
                                     <input type="text" class="form-control sr-price" placeholder="1000">
                                     <span class="input-group-text">SEK</span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label">&nbsp;</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">Volume</span>
-                                    <input type="text" class="form-control sr-volume" placeholder="100">
-                                    <span class="input-group-text selected-unit">g</span>
-                                    <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="visually-hidden">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end unit-selector" data-selected="1">
-                                        <?php foreach ($units_measure_list as $key => $units_measure_info) :?>
-                                            <li><a class="dropdown-item" data-id="<?=$units_measure_info['ID']?>"><?=$units_measure_info['LABEL']?></a></li>
-                                        <?php endforeach; ?>
-                                    </ul>
                                 </div>
                             </div>
                         </div>

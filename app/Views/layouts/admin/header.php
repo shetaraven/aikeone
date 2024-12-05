@@ -21,12 +21,13 @@
     <link rel="stylesheet" href="<?= base_url('assets/admin/vendor/css/core.css') ?>" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url('assets/admin/vendor/css/theme-default.css') ?>" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/demo.css') ?>" />
-
+    
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/admin/vendor/libs/apex-charts/apex-charts.css') ?>" />
-
-    <!-- Page CSS -->
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/globals.css') ?>" />
 
     <!-- Helpers -->
     <script src="<?= base_url('assets/admin/vendor/js/helpers.js') ?>"></script>

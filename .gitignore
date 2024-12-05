@@ -1,4 +1,5 @@
 /writable
 /composer
 /vendor
+/public/assets/admin/img/recipe_imgs
 .env
