@@ -9,17 +9,17 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="assets/main/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/main/css/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/main/css/style.css">
-    <link href="assets/main/css/page.css" rel="stylesheet">
+    <link href="/assets/main/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/main/css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/main/css/style.css">
+    <link href="/assets/main/css/page.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
     
     <!-- css here -->
@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="assets/admin/img/aikeone-logo.svg" class="official-logo" style="width: 25px;filter: invert();" />
+                    <img src="/assets/admin/img/aikeone-logo.svg" class="official-logo" style="width: 25px;filter: invert();" />
                     <span>Aikeone</span>
                 </a>
 
@@ -57,6 +57,10 @@
 
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_2">All Recipes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_2">Collections</a>
                         </li>
 
                         <li class="nav-item">

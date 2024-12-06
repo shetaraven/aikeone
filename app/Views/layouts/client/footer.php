@@ -6,7 +6,7 @@
 
             <div class="col-lg-3 col-12 mb-4 pb-2">
                 <a class="navbar-brand mb-2" href="index.html">
-                    <img src="assets/admin/img/aikeone-logo.svg" class="official-logo" style="width: 25px;" />
+                    <img src="/assets/admin/img/aikeone-logo.svg" class="official-logo" style="width: 25px;" />
                     <span>Aikeone</span>
                 </a>
             </div>
@@ -37,12 +37,12 @@
 
 
 <!-- JAVASCRIPT FILES -->
-<script src="assets/main/js/jquery.min.js"></script>
-<script src="assets/main/js/bootstrap.bundle.min.js"></script>
-<script src="assets/main/js/jquery.sticky.js"></script>
+<script src="/assets/main/js/jquery.min.js"></script>
+<script src="/assets/main/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/main/js/jquery.sticky.js"></script>
 <!-- <script src="assets/main/js/click-scroll.js"></script> -->
-<script src="assets/main/js/custom.js"></script>
-<script src="assets/main/js/popper.js"></script>
+<script src="/assets/main/js/custom.js"></script>
+<script src="/assets/main/js/popper.js"></script>
 
 <!-- scripts here -->
 <?php if (!empty($js)) : ?>

@@ -21,6 +21,8 @@ class ProfileController extends BaseController
     public function collections()
     {
         $this->module_data['title'] = 'My Collection';
+        $this->module_data['css'] = ['/assets/main/css/collections.css'];
+        $this->module_data['js'] = [];
         return view('client/profile/collections',  $this->module_data);
     }
 }
