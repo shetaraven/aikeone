@@ -7,9 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // replace to client home
-$routes->get('/', function () {
-    return redirect()->to(base_url('/home'));
-});
+// $routes->get('/', function () {
+//     return redirect()->to(base_url('/home'));
+// });
 
 # authentication routes
 $routes->group('auth', function ($routes) {
@@ -92,6 +92,16 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 });
 
 # client routes
-$routes->group('home', function ($routes) {
+$routes->group('', function ($routes) {
     $routes->get('/', 'Client\HomeController::index');
+
+    $routes->group('recipes', function ($routes) {
+        $routes->get('/', 'Client\RecipesController::index');
+        $routes->get('details', 'Client\RecipesController::details');
+    });
+
+    $routes->group('profile', function ($routes) {
+        $routes->get('/', 'Client\ProfileController::index');
+        $routes->get('collections', 'Client\ProfileController::collections');
+    });
 });
