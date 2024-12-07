@@ -98,7 +98,6 @@ $routes->group('', function ($routes) {
     $routes->group('recipes', function ($routes) {
         $routes->get('/', 'Client\RecipesController::index');
         $routes->get('details', 'Client\RecipesController::details');
-        $routes->post('toggle-recipe-fav', 'Client\RecipesController::toggleRecipeFav');
         $routes->get('partials-ingreds-calc/(:num)', 'Client\RecipesController::partailIngredCalc/$1');
         $routes->get('partials-nutri-vals/(:num)', 'Client\RecipesController::partailNutriVals/$1');
         $routes->get('partials-serving-calc/(:num)', 'Client\RecipesController::partailServingCalc/$1');
@@ -107,5 +106,14 @@ $routes->group('', function ($routes) {
     $routes->group('profile', function ($routes) {
         $routes->get('/', 'Client\ProfileController::index');
         $routes->get('collections', 'Client\ProfileController::collections');
+    });
+
+    $routes->group('api', function ($routes) {
+        # user favorites rest request
+        $routes->get('user-fav', 'Client\Api\V1\UserFavoritesController::list');
+        $routes->get('user-fav/(:num)', 'Client\Api\V1\UserFavoritesController::show/$1');
+        $routes->post('user-fav', 'Client\Api\V1\UserFavoritesController::create');
+        $routes->post('user-fav/(:num)', 'Client\Api\V1\UserFavoritesController::update/$1');
+        $routes->delete('user-fav/(:num)', 'Client\Api\V1\UserFavoritesController::delete/$1');
     });
 });

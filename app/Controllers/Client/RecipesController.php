@@ -59,6 +59,13 @@ class RecipesController extends BaseController
         $ri_model = new RecipeInstructionsModel();
         $this->module_data['recipe_instructions'] = $ri_model->where('RECIPE_ID', $get_data['id'])->orderBy('ORDER', 'ASC')->findAll();
 
+        $this->module_data['is_favorite'] = false;
+
+        if (session()->get('GOOGLE_ID')) {
+            $uf_model = new UserFavoritesModel();
+            $this->module_data['is_favorite'] = $uf_model->where('RECIPE_ID', $get_data['id'])->where('USER_ID', session()->get('ID'))->find() ? true : false;
+        }
+
         return view('client/recipe/details',  $this->module_data);
     }
 
@@ -127,14 +134,5 @@ class RecipesController extends BaseController
             'html_content' => $html_content,
             'recipe_ingredients' => $recipe_ingredients,
         ]);
-    }
-
-    public function toggleRecipeFav()
-    {
-        if (! session()->get('GOOGLE_ID')) {
-            return json_res('session_error');
-        }
-
-        $uf_model = new UserFavoritesModel();
     }
 }

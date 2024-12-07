@@ -9,7 +9,7 @@ class UserFavoritesModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'STORES';
+    protected $table = 'USER_FAVORITES';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'USER_ID',

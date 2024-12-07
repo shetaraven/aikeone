@@ -7,7 +7,7 @@
             <div class="col-12 mt-5 mb-3" style="position: relative;">
                 <a href="" class="back-btn action-go_back"><i class="bi-arrow-left" style="margin-right: 5px;"></i>Back to list</a>
                 <h1 class="h1" style="font-weight: 900;"><?= $recipe_info['TITLE'] ?></h1>
-                <i class="bi-bookmark-heart bookmark-btn" alt="Bookmark" data-id="<?= $recipe_info['ID'] ?>"></i>
+                <i class="bi-bookmark-heart bookmark-btn" alt="Bookmark" data-rid="<?= $recipe_info['ID'] ?>" data-fav="<?=$is_favorite?>"></i>
             </div>
         </div>
     </div>

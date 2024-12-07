@@ -46,21 +46,21 @@ $(document)
     })
     .on('click', '.bookmark-btn', function () {
         let self = $(this)
-        let rid = self.attr('data-id')
+        let rid = self.attr('data-rid')
+        let is_fave = self.attr('data-fav')
 
         $.ajax({
-            url: '/recipes/toggle-recipe-fav',
-            type: 'POST',
+            url: '/api/' + ( is_fave ? 'user-fav/' + rid : 'user-fav' ),
+            type: ( is_fave ? 'DELETE' : 'POST' ),
             dataType: 'json',
             data: {
-                recipe_id: rid
+                'RECIPE_ID': rid
             },
             success: function (response) {
-                
+                self.attr('data-fav', !is_fave)
             },
             error: function (xhr, status, error) {
-                // session error
-                // window.location.replace(JSON.parse(xhr.responseJSON.message).path)
+                console.error('Error:', error);
             }
         });
     })
