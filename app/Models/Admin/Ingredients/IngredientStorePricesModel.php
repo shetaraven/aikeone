@@ -16,10 +16,12 @@ class IngredientStorePricesModel extends Model
     ];
 
     public function withStore() {
+        $existingSelects = $this->QBSelect ?? ['INGREDIENT_STORE_PRICES.*'];
+
         return $this->select([
-            'INGREDIENT_STORE_PRICES.*',
-            's.NAME STORE_NAME'
+            ...$existingSelects,
+            'STORES.NAME STORE_NAME'
         ])
-        ->join('STORES s', 'INGREDIENT_STORE_PRICES.STORE_ID = s.ID', 'LEFT');
+        ->join('STORES', 'INGREDIENT_STORE_PRICES.STORE_ID = STORES.ID', 'LEFT');
     }
 }

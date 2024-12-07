@@ -13,4 +13,14 @@ class RecipeCategoryLinkModel extends Model
         'RECIPE_ID',
         'CATEGORY_ID',
     ];
+
+    public function withCategoryInfo()
+    {
+        $existingSelects = $this->QBSelect ?? ['RECIPE_CATEGORY_LINK.*'];
+        return $this->select([
+            ...$existingSelects,
+            'RECIPE_CATEGORIES.LABEL'
+        ])
+            ->join('RECIPE_CATEGORIES', 'RECIPE_CATEGORY_LINK.CATEGORY_ID = RECIPE_CATEGORIES.ID', 'LEFT');
+    }
 }

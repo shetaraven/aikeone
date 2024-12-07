@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Admin\Ingredients\IngredientsModel;
 use App\Models\Admin\Recipes\RecipeCategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
-use App\Models\Admin\Recipes\RecipeIngredientModel;
+use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use App\Models\Admin\Recipes\RecipeInstructionsModel;
 use App\Models\Admin\Recipes\RecipesModel;
 use Config\Services;
@@ -53,7 +53,7 @@ class RecipesController extends BaseController
             $inst_model = new RecipeInstructionsModel();
             $this->module_data['instruction_list'] = $inst_model->where('RECIPE_ID', $get_data['id'])->findAll();
 
-            $ingreds_model = new RecipeIngredientModel();
+            $ingreds_model = new RecipeIngredientLinkModel();
             $this->module_data['ingredients_list'] = $ingreds_model->where('RECIPE_ID', $get_data['id'])->withIngredient()->withUnitMeasure()->findAll();
 
             $recicat_model = new RecipeCategoryLinkModel();

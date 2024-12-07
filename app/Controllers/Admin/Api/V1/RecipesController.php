@@ -4,7 +4,7 @@ namespace App\Controllers\Admin\Api\V1;
 
 use App\Models\Admin\Recipes\RecipeCategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
-use App\Models\Admin\Recipes\RecipeIngredientModel;
+use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use App\Models\Admin\Recipes\RecipeInstructionsModel;
 use App\Models\Admin\Recipes\RecipesModel;
 use CodeIgniter\Database\Config;
@@ -27,7 +27,7 @@ class RecipesController extends ResourceController
         $this->recipe_model = new RecipesModel();
         $this->rcl_model = new RecipeCategoryLinkModel();
         $this->rinst_model = new RecipeInstructionsModel();
-        $this->ringred_model = new RecipeIngredientModel();
+        $this->ringred_model = new RecipeIngredientLinkModel();
     }
     /**
      * Return the properties of a resource object.

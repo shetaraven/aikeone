@@ -98,6 +98,10 @@ $routes->group('', function ($routes) {
     $routes->group('recipes', function ($routes) {
         $routes->get('/', 'Client\RecipesController::index');
         $routes->get('details', 'Client\RecipesController::details');
+        $routes->post('toggle-recipe-fav', 'Client\RecipesController::toggleRecipeFav');
+        $routes->get('partials-ingreds-calc/(:num)', 'Client\RecipesController::partailIngredCalc/$1');
+        $routes->get('partials-nutri-vals/(:num)', 'Client\RecipesController::partailNutriVals/$1');
+        $routes->get('partials-serving-calc/(:num)', 'Client\RecipesController::partailServingCalc/$1');
     });
 
     $routes->group('profile', function ($routes) {

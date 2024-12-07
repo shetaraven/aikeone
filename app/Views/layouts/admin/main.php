@@ -53,7 +53,7 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="<?=base_url('auth/logout')?>">
-                                        <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                                        <i class="bx bx-power-off bx-md me-3"></i><span>Logout</span>
                                     </a>
                                 </li>
                             </ul>

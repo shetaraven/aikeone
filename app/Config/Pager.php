@@ -25,6 +25,7 @@ class Pager extends BaseConfig
         'default_simple' => 'CodeIgniter\Pager\Views\default_simple',
         'default_head'   => 'CodeIgniter\Pager\Views\default_head',
         'admin'          => 'App\Views\layouts\pager\admin_pager.php',
+        'client'         => 'App\Views\layouts\pager\client_pager.php',
     ];
 
     /**
@@ -46,6 +47,11 @@ class Pager extends BaseConfig
             'perPage'       => 5,
             'template'      => 'admin',
             'uriSegment'    => 1,
+        ],
+        'admin' => [
+            'perPage'       => 5,
+            'template'      => 'client',
+            'uriSegment'    => 3,
         ],
     ];
 }

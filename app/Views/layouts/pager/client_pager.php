@@ -12,14 +12,14 @@ $pager->setSurroundCount(3);
     <ul class="pagination justify-content-center m-10">
         <?php if ($pager->hasPrevious()) : ?>
             <li class="page-item first">
-                <a class="page-link" href="<?= $pager->getFirst() ?>">
-                    <i class="tf-icon bx bx-chevrons-left bx-sm"></i>
+                <a class="page-link default" href="<?= $pager->getFirst() ?>">
+                    First
                 </a>
             </li>
 
             <li class="page-item prev">
                 <a class="page-link" href="<?= $pager->getPrevious() ?>">
-                    <i class="tf-icon bx bx-chevron-left bx-sm"></i>
+                    Prev
                 </a>
             </li>
         <?php endif ?>
@@ -33,13 +33,13 @@ $pager->setSurroundCount(3);
         <?php if ($pager->hasNext()) : ?>
             <li class="page-item next">
                 <a class="page-link" href="<?= $pager->getNext() ?>">
-                    <i class="tf-icon bx bx-chevron-right bx-sm"></i>
+                    Next
                 </a>
             </li>
 
             <li class="page-item last">
-                <a class="page-link" href="<?= $pager->getLast() ?>">
-                    <i class="tf-icon bx bx-chevrons-right bx-sm"></i>
+                <a class="page-link default" href="<?= $pager->getLast() ?>">
+                    Last
                 </a>
             </li>
         <?php endif ?>

@@ -10,7 +10,7 @@ use Exception;
 
 class RecipeIngredientController extends ResourceController
 {
-    protected $modelName = 'App\Models\Admin\Recipes\RecipeIngredientModel';
+    protected $modelName = 'App\Models\Admin\Recipes\RecipeIngredientLinkModel';
     protected $format = 'json';
 
     /**

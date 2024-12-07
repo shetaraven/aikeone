@@ -11,6 +11,10 @@ class RecipesModel extends Model
 
     protected $table = 'RECIPES';
     protected $primaryKey = 'ID';
+    protected $useTimestamps = true;
+    protected $afterFind = [
+        'getMainImage'
+    ];
     protected $allowedFields = [
         'TITLE',
         'DETAILS',
@@ -20,7 +24,6 @@ class RecipesModel extends Model
         'CREATED_BY',
         'UPDATED_BY',
     ];
-    protected $useTimestamps = true;
 
     public $emptyForm = [
         'ID'            => '',
@@ -49,15 +52,40 @@ class RecipesModel extends Model
         return parent::update($id, $row);
     }
 
-    
+    public function getMainImage(array $data)
+    {
+        if (isset($data['data'])) {
+            if (isset($data['data'][0])) {
+                # Multiple rows
+                foreach ($data['data'] as &$row) {
+                    $row['IMAGE'] = false;
+                    $recipe_img_loc = '/assets/admin/img/recipe_imgs/' . $row['ID'] . '/main.jpeg';
+                    if (is_file(ROOTPATH . '/public' . $recipe_img_loc)) {
+                        $row['IMAGE'] = $recipe_img_loc;
+                    }
+                }
+            } else {
+                # Single row
+                $data['data']['IMAGE'] = false;
+                $recipe_img_loc = '/assets/admin/img/recipe_imgs/' . $data['data']['ID'] . '/main.jpeg';
+                if (is_file(ROOTPATH . '/public' . $recipe_img_loc)) {
+                    $data['data']['IMAGE'] = $recipe_img_loc;
+                }
+            }
+        }
 
-    public function withCreator() {
+        return $data;
+    }
+
+    public function withCreator()
+    {
+        $existingSelects = $this->QBSelect ?? ['RECIPES.*'];
         return $this->select([
-            'RECIPES.*',
+            ...$existingSelects,
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-        ->join('USERS creator', 'RECIPES.CREATED_BY = creator.ID', 'LEFT')
-        ->join('USERS updator', 'RECIPES.CREATED_BY = updator.ID', 'LEFT');
+            ->join('USERS creator', 'RECIPES.CREATED_BY = creator.ID', 'LEFT')
+            ->join('USERS updator', 'RECIPES.CREATED_BY = updator.ID', 'LEFT');
     }
 }

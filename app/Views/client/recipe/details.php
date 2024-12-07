@@ -5,13 +5,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mt-5 mb-3" style="position: relative;">
-                <a href="" class="back-btn"><i class="bi-arrow-left" style="margin-right: 5px;"></i>Back to Overview</a>
-                <h1 class="h1" style="font-weight: 900;">Recipe Title Here</h1>
-                <i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i>
+                <a href="" class="back-btn action-go_back"><i class="bi-arrow-left" style="margin-right: 5px;"></i>Back to list</a>
+                <h1 class="h1" style="font-weight: 900;"><?= $recipe_info['TITLE'] ?></h1>
+                <i class="bi-bookmark-heart bookmark-btn" alt="Bookmark" data-id="<?= $recipe_info['ID'] ?>"></i>
             </div>
         </div>
     </div>
-    <div class="banner-img-section" style="background-image: url(/assets/main/images/home-banner1.jpg);">
+    <div class="banner-img-section" style="background-image: url(<?= $recipe_info['IMAGE'] ? base_url($recipe_info['IMAGE']) : base_url('/assets/main/images/home-banner1.jpg') ?>);">
         <div class="container">
             <div class="row">
                 <div class="col-12" style="min-height: 500px;position: relative;">
@@ -22,7 +22,9 @@
                             </div>
                             <div class="details-cont">
                                 <p class="mb-0">Tags</p>
-                                <p class="mb-0">Vegan</p>
+                                <?php foreach ($recipe_categories as $key => $rc_info) : ?>
+                                    <p class="mb-0"><?= $rc_info['LABEL'] ?></p>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                         <div class="flex-line mb-2">
@@ -40,7 +42,7 @@
                             </div>
                             <div class="details-cont">
                                 <p class="mb-0">Time</p>
-                                <p class="mb-0">2 Hours 10 Mins</p>
+                                <p class="mb-0"><?= $recipe_info['PREP_TIME'] ?></p>
                             </div>
                         </div>
                         <div class="flex-line">
@@ -49,7 +51,7 @@
                             </div>
                             <div class="details-cont">
                                 <p class="mb-0">Servings</p>
-                                <p class="mb-0">4 - 5 pax</p>
+                                <p class="mb-0"><?= $recipe_info['SERVINGS'] ?></p>
                             </div>
                         </div>
                     </div>
@@ -61,8 +63,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 my-5">
-                <p style="text-align: center;max-width: 700px;margin: auto;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada ligula non scelerisque pharetra. Aenean id elit at enim posuere ullamcorper at maximus ligula. Nullam iaculis ultricies sodales. Nulla vel magna purus. Fusce
-                    non dui et quam mollis convallis. Morbi ultrices leo nec urna dapibus, ac egestas turpis mattis. In non luctus ex. Pellentesque sapien justo, mollis ut fringilla non, sollicitudin sit amet metus. </p>
+                <p style="text-align: center;max-width: 700px;margin: auto;"> <?= $recipe_info['DETAILS'] ?> </p>
             </div>
 
             <div class="container">
@@ -74,28 +75,35 @@
                                 Ingredients:
                             </div>
                             <ul class="list-block">
-                                <li>1 pound boneless pork loin</li>
-                                <li>1 teaspoon cayenne pepper</li>
-                                <li>kosher salt and black pepper</li>
-                                <li>1 cucumber, thinly sliced</li>
-                                <li>3 tablespoons cider vinegar</li>
-                                <li>2 tablespoons olive oil</li>
-                                <li>2 teaspoons brown sugar</li>
-                                <li>1/3 cup mayonnaise</li>
+                                <?php foreach ($recipe_ingredients as $key => $ringreds_info) : ?>
+                                    <li><b><?= $ringreds_info['VOLUME'] ?> <?= $ringreds_info['UNIT_MEASURE_LABEL'] ?></b> <?= $ringreds_info['NAME'] ?></li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
 
                         <style>
-                            
+
                         </style>
                         <div class="ingrids-block mt-5" id="tools-section">
                             <div class="head-block h5">
                                 Tools:
                             </div>
                             <ul class="list-block">
-                                <li><a class="modal_open" href="#" data-target="ingrids-modal"><i class="bi-calculator" style="margin-right: 5px;"></i>Ingredient Price List</a></li>
-                                <li><a class="modal_open" href="#" data-target="calorie-modal"><i class="bi-fire" style="margin-right: 5px;"></i>Calorie List</a></li>
-                                <li><a class="modal_open" href="#" data-target="serving-modal"><i class="bi-calculator" style="margin-right: 5px;"></i>Serving Calculator</a></li>
+                                <li>
+                                    <a class="modal_open" data-rid="<?= $recipe_info['ID'] ?>" data-type="0" href="#" data-target="ingrids-modal">
+                                        <i class="bi-calculator" style="margin-right: 5px;"></i>Ingredient Price List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="modal_open" data-rid="<?= $recipe_info['ID'] ?>" data-type="1" href="#" data-target="calorie-modal">
+                                        <i class="bi-fire" style="margin-right: 5px;"></i>Calorie List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="modal_open" data-rid="<?= $recipe_info['ID'] ?>" data-type="2" href="#" data-target="serving-modal">
+                                        <i class="bi-calculator" style="margin-right: 5px;"></i>Serving Calculator
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
@@ -110,8 +118,8 @@
                                             <div class="sub-block">
                                                 <p class="sub-title"><i class="bi-cash" style="margin-right: 5px;"></i>Select Currency:</p>
                                                 <select class="selectpicker" data-size="4">
-                                                    <option value="PHP" selected>PHP</option>
-                                                    <option value="SEK">SEK</option>
+                                                    <option value="PHP">PHP</option>
+                                                    <option value="SEK" selected>SEK</option>
                                                 </select>
                                             </div>
                                             <div class="sub-block">
@@ -120,71 +128,8 @@
                                             </div>
                                         </div>
                                         <h3 class="text-center">Price List on our Record</h3>
-                                        <table class="responsive">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Ingredient</th>
-                                                    <th scope="col">Quantity</th>
-                                                    <th scope="col">Store 1 Price</th>
-                                                    <th scope="col">Store 2 Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Quantity">1kg</td>
-                                                    <td data-label="Store 1 Price">100 PHP</td>
-                                                    <td data-label="Store 2 Price">110 PHP</td>
-                                                </tr>
-                                            </tbody>
+                                        <table class="responsive append_area">
+                                            <!-- contents here -->
                                         </table>
                                     </div>
                                     <a class="popup__close" href="#">X</a>
@@ -198,80 +143,8 @@
                                     <div class="popup__photo">
                                         <img src="https://www.simplyrecipes.com/thmb/OxV-yFV0VvfSdlpdQukYOaB4VU4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Pyrex-Love-Letter-LEAD-02-88172516204a4fdeb5f2e7465d613bd3.jpg" alt="">
                                     </div>
-                                    <div class="popup__text">
-
-                                        <h3 class="text-center">Nutritional Facts</h3>
-
-                                        <div class="card p-4 mb-4" style="border: solid 2px #a6a6a6;background-color: #bedba7;filter: brightness(1.5);">
-                                            <p class="text-center" style="font-size: 18px;
-                                            font-weight: 900;
-                                            font-family: monospace;
-                                            color: #000;">Total Nutritional Values:</p>
-                                            <div class="row">
-                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Calories: </span></div>
-                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Fat: </span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Sugar: </span></div>
-                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Protien: </span></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 col-md-6"><span style="font-weight: 900;font-family: sans-serif;">Carbs: </span></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="accordion">
-                                            <div class="accordion-item" style="border: none;">
-                                                <h2 class="accordion-header" id="headingOne">
-                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="color: var(--primary-color);font-weight: 900;border-radius: 50px;">
-                                                    Ingridient Name Here
-                                                    </button>
-                                                </h2>
-
-                                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#multiple-layout">
-                                                    <div class="accordion-body">
-                                                        <div class="card p-4" style="border: solid 2px #d3d3d3;">
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Calories: </span></div>
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Fat: </span></div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Sugar: </span></div>
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Protien: </span></div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-6"><span style="font-weight: 900;font-family: sans-serif;">Carbs: </span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item" style="border: none;">
-                                                <h2 class="accordion-header" id="headingTwo">
-                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: var(--primary-color);font-weight: 900;border-radius: 50px;">
-                                                        Ingridient Name Here
-                                                    </button>
-                                                </h2>
-
-                                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#multiple-layout">
-                                                    <div class="accordion-body">
-                                                        <div class="card p-4" style="border: solid 2px #d3d3d3;">
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Calories: </span></div>
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Fat: </span></div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Sugar: </span></div>
-                                                                <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Protien: </span></div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 col-md-6"><span style="font-weight: 900;font-family: sans-serif;">Carbs: </span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="popup__text append_area">
+                                        <!-- contents here -->
                                     </div>
                                     <a class="popup__close" href="#">X</a>
                                 </div>
@@ -299,55 +172,11 @@
                                                 <tr>
                                                     <th scope="col">Ingredient</th>
                                                     <th scope="col">Original Volume</th>
-                                                    <th scope="col">Volume for [number of servings]</th>
+                                                    <th scope="col">Volume for <span class="no_servings">1</span> serving/s</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Ingredient">Lorem Ipsum Dolor</td>
-                                                    <td data-label="Original Volume">1kg</td>
-                                                    <td data-label="Volume for [number of servings]">100 PHP</td>
-                                                </tr>
+                                            <tbody class="append_area">
+                                                <!-- contents here -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -365,50 +194,21 @@
                                     <div class="inner"></div>
                                 </div>
 
-                                <li>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                    </p>
-                                    <div class="icon-holder">
-                                        <span>1</span>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                    </p>
-                                    <div class="icon-holder">
-                                        <span>2</span>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                    </p>
-                                    <div class="icon-holder">
-                                        <span>3</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                    </p>
-                                    <div class="icon-holder">
-                                        <span>4</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                    </p>
-                                    <div class="icon-holder">
-                                        <span>5</span>
-                                    </div>
-                                </li>
+                                <?php foreach ($recipe_instructions as $key => $rinst_info) : ?>
+                                    <li>
+                                        <p><?= $rinst_info['DESCRIPTION'] ?></p>
+                                        <div class="icon-holder">
+                                            <span><?= $rinst_info['ORDER'] ?></span>
+                                        </div>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <div class="accordion" id="multiple-layout" style="display: none;">
                             <div class="accordion-item" style="border: none;">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: var(--primary-color);font-weight: 900;border-radius: 50px;">
-                                    Part 1 : Lorem Ipsum Doler Simut
+                                        Part 1 : Lorem Ipsum Doler Simut
                                     </button>
                                 </h2>
 
@@ -435,7 +235,7 @@
                             <div class="accordion-item" style="border: none;">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: var(--primary-color);font-weight: 900;border-radius: 50px;">
-                                    Part 2 : Lorem Ipsum Doler Simut
+                                        Part 2 : Lorem Ipsum Doler Simut
                                     </button>
                                 </h2>
 
