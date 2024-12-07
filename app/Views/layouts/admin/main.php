@@ -19,13 +19,14 @@
 
                 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                     <!-- Search -->
-                    <div class="navbar-nav align-items-center">
+                    <!-- <div class="navbar-nav align-items-center">
                         <div class="nav-item d-flex align-items-center">
                             <i class="bx bx-search bx-md"></i>
                             <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search..." />
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /Search -->
+                    <h5 class="mb-0"><?= $title ?></h5>
 
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">

@@ -8,14 +8,21 @@
 
         <!-- Hoverable Table rows -->
         <div class="card">
-            <h5 class="card-header">
-                Ingredient List
+            <div class="card-header">
+
+                <div class="navbar-nav" style="display: inline-block">
+                    <div class="nav-item d-flex align-items-center" style="border-bottom: solid 1px #d3d3d3">
+                        <i class="bx bx-search bx-md" style="cursor: pointer"></i>
+                        <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search..." />
+                    </div>
+                </div>
+
                 <a href="<?=base_url('admin/ingredients/form')?>" style="float: right;">
                     <button type="button" class="btn btn-primary">
                         <span class="tf-icons bx bx-plus-circle me-2"></span>Create Ingredient
                     </button>
                 </a>
-            </h5>
+            </div>
 
             <div class="table-responsive text-nowrap">
                 <table class="table table-hover">

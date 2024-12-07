@@ -21,7 +21,7 @@
     }
     
     .login-bg {
-        background: url('<?= base_url('assets/main/img/recette-login-img.jpg') ?>');
+        background: url('<?= base_url('assets/main/images/recette-login-img.jpg') ?>');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
