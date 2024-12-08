@@ -379,11 +379,11 @@
                                     <div>
                                         <div class="input-group input-group-merge">
                                             <span class="input-group-text"><i class="bx bx-search"></i></span>
-                                            <input type="text" id="searchIngrids" class="form-control" placeholder="Search..." aria-label="Search..." onkeyup="myFunction()">
+                                            <input type="text" id="searchIngreds" class="form-control" placeholder="Search..." aria-label="Search..." onkeyup="myFunction()">
                                         </div>
                                     </div>
                                     <div class="mt-4">
-                                        <div class="list-group" id="ingrids-list">
+                                        <div class="list-group" id="ingreds-list">
                                           <label class="list-group-item">
                                             <input class="form-check-input me-3" type="checkbox" value="">
                                             <span>Soufflé pastry pie ice</span>
@@ -452,9 +452,9 @@
         function myFunction() {
             // Declare variables
             var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById('searchIngrids');
+            input = document.getElementById('searchIngreds');
             filter = input.value.toUpperCase();
-            ul = document.getElementById("ingrids-list");
+            ul = document.getElementById("ingreds-list");
             li = ul.getElementsByTagName('label');
 
             // Loop through all list items, and hide those who don't match the search query

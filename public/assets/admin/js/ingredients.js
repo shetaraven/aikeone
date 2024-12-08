@@ -63,18 +63,18 @@ $(document)
     })
     .on('click', '.ita-edit', function () {
         let self = $(this)
-        let ingrid_id = self.attr('data-id')
+        let ingred_id = self.attr('data-id')
         $.ajax({
             url: '/admin/ingredients/partial-edit-form',
             type: 'POST',
             dataType: 'html',
             data: {
-                INGRID_ID: ingrid_id
+                INGRED_ID: ingred_id
             },
             success: function (response) {
-                $('#edit_modal-ingrid').find('.modal-body').html(response)
-                $('#edit_modal-ingrid').find('.ema-save').attr('data-id', ingrid_id)
-                $('#edit_modal-ingrid').modal('show')
+                $('#edit_modal-ingred').find('.modal-body').html(response)
+                $('#edit_modal-ingred').find('.ema-save').attr('data-id', ingred_id)
+                $('#edit_modal-ingred').modal('show')
             },
             error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -86,8 +86,8 @@ $(document)
         let self = $(this)
         store_id = self.attr('data-id')
 
-        $('#del_modal-ingrid').find('.ita-delete-proceed').attr('data-id',store_id);
-        $('#del_modal-ingrid').modal('show')
+        $('#del_modal-ingred').find('.ita-delete-proceed').attr('data-id',store_id);
+        $('#del_modal-ingred').modal('show')
 
     })
     .on('click', '.ita-delete-proceed', function () {
@@ -131,14 +131,14 @@ $(document)
         })
 
         let self = $(this)
-        let ingrid_id = self.attr('data-id')
+        let ingred_id = self.attr('data-id')
 
         $.ajax({
-            url: '/admin/api/ingredients/' + ingrid_id,
+            url: '/admin/api/ingredients/' + ingred_id,
             type: 'PUT',
             dataType: 'json',
             data: {
-                ID: ingrid_id,
+                ID: ingred_id,
                 NAME: ingred_name,
                 VOLUME: ingred_vol,
                 UNIT_MEASURE_ID: ingred_unit_measure,

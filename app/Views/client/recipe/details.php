@@ -70,7 +70,7 @@
                 <div class="row">
 
                     <div class="col-md-4 col-12 mb-4 mb-lg-0">
-                        <div class="ingrids-block">
+                        <div class="ingreds-block">
                             <div class="head-block h5">
                                 Ingredients:
                             </div>
@@ -84,13 +84,13 @@
                         <style>
 
                         </style>
-                        <div class="ingrids-block mt-5" id="tools-section">
+                        <div class="ingreds-block mt-5" id="tools-section">
                             <div class="head-block h5">
                                 Tools:
                             </div>
                             <ul class="list-block">
                                 <li>
-                                    <a class="modal_open" data-rid="<?= $recipe_info['ID'] ?>" data-type="0" href="#" data-target="ingrids-modal">
+                                    <a class="modal_open" data-rid="<?= $recipe_info['ID'] ?>" data-type="0" href="#" data-target="ingreds-modal">
                                         <i class="bi-calculator" style="margin-right: 5px;"></i>Ingredient Price List
                                     </a>
                                 </li>
@@ -107,7 +107,7 @@
                             </ul>
                         </div>
 
-                        <div class="container" id="ingrids-modal">
+                        <div class="container" id="ingreds-modal">
                             <div class="popup">
                                 <div class="popup-inner horizontal">
                                     <div class="popup__photo">
@@ -123,7 +123,7 @@
                                                 </select>
                                             </div>
                                             <div class="sub-block">
-                                                <p class="sub-title"><i class="bi-calculator" style="margin-right: 5px;"></i>Total Ingridient Cost:</p>
+                                                <p class="sub-title"><i class="bi-calculator" style="margin-right: 5px;"></i>Total Ingredient Cost:</p>
                                                 <p class="big-text">1000 PHP</p>
                                             </div>
                                         </div>

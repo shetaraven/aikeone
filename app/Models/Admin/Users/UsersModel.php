@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class UsersModel extends Model
 {
-    protected $table = 'USERS';
+    protected $table = 'users';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'GOOGLE_ID',
@@ -20,9 +20,9 @@ class UsersModel extends Model
 
     public function withUserType() {
         return $this->select([
-            'USERS.*',
-            'USER_TYPES.LABEL as USER_TYPE_LABEL'
+            'users.*',
+            'user_types.LABEL as USER_TYPE_LABEL'
         ])
-        ->join('USER_TYPES', 'USERS.USER_TYPE_ID = USER_TYPES.ID', 'LEFT');
+        ->join('user_types', 'users.USER_TYPE_ID = user_types.ID', 'LEFT');
     }
 }

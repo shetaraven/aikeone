@@ -28,8 +28,8 @@ $(document)
         let self = $(this)
         store_id = self.attr('data-id')
 
-        $('#del_modal-ingrid').find('.sta-delete-proceed').attr('data-id',store_id);
-        $('#del_modal-ingrid').modal('show')
+        $('#del_modal-store').find('.sta-delete-proceed').attr('data-id',store_id);
+        $('#del_modal-store').modal('show')
 
     })
     .on('click','.sta-delete-proceed', function(){
@@ -41,7 +41,7 @@ $(document)
             type: 'DELETE',
             success: function(response) {
                 // console.log('Success:', response);
-                location.reload()
+                // location.reload()
             },
             error: function(xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -63,8 +63,8 @@ $(document)
             success: function(response) {
                 console.log('Success:', response);
 
-                $('#edit_modal-ingrid').find('.modal-body').html(response)
-                $('#edit_modal-ingrid').modal('show')
+                $('#edit_modal-store').find('.modal-body').html(response)
+                $('#edit_modal-store').modal('show')
             },
             error: function(xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -73,8 +73,8 @@ $(document)
         });
     })
     .on('click', '.sem-save', function() {
-        let store_name = $('#edit_modal-ingrid').find('.esi-name').val()
-        let store_comment = $('#edit_modal-ingrid').find('.esi-comment').val()
+        let store_name = $('#edit_modal-store').find('.esi-name').val()
+        let store_comment = $('#edit_modal-store').find('.esi-comment').val()
 
         $.ajax({
             url: '/admin/api/stores/' + store_id,
@@ -84,7 +84,7 @@ $(document)
                 COMMENT: store_comment,
             },
             success: function(response) {
-                $('#edit_modal-ingrid').modal('hide')
+                $('#edit_modal-store').modal('hide')
                 location.reload()
             },
             error: function(xhr, status, error) {

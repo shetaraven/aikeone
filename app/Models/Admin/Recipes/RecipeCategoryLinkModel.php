@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class RecipeCategoryLinkModel extends Model
 {
 
-    protected $table = 'RECIPE_CATEGORY_LINK';
+    protected $table = 'recipe_category_link';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'RECIPE_ID',
@@ -16,11 +16,11 @@ class RecipeCategoryLinkModel extends Model
 
     public function withCategoryInfo()
     {
-        $existingSelects = $this->QBSelect ?? ['RECIPE_CATEGORY_LINK.*'];
+        $existingSelects = $this->QBSelect ?? ['recipe_category_link.*'];
         return $this->select([
             ...$existingSelects,
-            'RECIPE_CATEGORIES.LABEL'
+            'recipe_categories.LABEL'
         ])
-            ->join('RECIPE_CATEGORIES', 'RECIPE_CATEGORY_LINK.CATEGORY_ID = RECIPE_CATEGORIES.ID', 'LEFT');
+            ->join('recipe_categories', 'recipe_category_link.CATEGORY_ID = recipe_categories.ID', 'LEFT');
     }
 }

@@ -71,7 +71,7 @@ $(document)
                 'SELECTED_RECIPES': selected_recipes
             },
             success: function (response) {
-                $('.no-ingrids').fadeOut()
+                $('.no-ingreds').fadeOut()
                 $('.contain-ingreds').find('.placement').fadeIn().append(response)
                 $('#modal-ingreds-list').modal('hide')
             },
@@ -80,12 +80,12 @@ $(document)
             }
         });
     })
-    .on('click', '.remove-ingrid', function () {
+    .on('click', '.remove-ingred', function () {
         let self = $(this)
         let ringred_id = self.closest('.ingred-row').attr('data-id')
         if( ringred_id ) {
             $.ajax({
-                url: '/admin/api/recipe-ingridients/' + ringred_id,
+                url: '/admin/api/recipe-ingredients/' + ringred_id,
                 type: 'DELETE',
                 dataType: 'html',
                 success: function (response) {
@@ -100,7 +100,7 @@ $(document)
         self.closest('.ingred-row').remove()
 
         if( $('.ingred-row').length <= 0 ) {
-            $('.no-ingrids').show()
+            $('.no-ingreds').show()
         }
     } )
     .on('change', '#rfi-image', function (e) {

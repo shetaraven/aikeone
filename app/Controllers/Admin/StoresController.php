@@ -27,7 +27,7 @@ class StoresController extends BaseController
         $this->module_data['title'] = 'Stores List';
 
         $stores_model = new StoresModel();
-        $this->module_data['store_list']    = $stores_model->withCreator()->paginate( 5, 'admin');
+        $this->module_data['store_list']    = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate( 5, 'admin');
         $this->module_data['pager']         = $stores_model->pager;
 
         return view('admin/stores/list',  $this->module_data);

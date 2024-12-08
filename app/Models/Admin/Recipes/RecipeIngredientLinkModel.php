@@ -9,7 +9,7 @@ class RecipeIngredientLinkModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'RECIPE_INGREDIENT_LINK';
+    protected $table = 'recipe_ingredient_link';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'RECIPE_ID',
@@ -40,22 +40,22 @@ class RecipeIngredientLinkModel extends Model
     }
 
     public function withIngredient() {
-        $existingSelects = $this->QBSelect ?? ['RECIPE_INGREDIENT_LINK.*'];
+        $existingSelects = $this->QBSelect ?? ['recipe_ingredient_link.*'];
 
         return $this->select([
             ...$existingSelects,
-            'INGREDIENTS.NAME',
+            'ingredients.NAME',
         ])
-        ->join('INGREDIENTS', 'RECIPE_INGREDIENT_LINK.INGREDIENT_ID = INGREDIENTS.ID', 'LEFT');
+        ->join('ingredients', 'recipe_ingredient_link.INGREDIENT_ID = ingredients.ID', 'LEFT');
     }
 
     public function withUnitMeasure() {
-        $existingSelects = $this->QBSelect ?? ['RECIPE_INGREDIENT_LINK.*'];
+        $existingSelects = $this->QBSelect ?? ['recipe_ingredient_link.*'];
 
         return $this->select([
             ...$existingSelects,
-            'um.LABEL UNIT_MEASURE_LABEL'
+            'units_measure.LABEL UNIT_MEASURE_LABEL'
         ])
-        ->join('UNITS_MEASURE um', 'RECIPE_INGREDIENT_LINK.UNIT_MEASURE_ID = um.ID', 'LEFT');
+        ->join('units_measure', 'recipe_ingredient_link.UNIT_MEASURE_ID = units_measure.ID', 'LEFT');
     }
 }

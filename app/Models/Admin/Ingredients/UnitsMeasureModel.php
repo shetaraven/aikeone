@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class UnitsMeasureModel extends Model
 {
-    protected $table = 'UNITS_MEASURE';
+    protected $table = 'units_measure';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'ID',

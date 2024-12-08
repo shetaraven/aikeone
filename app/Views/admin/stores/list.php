@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="edit_modal-ingrid" aria-labelledby="EditModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="edit_modal-store" aria-labelledby="EditModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="del_modal-ingrid" aria-labelledby="DelModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="del_modal-store" aria-labelledby="DelModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

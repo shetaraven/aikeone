@@ -4,6 +4,7 @@ namespace App\Controllers\Admin\Api\V1;
 
 use App\Models\Admin\Ingredients\IngredientsModel;
 use App\Models\Admin\Ingredients\IngredientStorePricesModel;
+use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use CodeIgniter\Database\Config;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -14,6 +15,7 @@ class IngredientsController extends ResourceController
 {
     protected $ingredients_model;
     protected $isp_model;
+    protected $ril_model;
     protected $format = 'json';
 
     public $response = null;
@@ -22,6 +24,7 @@ class IngredientsController extends ResourceController
     {
         $this->ingredients_model = new IngredientsModel();
         $this->isp_model = new IngredientStorePricesModel();
+        $this->ril_model = new RecipeIngredientLinkModel();
     }
 
     /**
@@ -239,6 +242,11 @@ class IngredientsController extends ResourceController
                 throw new DatabaseException($this->isp_model->error()['message']);
             }
 
+            $this->ril_model->where('INGREDIENT_ID', $id)->delete();
+            if ($this->ril_model->error()['code']) {
+                throw new DatabaseException($this->ril_model->error()['message']);
+            }
+
             $this->ingredients_model->delete($id);
             if ($this->ingredients_model->error()['code']) {
                 throw new DatabaseException($this->ingredients_model->error()['message']);
@@ -248,7 +256,6 @@ class IngredientsController extends ResourceController
             return $this->respond(['message' => 'Ingredient deleted successfully'], 200);
         } catch (DatabaseException $e) {
             $db->transRollback();
-            die();
             return $this->failServerError($e->getMessage());
         } catch (Exception $e) {
             $db->transRollback();

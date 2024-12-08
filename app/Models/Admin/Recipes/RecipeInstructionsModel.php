@@ -9,7 +9,7 @@ class RecipeInstructionsModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'RECIPE_INSTRUCTIONS';
+    protected $table = 'recipe_instructions';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'RECIPE_ID',

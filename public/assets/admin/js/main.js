@@ -127,6 +127,6 @@ function clearForms(formClass){
         $('.rfi-type').val(0);
         $('.recipe_img_preview img').attr('src','/assets/admin/img/default-img.jpg')
         $('.added-steps').remove();
-        $('.remove-ingrid').click();
+        $('.remove-ingred').click();
     }
 }

@@ -9,7 +9,7 @@ class RecipesModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'RECIPES';
+    protected $table = 'recipes';
     protected $primaryKey = 'ID';
     protected $useTimestamps = true;
     protected $afterFind = [
@@ -65,11 +65,13 @@ class RecipesModel extends Model
                     }
                 }
             } else {
-                # Single row
-                $data['data']['IMAGE'] = false;
-                $recipe_img_loc = '/assets/admin/img/recipe_imgs/' . $data['data']['ID'] . '/main.jpeg';
-                if (is_file(ROOTPATH . '/public' . $recipe_img_loc)) {
-                    $data['data']['IMAGE'] = $recipe_img_loc;
+                if (isset($data['data']) && isset($data['data']['ID'])) {
+                    # Single row
+                    $data['data']['IMAGE'] = false;
+                    $recipe_img_loc = '/assets/admin/img/recipe_imgs/' . $data['data']['ID'] . '/main.jpeg';
+                    if (is_file(ROOTPATH . '/public' . $recipe_img_loc)) {
+                        $data['data']['IMAGE'] = $recipe_img_loc;
+                    }
                 }
             }
         }
@@ -85,7 +87,7 @@ class RecipesModel extends Model
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-            ->join('USERS creator', 'RECIPES.CREATED_BY = creator.ID', 'LEFT')
-            ->join('USERS updator', 'RECIPES.CREATED_BY = updator.ID', 'LEFT');
+            ->join('users creator', 'RECIPES.CREATED_BY = creator.ID', 'LEFT')
+            ->join('users updator', 'RECIPES.CREATED_BY = updator.ID', 'LEFT');
     }
 }

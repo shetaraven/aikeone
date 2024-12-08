@@ -9,7 +9,7 @@ class IngredientsModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'INGREDIENTS';
+    protected $table = 'ingredients';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'NAME',
@@ -47,21 +47,21 @@ class IngredientsModel extends Model
 
     public function withCreator() {
         return $this->select([
-            'INGREDIENTS.*',
+            'ingredients.*',
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-        ->join('USERS creator', 'INGREDIENTS.CREATED_BY = creator.ID', 'LEFT')
-        ->join('USERS updator', 'INGREDIENTS.CREATED_BY = updator.ID', 'LEFT');
+        ->join('users creator', 'ingredients.CREATED_BY = creator.ID', 'LEFT')
+        ->join('users updator', 'ingredients.CREATED_BY = updator.ID', 'LEFT');
     }
 
     public function withUnitMeasure() {
-        $existingSelects = $this->QBSelect ?? ['INGREDIENTS.*'];
+        $existingSelects = $this->QBSelect ?? ['ingredients.*'];
 
         return $this->select([
             ...$existingSelects,
-            'um.LABEL UNIT_MEASURE_LABEL'
+            'units_measure.LABEL UNIT_MEASURE_LABEL'
         ])
-        ->join('UNITS_MEASURE um', 'INGREDIENTS.UNIT_MEASURE_ID = um.ID', 'LEFT');
+        ->join('units_measure', 'ingredients.UNIT_MEASURE_ID = units_measure.ID', 'LEFT');
     }
 }

@@ -22,7 +22,7 @@
         transform: translate(-50%, -50%);
     }
 
-    .ingrids-temp {
+    .ingreds-temp {
         display: none;
     }
 </style>
@@ -114,9 +114,9 @@
                         Ingredients
                     </h5>
                     <div class="card-body">
-                        <h5 class="no-ingrids text-center" style="color: #d3d3d3; display:<?= (! isset($ingredients_list) || count($ingredients_list) == 0) ? 'block' : 'none' ?>">Currently No Ingredients Selected</h5>
+                        <h5 class="no-ingreds text-center" style="color: #d3d3d3; display:<?= (! isset($ingredients_list) || count($ingredients_list) == 0) ? 'block' : 'none' ?>">Currently No Ingredients Selected</h5>
 
-                        <div class="row with-ingrids contain-ingreds">
+                        <div class="row with-ingreds contain-ingreds">
                             <div class="col-12 placement">
                                 <?php if (isset($ingredients_list) && count($ingredients_list) > 0) : ?>
                                     <?php foreach ($ingredients_list as $key => $ingred_info) : ?>
@@ -127,7 +127,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text" class="form-control ic-vol" value="<?= $ingred_info['VOLUME'] ?>">
                                                         <span class="input-group-text ic-unit_measure" data-id="<?= $ingred_info['UNIT_MEASURE_ID'] ?>"><?= $ingred_info['UNIT_MEASURE_LABEL'] ?></span>
-                                                        <button class="btn btn-outline-danger remove-ingrid" data-id="idhere" type="button">X</button>
+                                                        <button class="btn btn-outline-danger remove-ingred" type="button">X</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-sm rounded-pill btn-primary mt-3 text-center action-modal-open-ingreds" id="openIngridsModal">
+                        <button type="button" class="btn btn-sm rounded-pill btn-primary mt-3 text-center action-modal-open-ingreds" id="openIngredsModal">
                             <span class="tf-icons bx bx-plus bx-18px me-2"></span>Add Ingredients
                         </button>
                     </div>
@@ -210,7 +210,7 @@
                     <div>
                         <div class="input-group input-group-merge">
                             <span class="input-group-text"><i class="bx bx-search"></i></span>
-                            <input type="text" id="searchIngrids" class="form-control" placeholder="Search..." aria-label="Search..." onkeyup="myFunction()">
+                            <input type="text" id="searchIngreds" class="form-control" placeholder="Search..." aria-label="Search..." onkeyup="myFunction()">
                         </div>
                     </div>
                     <div class="mt-4 contain-ingred_list">

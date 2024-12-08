@@ -86,8 +86,8 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
         $routes->post('recipes/(:num)', 'Admin\Api\V1\RecipesController::update/$1');
         $routes->delete('recipes/(:num)', 'Admin\Api\V1\RecipesController::delete/$1');
         
-        # recipe ingridient request
-        $routes->delete('recipe-ingridients/(:num)', 'Admin\Api\V1\RecipeIngredientController::delete/$1');
+        # recipe ingredientingredient request
+        $routes->delete('recipe-ingredients/(:num)', 'Admin\Api\V1\RecipeIngredientController::delete/$1');
     });
 });
 

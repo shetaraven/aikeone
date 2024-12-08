@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class IngredientStorePricesModel extends Model
 {
-    protected $table = 'INGREDIENT_STORE_PRICES';
+    protected $table = 'ingredient_store_prices';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'INGREDIENT_ID',
@@ -16,12 +16,12 @@ class IngredientStorePricesModel extends Model
     ];
 
     public function withStore() {
-        $existingSelects = $this->QBSelect ?? ['INGREDIENT_STORE_PRICES.*'];
+        $existingSelects = $this->QBSelect ?? ['ingredient_store_prices.*'];
 
         return $this->select([
             ...$existingSelects,
-            'STORES.NAME STORE_NAME'
+            'stores.NAME STORE_NAME'
         ])
-        ->join('STORES', 'INGREDIENT_STORE_PRICES.STORE_ID = STORES.ID', 'LEFT');
+        ->join('stores', 'ingredient_store_prices.STORE_ID = stores.ID', 'LEFT');
     }
 }

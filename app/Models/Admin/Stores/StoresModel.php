@@ -9,7 +9,7 @@ class StoresModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'STORES';
+    protected $table = 'stores';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'NAME',
@@ -40,11 +40,11 @@ class StoresModel extends Model
 
     public function withCreator() {
         return $this->select([
-            'STORES.*',
+            'stores.*',
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-        ->join('USERS creator', 'STORES.CREATED_BY = creator.ID', 'LEFT')
-        ->join('USERS updator', 'STORES.CREATED_BY = updator.ID', 'LEFT');
+        ->join('users creator', 'stores.CREATED_BY = creator.ID', 'LEFT')
+        ->join('users updator', 'stores.CREATED_BY = updator.ID', 'LEFT');
     }
 }
