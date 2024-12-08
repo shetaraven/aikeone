@@ -13,7 +13,7 @@ $(document)
             success: function(response) {
                 // console.log('Success:', response);
                 $('#success-alert').addClass('show');
-                $('.form-control').val('');
+                clearForms('form-create_store')
                 setTimeout(function() {
                     $('#success-alert .btn-close').click();
                 }, 2000)
@@ -25,6 +25,14 @@ $(document)
         });
     })
     .on('click', '.sta-delete', function() {
+        let self = $(this)
+        store_id = self.attr('data-id')
+
+        $('#del_modal-ingrid').find('.sta-delete-proceed').attr('data-id',store_id);
+        $('#del_modal-ingrid').modal('show')
+
+    })
+    .on('click','.sta-delete-proceed', function(){
         let self = $(this)
         store_id = self.attr('data-id')
 

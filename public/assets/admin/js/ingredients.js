@@ -49,6 +49,11 @@ $(document)
             },
             success: function (response) {
                 console.log('Success:', response);
+                clearForms('form-create_ingredient')
+                $('#success-alert').addClass('show');
+                setTimeout(function() {
+                    $('#success-alert .btn-close').click();
+                }, 2000)
             },
             error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -77,7 +82,15 @@ $(document)
             }
         });
     })
-    .on('click', '.ita-delete', function () {
+    .on('click', '.ita-delete', function() {
+        let self = $(this)
+        store_id = self.attr('data-id')
+
+        $('#del_modal-ingrid').find('.ita-delete-proceed').attr('data-id',store_id);
+        $('#del_modal-ingrid').modal('show')
+
+    })
+    .on('click', '.ita-delete-proceed', function () {
         let self = $(this)
         store_id = self.attr('data-id')
 

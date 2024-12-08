@@ -19,12 +19,13 @@
                             <?php endif; ?>
                         </div>
                         <!-- <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span> -->
+                        <div class="card-text">
+                            <i class="bi-clock clock-btn" alt="clock">&nbsp;<?= $recipe_info['PREP_TIME'] ?></i>
+                        </div>
                         <div class="card-heading">
                             <?= $recipe_info['TITLE'] ?>
                         </div>
-                        <div class="card-text pt-0">
-                            <i class="bi-clock clock-btn" alt="clock">&nbsp;<?= $recipe_info['PREP_TIME'] ?></i>
-                        </div>
+                        
                         <!-- <a href="#" class="card-button"> View Recipe</a> -->
                     </div>
                 </a>

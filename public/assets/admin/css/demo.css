@@ -16,6 +16,15 @@
 .app-brand-text.demo {
     font-size: 1.75rem;
     letter-spacing: -0.5px;
+    line-height: 16px;
+}
+
+.app-brand-text.demo span{
+    display: inline-block;
+    width: 100%;
+    font-size: 18px;
+    font-family: initial;
+    font-style: italic;
 }
 
 

@@ -295,6 +295,21 @@ strong {
     color: #fff;
 }
 
+.header-logo{
+    line-height: 18px;
+}
+.header-logo span{
+    display: inline-block;
+    /* width: 100%; */
+    font-size: 16px;
+    font-style: italic;
+}
+
+.avatar-online img{
+    max-width: 40px;
+    max-height: 40px;
+}
+
 .navbar-expand-lg .navbar-nav .nav-link {
     border-radius: var(--border-radius-large);
     margin: 10px;

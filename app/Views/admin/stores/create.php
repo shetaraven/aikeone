@@ -8,7 +8,7 @@
             </h5>
 
             <div class="card-body">
-                <div>
+                <div class="mb-3">
                     <label for="csi-name" class="form-label">Store Name</label>
                     <input type="text" class="form-control" id="csi-name">
                 </div>
@@ -26,14 +26,15 @@
         </div>
     </div>
     <div class="content-backdrop fade"></div>
+
 </div>
 
-<div class="bs-toast toast fade bg-warning" id="success-alert" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed;right: 3%;bottom:3%;">
+<div class="bs-toast toast fade bg-primary" id="success-alert" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed;right: 3%;bottom:3%;">
 <div class="toast-header">
     <i class="bx bx-bell me-2"></i>
     <div class="me-auto fw-medium">Success</div>
     <!-- <small>11 mins ago</small> -->
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
 </div>
 <div class="toast-body">
     Store Successfully Created!

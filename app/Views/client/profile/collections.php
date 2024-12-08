@@ -14,11 +14,11 @@
                         <img src="/assets/main/images/home-banner1.jpg" />
                     </div>
                     <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span>
+                    <div class="card-text">
+                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
+                    </div>
                     <div class="card-heading">
                         Recipe Title Here
-                    </div>
-                    <div class="card-text pt-0">
-                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
                     </div>
                     <!-- <a href="#" class="card-button"> View Recipe</a> -->
                 </div>
@@ -31,11 +31,11 @@
                         <img src="/assets/main/images/home-banner1.jpg" />
                     </div>
                     <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span>
+                    <div class="card-text">
+                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
+                    </div>
                     <div class="card-heading">
                         Recipe Title Here
-                    </div>
-                    <div class="card-text pt-0">
-                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
                     </div>
                     <!-- <a href="#" class="card-button"> View Recipe</a> -->
                 </div>
@@ -48,11 +48,11 @@
                         <img src="/assets/main/images/home-banner1.jpg" />
                     </div>
                     <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span>
+                    <div class="card-text">
+                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
+                    </div>
                     <div class="card-heading">
                         Recipe Title Here
-                    </div>
-                    <div class="card-text pt-0">
-                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
                     </div>
                     <!-- <a href="#" class="card-button"> View Recipe</a> -->
                 </div>
@@ -65,11 +65,11 @@
                         <img src="/assets/main/images/home-banner1.jpg" />
                     </div>
                     <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span>
-                    <div class="card-heading">
-                        Recipe Title Here Recipe
-                    </div>
-                    <div class="card-text pt-0">
+                    <div class="card-text">
                         <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
+                    </div>
+                    <div class="card-heading">
+                        Recipe Title Here
                     </div>
                     <!-- <a href="#" class="card-button"> View Recipe</a> -->
                 </div>
@@ -82,11 +82,11 @@
                         <img src="/assets/main/images/home-banner1.jpg" />
                     </div>
                     <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span>
+                    <div class="card-text">
+                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
+                    </div>
                     <div class="card-heading">
                         Recipe Title Here
-                    </div>
-                    <div class="card-text pt-0">
-                        <i class="bi-clock clock-btn" alt="clock">&nbsp;1 Hour and 30 mins</i>
                     </div>
                     <!-- <a href="#" class="card-button"> View Recipe</a> -->
                 </div>
