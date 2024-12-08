@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Aikeone <?= '| ' . $title ?? 'Set Title' ?></title>
+    <title>Recette by Storm <?= '| ' . $title ?? 'Set Title' ?></title>
 
     <meta name="description" content="" />
 
@@ -38,7 +38,7 @@
             <div class="container">
                 <a class="navbar-brand" href="<?= base_url() ?>">
                     <img src="/assets/admin/img/aikeone-logo.svg" class="official-logo" style="width: 25px;filter: invert();" />
-                    <span>Aikeone</span>
+                    <span class="header-logo">Recette <span>by Storm</span></span>
                 </a>
 
                 <div class="d-lg-none ms-auto">

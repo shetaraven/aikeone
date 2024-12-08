@@ -7,8 +7,8 @@
                     </div>
     </main>
 
-    <footer id="layout-footer">
-        <p>&copy; <?= date('Y') ?> Aikeone. All rights reserved.</p>
+    <footer id="layout-footer" class="text-center">
+        <p>&copy; <?= date('Y') ?> Recette by Storm. All rights reserved.</p>
     </footer>
 
     <!-- Core JS -->

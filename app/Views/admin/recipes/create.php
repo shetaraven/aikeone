@@ -229,5 +229,17 @@
     <div class="content-backdrop fade"></div>
 </div>
 
+<div class="bs-toast toast fade bg-primary" id="success-alert" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed;right: 3%;bottom:3%;">
+<div class="toast-header">
+    <i class="bx bx-bell me-2"></i>
+    <div class="me-auto fw-medium">Success</div>
+    <!-- <small>11 mins ago</small> -->
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
+</div>
+<div class="toast-body">
+    Recipe Successfully Created!
+</div>
+</div>
+
 <!-- Content wrapper -->
 <?= $this->endSection() ?>

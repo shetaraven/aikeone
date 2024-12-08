@@ -7,7 +7,7 @@
             <div class="col-lg-3 col-12 mb-4 pb-2">
                 <a class="navbar-brand mb-2" href="index.html">
                     <img src="/assets/admin/img/aikeone-logo.svg" class="official-logo" style="width: 25px;" />
-                    <span>Aikeone</span>
+                    <span class="header-logo">Recette <span>by Storm</span></span>
                 </a>
             </div>
 

@@ -5831,6 +5831,8 @@ fieldset:disabled .btn {
     position: relative;
     flex: 1 1 auto;
     padding: var(--bs-modal-padding);
+    max-height: calc(100vh - 250px);
+    overflow: auto;
 }
 
 .modal-footer {
@@ -10696,7 +10698,7 @@ form select.selectpicker.is-invalid~.btn {
 }
 
 .modal-footer {
-    padding: 0rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 1.5rem;
 }
 
 .modal-footer>* {

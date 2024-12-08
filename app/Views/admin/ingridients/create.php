@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="col-md-4 mt-3">
-                        <label for="cii_inp-name" class="form-label">Unit of measure</label>
+                        <label for="cii_inp-name" class="form-label">Quantity</label>
                         <div class="input-group">
-                            <span class="input-group-text">Volume</span>
+                            <!-- <span class="input-group-text">Volume</span> -->
                             <input type="text" class="form-control cii-vol" placeholder="100">
                             <span class="input-group-text selected-unit">g</span>
                             <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,5 +122,18 @@
 
     <div class="content-backdrop fade"></div>
 </div>
+
+<div class="bs-toast toast fade bg-primary" id="success-alert" role="alert" aria-live="assertive" aria-atomic="true" style="position: fixed;right: 3%;bottom:3%;">
+<div class="toast-header">
+    <i class="bx bx-bell me-2"></i>
+    <div class="me-auto fw-medium">Success</div>
+    <!-- <small>11 mins ago</small> -->
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
+</div>
+<div class="toast-body">
+    Ingredient Successfully Created!
+</div>
+</div>
+
 <!-- Content wrapper -->
 <?= $this->endSection() ?>

@@ -10,6 +10,7 @@ $(document)
         last_step.find('textarea').val('')
         last_step.find('.step-num span').text(parseInt(existing_steps));
         last_step.find('.steps-action-del').removeClass('g-hidden')
+        last_step.addClass('added-steps');
     })
     .on('click', '.steps-action-del', function () {
         $(this).closest('.steps-container').remove();
@@ -168,6 +169,11 @@ $(document)
             contentType: false,
             success: function (response) {
                 console.log('Success:', response);
+                clearForms('form-recipe')
+                $('#success-alert').addClass('show');
+                setTimeout(function() {
+                    $('#success-alert .btn-close').click();
+                }, 2000)
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);
