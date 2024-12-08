@@ -8,7 +8,7 @@ if (! function_exists('get_menu_list')) {
     function get_menu_list()
     {
         $model_menu_groups = new MenuGroupsModel();
-        $menu_groups = $model_menu_groups->findAll();
+        $menu_groups = $model_menu_groups->orderBy('ORDER', 'ASC')->findAll();
 
         $model_menu = new MenuModel();
         $menu_list = $model_menu->findAll();

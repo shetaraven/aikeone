@@ -81,13 +81,13 @@ class RecipesModel extends Model
 
     public function withCreator()
     {
-        $existingSelects = $this->QBSelect ?? ['RECIPES.*'];
+        $existingSelects = $this->QBSelect ?? ['recipes.*'];
         return $this->select([
             ...$existingSelects,
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-            ->join('users creator', 'RECIPES.CREATED_BY = creator.ID', 'LEFT')
-            ->join('users updator', 'RECIPES.CREATED_BY = updator.ID', 'LEFT');
+            ->join('users creator', 'recipes.CREATED_BY = creator.ID', 'LEFT')
+            ->join('users updator', 'recipes.CREATED_BY = updator.ID', 'LEFT');
     }
 }

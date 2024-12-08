@@ -24,7 +24,7 @@ $routes->group('auth', function ($routes) {
 });
 
 # admin routes
-$routes->group('admin', ['filter' => 'auth'], function ($routes) {
+$routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) {
     $routes->get('/', function () {
         return redirect()->to(base_url('/admin/dashboard'));
     });
@@ -62,6 +62,12 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
         $routes->get('form', 'Admin\RecipesController::form');
         $routes->get('partial-ingreds-list', 'Admin\RecipesController::partialIngredsList');
         $routes->post('partial-ingreds-set', 'Admin\RecipesController::partialIngredsSet');
+    });
+
+    $routes->group('categories', function ($routes) {
+        $routes->get('/', 'Admin\CategoriesController::list');
+        $routes->get('list', 'Admin\CategoriesController::list');
+        $routes->get('form', 'Admin\CategoriesController::form');
     });
 
     $routes->group('api', function ($routes) {

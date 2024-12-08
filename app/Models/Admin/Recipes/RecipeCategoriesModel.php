@@ -35,4 +35,16 @@ class RecipeCategoriesModel extends Model
         // Call the parent update method
         return parent::update($id, $row);
     }
+
+    public function withCreator()
+    {
+        $existingSelects = $this->QBSelect ?? ['recipe_categories.*'];
+        return $this->select([
+            ...$existingSelects,
+            'creator.GIVEN_NAME as CREATOR',
+            'updator.GIVEN_NAME as UPDATOR'
+        ])
+            ->join('users creator', 'recipe_categories.CREATED_BY = creator.ID', 'LEFT')
+            ->join('users updator', 'recipe_categories.CREATED_BY = updator.ID', 'LEFT');
+    }
 }
