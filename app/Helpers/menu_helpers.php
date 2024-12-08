@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\admin\menu\MenuChildrenModel;
-use App\Models\admin\menu\MenuGroupsModel;
-use App\Models\admin\menu\MenuModel;
+use App\Models\Admin\Menu\MenuChildrenModel;
+use App\Models\Admin\Menu\MenuGroupsModel;
+use App\Models\Admin\Menu\MenuModel;
 
 if (! function_exists('get_menu_list')) {
     function get_menu_list()
