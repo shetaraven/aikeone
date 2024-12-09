@@ -49,7 +49,7 @@ class IngredientsController extends BaseController
         $post_data = $request->getPost();
         
         $ingreds_model = new IngredientsModel();
-        $this->module_data['ingredient_info'] = $ingreds_model->where('INGREDIENTS.ID', $post_data['INGRED_ID'])->withUnitMeasure()->first();
+        $this->module_data['ingredient_info'] = $ingreds_model->where('ingredients.ID', $post_data['INGRED_ID'])->withUnitMeasure()->first();
         
         $isp_model = new IngredientStorePricesModel();
         $this->module_data['ingred_store_prices'] = $isp_model->where(['INGREDIENT_ID' => $this->module_data['ingredient_info']['ID']])->withStore()->findAll();

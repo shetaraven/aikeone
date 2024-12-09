@@ -92,7 +92,7 @@ class RecipesController extends BaseController
         $type_recipe = [];
 
         $ingreds_model = new IngredientsModel();
-        $ingredients_list = $ingreds_model->whereIn('INGREDIENTS.ID', $type_ingred)->withUnitMeasure()->findAll();
+        $ingredients_list = $ingreds_model->whereIn('ingredients.ID', $type_ingred)->withUnitMeasure()->findAll();
 
         return view('admin/recipes/_template_ingred_set', [
             'ingredients_list' => $ingredients_list
