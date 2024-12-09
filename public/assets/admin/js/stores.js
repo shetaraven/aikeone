@@ -15,11 +15,15 @@ $(document)
                 $('#success-alert').addClass('show');
                 clearForms('form-create_store')
                 setTimeout(function() {
-                    $('#success-alert .btn-close').click();
+                    $('#success-alert').removeClass('show');
                 }, 2000)
             },
             error: function(xhr, status, error) {
-                // console.log(xhr.responseJSON.messages)
+                // $('.required').addClass('error');
+                $('#warningTop').fadeIn();
+                setTimeout(function(){
+                    $('#warningTop').fadeOut();
+                },5000)
                 console.error('Error:', error);
             }
         });

@@ -42,7 +42,13 @@
                 </a>
 
                 <div class="d-lg-none ms-auto">
-                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    <?php if (session()->get('GOOGLE_ID')) : ?>
+                        <div class="avatar avatar-online">
+                            <img src="<?= session()->get('IMAGE') ?>" alt class="w-px-40 h-auto rounded-circle" />
+                        </div>
+                    <?php else: ?>
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    <?php endif; ?>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,6 +74,10 @@
                                 <a class="nav-link click-scroll" href="<?= base_url('admin') ?>">Dashboard</a>
                             </li>
                         <?php endif; ?>
+
+                        <li class="nav-item mobile-only">
+                            <a class="nav-link click-scroll" href="<?= base_url('auth/logout') ?>">Logout &rarr;</a>
+                        </li>
                     </ul>
 
                     <div class="d-none d-lg-block dropdown">

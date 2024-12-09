@@ -37,7 +37,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <div class="d-flex">
+                                    <div class="d-flex p-3">
                                         <div class="flex-shrink-0 me-3">
                                             <div class="avatar avatar-online">
                                                 <img src="<?=session()->get('IMAGE')?>" alt class="w-px-40 h-auto rounded-circle" />

@@ -52,12 +52,13 @@ $(document)
                 clearForms('form-create_ingredient')
                 $('#success-alert').addClass('show');
                 setTimeout(function() {
-                    $('#success-alert .btn-close').click();
+                    $('#success-alert').removeClass('show');
                 }, 2000)
             },
             error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
+                $('.required').addClass('error');
             }
         });
     })
