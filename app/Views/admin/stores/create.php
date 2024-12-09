@@ -3,13 +3,15 @@
 <div class="content-wrapper form-create_store">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
-            <h5 class="card-header">
-                Create New Store
-            </h5>
 
             <div class="card-body">
-                <div class="mb-3">
-                    <label for="csi-name" class="form-label">Store Name</label>
+            <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
+                Store Name Already Existing!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+                <div class="mb-3 required">
+                    <label for="csi-name" class="form-label">Store Name <span class="error-msg">* Required Field!</span></label>
                     <input type="text" class="form-control" id="csi-name">
                 </div>
                 <div>
