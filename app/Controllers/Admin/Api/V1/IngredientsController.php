@@ -64,7 +64,7 @@ class IngredientsController extends ResourceController
         $post_data = $this->request->getPost();
 
         $rules = [
-            'NAME'              => 'required|is_unique[INGREDIENTS.NAME]',
+            'NAME'              => 'required|is_unique[ingredients.NAME]',
             'VOLUME'            => 'required',
             'UNIT_MEASURE_ID'   => 'required',
             'WEIGHT'            => 'required',
@@ -152,7 +152,7 @@ class IngredientsController extends ResourceController
 
         $rules = [
             'ID'        => 'max_length[11]|is_natural_no_zero',
-            'NAME'      => 'required|is_unique[INGREDIENTS.NAME,ID,'.$id.']',
+            'NAME'      => 'required|is_unique[ingredients.NAME,ID,'.$id.']',
             'VOLUME'            => 'required',
             'UNIT_MEASURE_ID'   => 'required',
             'WEIGHT'    => 'required',

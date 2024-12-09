@@ -9,18 +9,18 @@
 
             <div class="card-body">
                 <div class="mb-3">
-                    <label for="cci-name" class="form-label">Label</label>
-                    <input type="text" class="form-control" id="cci-name">
+                    <label for="cci-label" class="form-label">Label</label>
+                    <input type="text" class="form-control" id="cci-label">
                 </div>
                 <div>
-                    <label for="cci-comment" class="form-label">Description</label>
-                    <textarea class="form-control" id="cci-comment" rows="5"></textarea>
+                    <label for="cci-description" class="form-label">Description</label>
+                    <textarea class="form-control" id="cci-description" rows="5"></textarea>
                 </div>
             </div>
 
             <div class="card-footer">
-                <button type="button" class="btn btn-primary cs_action-create">
-                    <span class="tf-icons bx bx-plus-circle me-2"></span>Create Description
+                <button type="button" class="btn btn-primary cc_action-create">
+                    <span class="tf-icons bx bx-plus-circle me-2"></span>Create
                 </button>
             </div>
         </div>

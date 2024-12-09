@@ -13,6 +13,7 @@ class RecipeCategoriesModel extends Model
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'LABEL',
+        'DESCRIPTION',
         'CREATED_BY',
         'UPDATED_BY',
     ];

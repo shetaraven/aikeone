@@ -15,6 +15,7 @@ class UsersModel extends Model
         'EMAIL',
         'IMAGE',
         'ACTIVE',
+        'USER_TYPE_ID'
     ];
     protected $useTimestamps = true;
 

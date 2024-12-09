@@ -45,9 +45,9 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#EditModal"><i class="bx bx-edit-alt me-1"></i> User Type</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ChooseRecipe"><i class="bx bx-trash me-1"></i> Recipe Access</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Disable</a>
+                                            <a class="dropdown-item uta-edit" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-edit-alt me-1"></i> User Type</a>
+                                            <!-- <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ChooseRecipe"><i class="bx bx-trash me-1"></i> Recipe Access</a>
+                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Disable</a> -->
                                         </div>
                                     </div>
                                 </td>
@@ -57,40 +57,10 @@
                 </table>
             </div>
 
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center m-10">
-                    <li class="page-item first">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left bx-sm"></i></a>
-                    </li>
-                    <li class="page-item prev">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left bx-sm"></i></a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">2</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="javascript:void(0);">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);">5</a>
-                    </li>
-                    <li class="page-item next">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right bx-sm"></i></a>
-                    </li>
-                    <li class="page-item last">
-                        <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right bx-sm"></i></a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="paginate">
+                <?= $pager->links('admin', 'admin') ?>
+            </div>
         </div>
-        <!--/ Hoverable Table rows -->
-
     </div>
     <!-- / Content -->
 
@@ -102,26 +72,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" disabled>
-                    </div>
-                    <div class="mt-3">
-                        <label class="form-label">Email</label>
-                        <input type="text" class="form-control" disabled>
-                    </div>
-                    <div class="mt-3">
-                        <label for="exampleFormControlSelect1" class="form-label">User Type</label>
-                        <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                            <option selected="">Choose</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Creator</option>
-                            <option value="3">User</option>
-                        </select>
-                    </div>
+                    <!-- contents here -->
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary uta-update">
                         Save
                     </button>
                 </div>
@@ -146,24 +100,24 @@
                     <div class="mt-4">
                         <div class="list-group" id="recipe-list">
                             <label class="list-group-item">
-                            <input class="form-check-input me-3" type="checkbox" value="">
-                            <span>Soufflé pastry pie ice</span>
+                                <input class="form-check-input me-3" type="checkbox" value="">
+                                <span>Soufflé pastry pie ice</span>
                             </label>
                             <label class="list-group-item">
-                            <input class="form-check-input me-3" type="checkbox" value="">
-                            <span>Bear claw cake biscuit</span>
+                                <input class="form-check-input me-3" type="checkbox" value="">
+                                <span>Bear claw cake biscuit</span>
                             </label>
                             <label class="list-group-item">
-                            <input class="form-check-input me-3" type="checkbox" value="">
-                            <span>Tart tiramisu cake</span>
+                                <input class="form-check-input me-3" type="checkbox" value="">
+                                <span>Tart tiramisu cake</span>
                             </label>
                             <label class="list-group-item">
-                            <input class="form-check-input me-3" type="checkbox" value="">
-                            <span>Bonbon toffee muffin</span>
+                                <input class="form-check-input me-3" type="checkbox" value="">
+                                <span>Bonbon toffee muffin</span>
                             </label>
                             <label class="list-group-item">
-                            <input class="form-check-input me-3" type="checkbox" value="">
-                            <span>Dragée tootsie roll</span>
+                                <input class="form-check-input me-3" type="checkbox" value="">
+                                <span>Dragée tootsie roll</span>
                             </label>
                         </div>
                     </div>

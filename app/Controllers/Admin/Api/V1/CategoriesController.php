@@ -8,9 +8,9 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 
-class StoresController extends ResourceController
+class CategoriesController extends ResourceController
 {
-    protected $modelName = 'App\Models\Admin\Stores\StoresModel';
+    protected $modelName = 'App\Models\Admin\Recipes\RecipeCategoriesModel';
     protected $format = 'json';
 
     /**
@@ -32,12 +32,12 @@ class StoresController extends ResourceController
      */
     public function show($id = null)
     {
-        $store_info = $this->model->find($id);
-        if (! $store_info) {
+        $rc_info = $this->model->find($id);
+        if (! $rc_info) {
             return $this->failNotFound('Store not found');
         }
 
-        return $this->respond($store_info);
+        return $this->respond($rc_info);
     }
 
     /**
@@ -50,7 +50,7 @@ class StoresController extends ResourceController
         $post_data = $this->request->getPost();
         $valid = $this->validate(
             [
-                'NAME' => 'required|is_unique[stores.NAME]',
+                'LABEL' => 'required|is_unique[recipe_categories.LABEL]',
             ],
         );
 
@@ -62,19 +62,19 @@ class StoresController extends ResourceController
         $db->transStart();
         try {
             $insert_data = [
-                'NAME' => $post_data['NAME'],
-                'COMMENT' => $post_data['COMMENT'],
+                'LABEL' => $post_data['LABEL'],
+                'DESCRIPTION' => $post_data['DESCRIPTION'],
             ];
 
             $insert_id = $this->model->insert($insert_data);
 
             if (! $insert_id) {
-                return $this->failServerError('Failed to create store record');
+                return $this->failServerError('Failed to create category record');
             }
 
             $db->transComplete();
             return $this->respondCreated([
-                'message' => 'Store created successfully'
+                'message' => 'Category created successfully'
             ]);
         } catch (DatabaseException $e) {
             $db->transRollback();
@@ -95,14 +95,14 @@ class StoresController extends ResourceController
     public function update($id = null)
     {
         $post_data = $this->request->getRawInput();
-        $store_info = $this->model->find($id);
-        if (!$store_info) {
-            return $this->failNotFound('Store not found');
+        $rc_info = $this->model->find($id);
+        if (!$rc_info) {
+            return $this->failNotFound('Category not found');
         }
 
         $valid = $this->validate(
             [
-                'NAME' => 'required|is_unique[stores.NAME,ID,'.$id.']',
+                'LABEL' => 'required|is_unique[recipe_categories.LABEL,ID,' . $id . ']',
             ]
         );
 
@@ -115,14 +115,14 @@ class StoresController extends ResourceController
         try {
 
             $update_data = [
-                'NAME' => $post_data['NAME'],
-                'COMMENT' => $post_data['COMMENT'],
+                'LABEL' => $post_data['LABEL'],
+                'DESCRIPTION' => $post_data['DESCRIPTION'],
             ];
 
             $this->model->update($id, $update_data);
 
             $db->transCommit();
-            return $this->respond(['message' => 'Store updated successfully'], 200);
+            return $this->respond(['message' => 'Category updated successfully'], 200);
         } catch (DatabaseException $e) {
             $db->transRollback();
             return $this->failServerError($e->getMessage());
@@ -141,17 +141,20 @@ class StoresController extends ResourceController
      */
     public function delete($id = null)
     {
-        $store_info = $this->model->find($id);
-        if (!$store_info) {
-            return $this->failNotFound('Store not found');
+        $rc_info = $this->model->find($id);
+        if (!$rc_info) {
+            return $this->failNotFound('Category not found');
         }
         $db = Config::connect();
         $db->transStart();
         try {
-            $this->model->update($id, ['ACTIVE' => 0]);
+            $this->model->where('ID', $id)->delete();
+            if ($this->model->error()['code']) {
+                throw new DatabaseException($this->model->error()['message']);
+            }
 
             $db->transCommit();
-            return $this->respond(['message' => 'Store deleted successfully'], 200);
+            return $this->respond(['message' => 'Category deleted successfully'], 200);
         } catch (DatabaseException $e) {
             $db->transRollback();
             return $this->failServerError($e->getMessage());

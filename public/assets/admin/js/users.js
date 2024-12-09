@@ -17,3 +17,51 @@ function myFunction() {
         }
     }
 }
+
+$(document)
+    .on('click', '.uta-edit', function () {
+        let self = $(this)
+        let user_id = self.attr('data-id')
+
+        $.ajax({
+            url: '/admin/users/partial-edit-form',
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                USER_ID: user_id
+            },
+            success: function(response) {
+                $('#EditModal').find('.modal-body').html(response)
+                $('#EditModal').find('.uta-update').attr('data-id', user_id)
+                $('#EditModal').modal('show')
+            },
+            error: function(xhr, status, error) {
+                // console.log(xhr.responseJSON.messages)
+                console.error('Error:', error);
+            }
+        });
+    })
+    .on('click', '.uta-update', function() {
+        console.log("asd")
+        let self = $(this)
+        let user_id = self.attr('data-id')
+        let user_type = $('#select-user_type').val()
+        console.log( user_type )
+
+        $.ajax({
+            url: '/admin/api/users/' + user_id,
+            type: 'PUT',
+            dataType: 'json',
+            data: {
+                USER_TYPE_ID: user_type
+            },
+            success: function(response) {
+                $('#EditModal').modal('hide')
+                location.reload()
+            },
+            error: function(xhr, status, error) {
+                // console.log(xhr.responseJSON.messages)
+                console.error('Error:', error);
+            }
+        });
+    })

@@ -36,6 +36,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
     $routes->group('users', function ($routes) {
         $routes->get('/', 'Admin\UsersController::list');
         $routes->get('list', 'Admin\UsersController::list');
+        $routes->post('partial-edit-form', 'Admin\UsersController::partialEditForm');
     });
 
     $routes->group('stores', function ($routes) {
@@ -68,6 +69,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
         $routes->get('/', 'Admin\CategoriesController::list');
         $routes->get('list', 'Admin\CategoriesController::list');
         $routes->get('form', 'Admin\CategoriesController::form');
+        $routes->post('partial-edit-form', 'Admin\CategoriesController::partialEditForm');
     });
 
     $routes->group('api', function ($routes) {
@@ -91,9 +93,20 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
         $routes->post('recipes', 'Admin\Api\V1\RecipesController::create');
         $routes->post('recipes/(:num)', 'Admin\Api\V1\RecipesController::update/$1');
         $routes->delete('recipes/(:num)', 'Admin\Api\V1\RecipesController::delete/$1');
+
+        # recipe categories rest request
+        $routes->get('recipe-categories', 'Admin\Api\V1\CategoriesController::list');
+        $routes->get('recipe-categories/(:num)', 'Admin\Api\V1\CategoriesController::show/$1');
+        $routes->post('recipe-categories', 'Admin\Api\V1\CategoriesController::create');
+        $routes->put('recipe-categories/(:num)', 'Admin\Api\V1\CategoriesController::update/$1');
+        $routes->delete('recipe-categories/(:num)', 'Admin\Api\V1\CategoriesController::delete/$1');
         
-        # recipe ingredientingredient request
+        # recipe ingredient rest requests
         $routes->delete('recipe-ingredients/(:num)', 'Admin\Api\V1\RecipeIngredientController::delete/$1');
+
+        # user rest requests
+        $routes->get('users/(:num)', 'Admin\Api\V1\UsersController::show/$1');
+        $routes->put('users/(:num)', 'Admin\Api\V1\UsersController::update/$1');
     });
 });
 

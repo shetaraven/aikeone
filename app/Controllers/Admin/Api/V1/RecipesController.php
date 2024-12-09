@@ -51,7 +51,7 @@ class RecipesController extends ResourceController
         $post_data = $this->request->getPost();
 
         $rules = [
-            'TITLE' => 'required|is_unique[RECIPES.TITLE]',
+            'TITLE' => 'required|is_unique[recipes.TITLE]',
             'DETAILS' => 'required',
             'TYPE' => 'required',
             'TIME' => 'required',
@@ -165,7 +165,7 @@ class RecipesController extends ResourceController
         $recipe_image = $this->request->getFile('IMAGE');
 
         $rules = [
-            'TITLE' => 'required|is_unique[RECIPES.TITLE,ID,' . $id . ']',
+            'TITLE' => 'required|is_unique[recipes.TITLE,ID,' . $id . ']',
             'DETAILS' => 'required',
             'TYPE' => 'required',
             'TIME' => 'required',
