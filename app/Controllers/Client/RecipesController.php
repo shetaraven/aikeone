@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Filters\AuthenticationFilter;
 use App\Models\Admin\Ingredients\IngredientsModel;
 use App\Models\Admin\Ingredients\IngredientStorePricesModel;
-use App\Models\Admin\Recipes\RecipeCategoriesModel;
+use App\Models\Admin\Recipes\CategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
 use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use App\Models\Admin\Recipes\RecipeInstructionsModel;

@@ -5,11 +5,11 @@ namespace App\Models\Admin\Recipes;
 use App\Models\Traits\BlameableTrait;
 use CodeIgniter\Model;
 
-class RecipeCategoriesModel extends Model
+class CategoriesModel extends Model
 {
     use BlameableTrait;
 
-    protected $table = 'recipe_categories';
+    protected $table = 'categories';
     protected $primaryKey = 'ID';
     protected $allowedFields = [
         'LABEL',
@@ -39,13 +39,13 @@ class RecipeCategoriesModel extends Model
 
     public function withCreator()
     {
-        $existingSelects = $this->QBSelect ?? ['recipe_categories.*'];
+        $existingSelects = $this->QBSelect ?? ['categories.*'];
         return $this->select([
             ...$existingSelects,
             'creator.GIVEN_NAME as CREATOR',
             'updator.GIVEN_NAME as UPDATOR'
         ])
-            ->join('users creator', 'recipe_categories.CREATED_BY = creator.ID', 'LEFT')
-            ->join('users updator', 'recipe_categories.CREATED_BY = updator.ID', 'LEFT');
+            ->join('users creator', 'categories.CREATED_BY = creator.ID', 'LEFT')
+            ->join('users updator', 'categories.CREATED_BY = updator.ID', 'LEFT');
     }
 }

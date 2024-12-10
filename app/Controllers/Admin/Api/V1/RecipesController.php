@@ -2,11 +2,12 @@
 
 namespace App\Controllers\Admin\Api\V1;
 
-use App\Models\Admin\Recipes\RecipeCategoriesModel;
+use App\Models\Admin\Recipes\CategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
 use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use App\Models\Admin\Recipes\RecipeInstructionsModel;
 use App\Models\Admin\Recipes\RecipesModel;
+use App\Models\Admin\Recipes\RecipeSubLinkModel;
 use CodeIgniter\Database\Config;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -20,6 +21,7 @@ class RecipesController extends ResourceController
     protected $rcl_model;
     protected $rinst_model;
     protected $ringred_model;
+    protected $rs_model;
     protected $format = 'json';
 
     public function __construct()
@@ -28,6 +30,7 @@ class RecipesController extends ResourceController
         $this->rcl_model = new RecipeCategoryLinkModel();
         $this->rinst_model = new RecipeInstructionsModel();
         $this->ringred_model = new RecipeIngredientLinkModel();
+        $this->rs_model = new RecipeSubLinkModel();
     }
     /**
      * Return the properties of a resource object.
@@ -53,7 +56,7 @@ class RecipesController extends ResourceController
         $rules = [
             'TITLE' => 'required|is_unique[recipes.TITLE]',
             'DETAILS' => 'required',
-            'TYPE' => 'required',
+            'VISIBILITY' => 'required',
             'TIME' => 'required',
             'SERVINGS' => 'required',
         ];
@@ -68,7 +71,7 @@ class RecipesController extends ResourceController
             $insert_data = [
                 'TITLE' => $post_data['TITLE'],
                 'DETAILS' => $post_data['DETAILS'],
-                'VISIBILITY' => (int)$post_data['TYPE'],
+                'VISIBILITY' => (int)$post_data['VISIBILITY'],
                 'PREP_TIME' => $post_data['TIME'],
                 'SERVINGS' => $post_data['SERVINGS'],
             ];
@@ -124,16 +127,31 @@ class RecipesController extends ResourceController
                 if (isset($post_data['INGREDIENTS'])) {
                     foreach ($post_data['INGREDIENTS'] as $s_key => $ingredient) {
                         $ingredient = json_decode($ingredient, true);
-                        $new_ringed = [
-                            'RECIPE_ID' => $recipe_id,
-                            'INGREDIENT_ID' => $ingredient['INGRED_ID'],
-                            'VOLUME' => $ingredient['VOLUME'],
-                            'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
-                        ];
 
-                        $this->ringred_model->insert($new_ringed);
-                        if ($this->ringred_model->error()['code']) {
-                            throw new DatabaseException($this->ringred_model->error()['message']);
+                        if ($ingredient['TYPE'] == 0) {
+                            $new_ringed = [
+                                'RECIPE_ID' => $recipe_id,
+                                'INGREDIENT_ID' => $ingredient['INGRED_ID'],
+                                'VOLUME' => $ingredient['VOLUME'],
+                                'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
+                            ];
+
+                            $this->ringred_model->insert($new_ringed);
+                            if ($this->ringred_model->error()['code']) {
+                                throw new DatabaseException($this->ringred_model->error()['message']);
+                            }
+                        } else {
+                            $new_ringed = [
+                                'RECIPE_ID' => $recipe_id,
+                                'SUB_RECIPE_ID' => $ingredient['INGRED_ID'],
+                                'VOLUME' => $ingredient['VOLUME'],
+                                'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
+                            ];
+
+                            $this->rs_model->insert($new_ringed);
+                            if ($this->rs_model->error()['code']) {
+                                throw new DatabaseException($this->rs_model->error()['message']);
+                            }
                         }
                     }
                 }
@@ -167,7 +185,7 @@ class RecipesController extends ResourceController
         $rules = [
             'TITLE' => 'required|is_unique[recipes.TITLE,ID,' . $id . ']',
             'DETAILS' => 'required',
-            'TYPE' => 'required',
+            'VISIBILITY' => 'required',
             'TIME' => 'required',
             'SERVINGS' => 'required',
         ];
@@ -182,7 +200,7 @@ class RecipesController extends ResourceController
             $update_data = [
                 'TITLE' => $post_data['TITLE'],
                 'DETAILS' => $post_data['DETAILS'],
-                'TYPE' => $post_data['TYPE'],
+                'VISIBILITY' => $post_data['VISIBILITY'],
                 'PREP_TIME' => $post_data['TIME'],
                 'SERVINGS' => $post_data['SERVINGS'],
             ];
@@ -270,21 +288,35 @@ class RecipesController extends ResourceController
                 if (isset($post_data['INGREDIENTS'])) {
                     foreach ($post_data['INGREDIENTS'] as $s_key => $ingredient) {
                         $ingredient = json_decode($ingredient, true);
-                        if( isset( $ingredient['ID'] ) ) {
+                        if (isset($ingredient['ID'])) {
                             $update_ingred = [
                                 'VOLUME' => $ingredient['VOLUME'],
                             ];
 
                             $this->ringred_model->update($ingredient['ID'], $update_ingred);
                         } else {
-                            $new_inged = [
-                                'RECIPE_ID' => $id,
-                                'INGREDIENT_ID' => $ingredient['INGRED_ID'],
-                                'VOLUME' => $ingredient['VOLUME'],
-                                'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
-                            ];
-    
-                            $this->ringred_model->insert($new_inged);
+                            if ($ingredient['TYPE'] == 0) {
+                                $new_inged = [
+                                    'RECIPE_ID' => $id,
+                                    'INGREDIENT_ID' => $ingredient['INGRED_ID'],
+                                    'VOLUME' => $ingredient['VOLUME'],
+                                    'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
+                                ];
+
+                                $this->ringred_model->insert($new_inged);
+                            } else {
+                                $new_ringed = [
+                                    'RECIPE_ID' => $recipe_id,
+                                    'SUB_RECIPE_ID' => $ingredient['INGRED_ID'],
+                                    'VOLUME' => $ingredient['VOLUME'],
+                                    'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
+                                ];
+
+                                $this->rs_model->insert($new_ringed);
+                                if ($this->rs_model->error()['code']) {
+                                    throw new DatabaseException($this->rs_model->error()['message']);
+                                }
+                            }
                         }
 
                         if ($this->ringred_model->error()['code']) {

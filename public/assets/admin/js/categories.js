@@ -4,7 +4,7 @@ $(document)
         let description = $('.form-create_category').find('#cci-description').val()
 
         $.ajax({
-            url: '/admin/api/recipe-categories',
+            url: '/admin/api/categories',
             type: 'POST',
             data: {
                 LABEL: label,
@@ -52,7 +52,7 @@ $(document)
         let description = $('.form-edit_rc').find('.erci-description').val()
 
         $.ajax({
-            url: '/admin/api/recipe-categories/' + rc_id,
+            url: '/admin/api/categories/' + rc_id,
             type: 'PUT',
             data: {
                 LABEL: label,
@@ -80,7 +80,7 @@ $(document)
         category_id = self.attr('data-id')
 
         $.ajax({
-            url: '/admin/api/recipe-categories/' + category_id,
+            url: '/admin/api/categories/' + category_id,
             type: 'DELETE',
             success: function(response) {
                 console.log('Success:', response);

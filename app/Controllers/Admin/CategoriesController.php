@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\Admin\Recipes\RecipeCategoriesModel;
+use App\Models\Admin\Recipes\CategoriesModel;
 
 class CategoriesController extends BaseController
 {
@@ -26,7 +26,7 @@ class CategoriesController extends BaseController
     {
         $this->module_data['title'] = 'Category List';
 
-        $categories_model = new RecipeCategoriesModel();
+        $categories_model = new CategoriesModel();
         $this->module_data['category_list']    = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
         $this->module_data['pager']         = $categories_model->pager;
 
@@ -38,7 +38,7 @@ class CategoriesController extends BaseController
         $request = \Config\Services::request();
         $post_data = $request->getPost();
 
-        $categories_model = new RecipeCategoriesModel();
+        $categories_model = new CategoriesModel();
         $rc_info = $categories_model->where('ID', $post_data['RC_ID'])->first();
 
         return view('admin/categories/partials/_edit_category', [

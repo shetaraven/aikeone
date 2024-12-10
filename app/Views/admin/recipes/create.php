@@ -120,14 +120,31 @@
                             <div class="col-12 placement">
                                 <?php if (isset($ingredients_list) && count($ingredients_list) > 0) : ?>
                                     <?php foreach ($ingredients_list as $key => $ingred_info) : ?>
-                                        <label class="list-group-item ingred-row" data-id="<?= $ingred_info['ID'] ?>">
-                                            <div class="row mb-3 ingreds-container" data-id="<?= $ingred_info['INGREDIENT_ID'] ?>">
+                                        <label class="list-group-item ingred-row" data-id="<?= $ingred_info['ID'] ?>" data-type="1">
+                                            <div class="row mb-3 ingreds-container" data-id="<?= $ingred_info['INGREDIENT_ID'] ?>" data-type="0">
                                                 <div class="col-12">
                                                     <label class="form-label"><?= $ingred_info['NAME'] ?></label>
                                                     <div class="input-group input-group-merge">
                                                         <input type="text" class="form-control ic-vol" value="<?= $ingred_info['VOLUME'] ?>">
                                                         <span class="input-group-text ic-unit_measure" data-id="<?= $ingred_info['UNIT_MEASURE_ID'] ?>"><?= $ingred_info['UNIT_MEASURE_LABEL'] ?></span>
-                                                        <button class="btn btn-outline-danger remove-ingred" type="button">X</button>
+                                                        <button class="btn btn-outline-danger remove-ingred" data-type="0" type="button">X</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+
+                                <?php if (isset($sub_recipe_list) && count($sub_recipe_list) > 0) : ?>
+                                    <?php foreach ($sub_recipe_list as $key => $srl_info) : ?>
+                                        <label class="list-group-item ingred-row" data-id="<?= $srl_info['ID'] ?>" data-type="1">
+                                            <div class="row mb-3 ingreds-container" data-id="<?= $srl_info['SUB_RECIPE_ID'] ?>">
+                                                <div class="col-12">
+                                                <label class="form-label"><span><a href="<?=base_url('admin/recipes/form?id=' . $srl_info['SUB_RECIPE_ID'])?>" target="_blank"><?= $srl_info['TITLE'] ?></a></span></label>
+                                                    <div class="input-group input-group-merge">
+                                                        <input type="text" class="form-control ic-vol" value="<?= $srl_info['VOLUME'] ?>">
+                                                        <span class="input-group-text ic-unit_measure" data-id="<?= $srl_info['UNIT_MEASURE_ID'] ?>"><?= $srl_info['UNIT_MEASURE_LABEL'] ?></span>
+                                                        <button class="btn btn-outline-danger remove-ingred" data-type="1" type="button">X</button>
                                                     </div>
                                                 </div>
                                             </div>

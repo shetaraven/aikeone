@@ -8,9 +8,9 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 use Exception;
 
-class RecipeIngredientController extends ResourceController
+class RecipeSubController extends ResourceController
 {
-    protected $modelName = 'App\Models\Admin\Recipes\RecipeIngredientLinkModel';
+    protected $modelName = 'App\Models\Admin\Recipes\RecipeSubLinkModel';
     protected $format = 'json';
 
     /**

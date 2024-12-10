@@ -28,11 +28,30 @@ $(document)
         })
     })
     .on('click', '.action-modal-open-ingreds', function () {
+        let selected_ingreds = []
+        let selected_recipes = []
+        $('.ingred-row').each(function () {
+            if ($(this).find('.ingreds-container').attr('data-type') == 0) {
+                selected_ingreds.push({
+                    'type': $(this).find('.ingreds-container').attr('data-type'),
+                    'id': $(this).find('.ingreds-container').attr('data-id'),
+                })
+            } else {
+                selected_recipes.push({
+                    'type': $(this).find('.ingreds-container').attr('data-type'),
+                    'id': $(this).find('.ingreds-container').attr('data-id'),
+                })
+            }
+        })
+
         $.ajax({
             url: '/admin/recipes/partial-ingreds-list',
-            type: 'GET',
+            type: 'POST',
             dataType: 'html',
-            data: {},
+            data: {
+                'SELECTED_INGREDS': selected_ingreds,
+                'SELECTED_RECIPES': selected_recipes
+            },
             success: function (response) {
 
                 $('#modal-ingreds-list').find('.modal-body').find('.contain-ingred_list').html(response)
@@ -83,9 +102,12 @@ $(document)
     .on('click', '.remove-ingred', function () {
         let self = $(this)
         let ringred_id = self.closest('.ingred-row').attr('data-id')
-        if( ringred_id ) {
+        let ingred_type = self.attr('data-type')
+
+        let url = ingred_type == 0 ? '/admin/api/recipe-ingredients/' : '/admin/api/recipe-sub/'
+        if (ringred_id) {
             $.ajax({
-                url: '/admin/api/recipe-ingredients/' + ringred_id,
+                url: url + ringred_id,
                 type: 'DELETE',
                 dataType: 'html',
                 success: function (response) {
@@ -99,10 +121,10 @@ $(document)
 
         self.closest('.ingred-row').remove()
 
-        if( $('.ingred-row').length <= 0 ) {
+        if ($('.ingred-row').length <= 0) {
             $('.no-ingreds').show()
         }
-    } )
+    })
     .on('change', '#rfi-image', function (e) {
         const file = e.target.files[0];
 
@@ -122,7 +144,7 @@ $(document)
         formdata.append('ID', recipe_id)
         formdata.append('TITLE', $('.form-recipe').find('.rfi-title').val())
         formdata.append('DETAILS', $('.form-recipe').find('.rfi-details').val())
-        formdata.append('TYPE', $('.form-recipe').find('.rfi-type').val())
+        formdata.append('VISIBILITY', $('.form-recipe').find('.rfi-type').val())
         formdata.append('TIME', $('.form-recipe').find('.rfi-time').val())
         formdata.append('SERVINGS', $('.form-recipe').find('.rfi-servings').val())
 
@@ -153,6 +175,7 @@ $(document)
             if (value) {
                 formdata.append('INGREDIENTS[]', JSON.stringify({
                     'ID': $(this).attr('data-id'),
+                    'TYPE': $(this).attr('data-type'),
                     'INGRED_ID': $(this).find('.ingreds-container').attr('data-id'),
                     'VOLUME': value,
                     'UNIT_MEASURE_ID': $(this).find('.ic-unit_measure').attr('data-id'),
@@ -168,12 +191,11 @@ $(document)
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log('Success:', response);
-                clearForms('form-recipe')
-                $('#success-alert').addClass('show');
-                setTimeout(function() {
-                    $('#success-alert .btn-close').click();
-                }, 2000)
+                // clearForms('form-recipe')
+                // $('#success-alert').addClass('show');
+                // setTimeout(function() {
+                //     $('#success-alert .btn-close').click();
+                // }, 2000)
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);

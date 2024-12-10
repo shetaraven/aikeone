@@ -10,7 +10,7 @@ use Exception;
 
 class CategoriesController extends ResourceController
 {
-    protected $modelName = 'App\Models\Admin\Recipes\RecipeCategoriesModel';
+    protected $modelName = 'App\Models\Admin\Recipes\CategoriesModel';
     protected $format = 'json';
 
     /**
@@ -50,7 +50,7 @@ class CategoriesController extends ResourceController
         $post_data = $this->request->getPost();
         $valid = $this->validate(
             [
-                'LABEL' => 'required|is_unique[recipe_categories.LABEL]',
+                'LABEL' => 'required|is_unique[categories.LABEL]',
             ],
         );
 
@@ -102,7 +102,7 @@ class CategoriesController extends ResourceController
 
         $valid = $this->validate(
             [
-                'LABEL' => 'required|is_unique[recipe_categories.LABEL,ID,' . $id . ']',
+                'LABEL' => 'required|is_unique[categories.LABEL,ID,' . $id . ']',
             ]
         );
 

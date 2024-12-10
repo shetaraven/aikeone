@@ -61,7 +61,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
         $routes->get('/', 'Admin\RecipesController::list');
         $routes->get('list', 'Admin\RecipesController::list');
         $routes->get('form', 'Admin\RecipesController::form');
-        $routes->get('partial-ingreds-list', 'Admin\RecipesController::partialIngredsList');
+        $routes->post('partial-ingreds-list', 'Admin\RecipesController::partialIngredsList');
         $routes->post('partial-ingreds-set', 'Admin\RecipesController::partialIngredsSet');
     });
 
@@ -95,14 +95,17 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
         $routes->delete('recipes/(:num)', 'Admin\Api\V1\RecipesController::delete/$1');
 
         # recipe categories rest request
-        $routes->get('recipe-categories', 'Admin\Api\V1\CategoriesController::list');
-        $routes->get('recipe-categories/(:num)', 'Admin\Api\V1\CategoriesController::show/$1');
-        $routes->post('recipe-categories', 'Admin\Api\V1\CategoriesController::create');
-        $routes->put('recipe-categories/(:num)', 'Admin\Api\V1\CategoriesController::update/$1');
-        $routes->delete('recipe-categories/(:num)', 'Admin\Api\V1\CategoriesController::delete/$1');
+        $routes->get('categories', 'Admin\Api\V1\CategoriesController::list');
+        $routes->get('categories/(:num)', 'Admin\Api\V1\CategoriesController::show/$1');
+        $routes->post('categories', 'Admin\Api\V1\CategoriesController::create');
+        $routes->put('categories/(:num)', 'Admin\Api\V1\CategoriesController::update/$1');
+        $routes->delete('categories/(:num)', 'Admin\Api\V1\CategoriesController::delete/$1');
         
         # recipe ingredient rest requests
         $routes->delete('recipe-ingredients/(:num)', 'Admin\Api\V1\RecipeIngredientController::delete/$1');
+
+        # recipe sub rest requests
+        $routes->delete('recipe-sub/(:num)', 'Admin\Api\V1\RecipeSubController::delete/$1');
 
         # user rest requests
         $routes->get('users/(:num)', 'Admin\Api\V1\UsersController::show/$1');
@@ -124,7 +127,7 @@ $routes->group('', function ($routes) {
 
     $routes->group('profile', function ($routes) {
         $routes->get('/', 'Client\ProfileController::index');
-        $routes->get('collections', 'Client\ProfileController::collections');
+        $routes->get('collections', 'Client\ProfileController::collections', ['filter' => ['auth']]);
     });
 
     $routes->group('api', function ($routes) {
