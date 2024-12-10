@@ -22,8 +22,8 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>NAME</th>
-                            <th>COMMENT</th>
+                            <th style="width: 20%;">NAME</th>
+                            <th style="width: 20%;">COMMENT</th>
                             <th>STATUS</th>
                             <th>CREATED BY</th>
                             <th>CREATED AT</th>

@@ -65,7 +65,19 @@
             <!-- / Navbar -->
 
             <?= $this->renderSection('content') ?>
+
+            <footer class="footer bg-light" style="width: 86%;margin: 0 auto 20px;border-radius: 10px;background: #f9f6f5!important;">
+                <div class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-4">
+                    <div>
+                        &copy; <?= date('Y') ?> Recette by Storm. All rights reserved.
+                    </div>
+                    <div>
+                        <a href="<?=base_url('auth/logout')?>" class="btn btn-sm btn-outline-danger"><i class="bx bx-log-out-circle me-1"></i>Logout</a>
+                    </div>
+                </div>
+            </footer>
         </div>
+
     </div>
 </div>
 

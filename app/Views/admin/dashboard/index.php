@@ -12,7 +12,7 @@
                                 <div class="d-flex align-items-start row">
                                     <div class="col-sm-7">
                                         <div class="card-body">
-                                            <h5 class="card-title text-primary mb-3">Welcome John!</h5>
+                                            <h5 class="card-title text-primary mb-3">Welcome <?=session()->get('GIVEN_NAME')?></h5>
                                             <p class="mb-6">
                                                 Here you’ll find all the tools <br>and information you need to get started.
                                             </p>
@@ -28,9 +28,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-lg-12 col-md-12 order-1">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-6 mb-6">
+                        <div class="col-xxl-4 col-lg-12 col-md-12 order-1 mb-6">
+                            <div class="row" style="height: 100%;">
+                                <div class="col-lg-6 col-md-6 col-6">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <div class="card-title d-flex align-items-start justify-content-between mb-4">
@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-6 mb-6">
+                                <div class="col-lg-6 col-md-6 col-6">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <div class="card-title d-flex align-items-start justify-content-between mb-4">

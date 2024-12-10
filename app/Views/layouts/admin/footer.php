@@ -6,10 +6,9 @@
                         <div class="layout-overlay layout-menu-toggle"></div>
                     </div>
     </main>
+    
 
-    <footer id="layout-footer" class="text-center">
-        <p>&copy; <?= date('Y') ?> Recette by Storm. All rights reserved.</p>
-    </footer>
+    <div class="load-backdrop"><div class="loader"></div></div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

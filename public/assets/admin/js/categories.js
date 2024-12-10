@@ -1,27 +1,29 @@
 $(document)
     .on('click', '.cc_action-create', function () {
-        let label = $('.form-create_category').find('#cci-label').val()
-        let description = $('.form-create_category').find('#cci-description').val()
+        if(validateForm('form-create_category')){
+            let label = $('.form-create_category').find('#cci-label').val()
+            let description = $('.form-create_category').find('#cci-description').val()
 
-        $.ajax({
-            url: '/admin/api/categories',
-            type: 'POST',
-            data: {
-                LABEL: label,
-                DESCRIPTION: description,
-            },
-            success: function (response) {
-                $('#success-alert').addClass('show');
-                clearForms('form-create_category')
-                setTimeout(function () {
-                    $('#success-alert .btn-close').click();
-                }, 2000)
-            },
-            error: function (xhr, status, error) {
-                // console.log(xhr.responseJSON.messages)
-                console.error('Error:', error);
-            }
-        });
+            $.ajax({
+                url: '/admin/api/categories',
+                type: 'POST',
+                data: {
+                    LABEL: label,
+                    DESCRIPTION: description,
+                },
+                success: function (response) {
+                    clearForms('form-create_category')
+                    showSuccess();
+                },
+                error: function (xhr, status, error) {
+                    // console.log(xhr.responseJSON.messages)
+                    showError('Store Name Already Existing!');
+                    console.error('Error:', error);
+                }
+            });
+        }else{
+            showError('Fill Up all the required Fields!');
+        }
     })
     .on('click', '.rcta-edit', function () {
         let self = $(this)
@@ -46,26 +48,31 @@ $(document)
         });
     })
     .on('click', '.rcem-save', function() {
-        let self = $(this)
-        let rc_id = self.attr('data-id')
-        let label = $('.form-edit_rc').find('.erci-label').val()
-        let description = $('.form-edit_rc').find('.erci-description').val()
+        if(validateForm('form-edit_rc')){
+            let self = $(this)
+            let rc_id = self.attr('data-id')
+            let label = $('.form-edit_rc').find('.erci-label').val()
+            let description = $('.form-edit_rc').find('.erci-description').val()
 
-        $.ajax({
-            url: '/admin/api/categories/' + rc_id,
-            type: 'PUT',
-            data: {
-                LABEL: label,
-                DESCRIPTION: description,
-            },
-            success: function(response) {
-                $('#edit_modal-category').modal('hide')
-                location.reload()
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
-            }
-        });
+            $.ajax({
+                url: '/admin/api/categories/' + rc_id,
+                type: 'PUT',
+                data: {
+                    LABEL: label,
+                    DESCRIPTION: description,
+                },
+                success: function(response) {
+                    $('#edit_modal-category').modal('hide')
+                    location.reload()
+                },
+                error: function(xhr, status, error) {
+                    showError('Store Name Already Existing!');
+                    console.error('Error:', error);
+                }
+            });
+        }else{
+            showError('Fill Up all the required Fields!');
+        }
     })
     .on('click', '.rcta-delete', function() {
         let self = $(this)

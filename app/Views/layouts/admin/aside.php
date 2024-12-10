@@ -1,7 +1,7 @@
 <!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="/" class="app-brand-link">
             <img src="<?= base_url('assets/admin/img/aikeone-logo.svg') ?>" class="official-logo" style="width: 25px;" />
             <span class="app-brand-text demo menu-text fw-bold ms-2">Recette <span>by Storm</span></span>
         </a>

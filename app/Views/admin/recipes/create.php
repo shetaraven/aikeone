@@ -35,20 +35,22 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
-                    <h4 class="card-header">
-                        <?= $title ?>
-                    </h4>
-
                     <div class="card-body">
+
+                    <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
+                        <span>Store Name Already Existing!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
                         <div class="row">
                             <div class="col-12">
-                                <div>
-                                    <label for="rf-title" class="form-label">Title</label>
+                                <div class="required">
+                                    <label for="rf-title" class="form-label">Title<span class="error-msg">* Required Field!</span></label>
                                     <input type="text" class="form-control rfi-title" id="rf-title" value="<?= $recipe_info['TITLE'] ?>">
-                                    <input type="hidden" class="form-control rfi-id" id="rf-id" value="<?= $recipe_info['ID'] ?>">
+                                    <input type="hidden" class="rfi-id" id="rf-id" value="<?= $recipe_info['ID'] ?>">
                                 </div>
-                                <div class="mt-3">
-                                    <label for="rf-details" class="form-label">Details</label>
+                                <div class="mt-3 required">
+                                    <label for="rf-details" class="form-label">Details<span class="error-msg">* Required Field!</span></label>
                                     <textarea class="form-control rfi-details" id="rf-details" rows="9"><?= $recipe_info['DETAILS'] ?></textarea>
                                 </div>
                             </div>
@@ -66,7 +68,8 @@
                             <div class="col-12">
                                 <div class="steps-area">
                                     <?php if (! isset($instruction_list) || count($instruction_list) == 0) : ?>
-                                        <div class="mt-3 steps-container" data-id="0">
+                                        <div class="mt-3 steps-container required" data-id="0">
+                                            <span class="error-msg">* Required Field!</span>
                                             <div style="display: inline-flex; width: 100%;">
                                                 <div class="step-num"><span>1</span></div>
                                                 <textarea class="form-control" rows="2"></textarea>
@@ -76,7 +79,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-3 steps-container">
+                                        <div class="mt-3 steps-container required">
+                                            <span class="error-msg">* Required Field!</span>
                                             <div style="display: inline-flex; width: 100%;">
                                                 <div class="step-num"><span>2</span></div>
                                                 <textarea class="form-control" rows="2"></textarea>
@@ -87,7 +91,8 @@
                                         </div>
                                     <?php else: ?>
                                         <?php foreach ($instruction_list as $key => $inst_info) : ?>
-                                            <div class="mt-3 steps-container" data-id="<?= $inst_info['ID'] ?>">
+                                            <div class="mt-3 steps-container required" data-id="<?= $inst_info['ID'] ?>">
+                                                <span class="error-msg">* Required Field!</span>
                                                 <div style="display: inline-flex; width: 100%;">
                                                     <div class="step-num"><span><?= $inst_info['ORDER'] ?></span></div>
                                                     <textarea class="form-control" rows="2"><?= $inst_info['DESCRIPTION'] ?></textarea>
@@ -122,8 +127,8 @@
                                     <?php foreach ($ingredients_list as $key => $ingred_info) : ?>
                                         <label class="list-group-item ingred-row" data-id="<?= $ingred_info['ID'] ?>" data-type="0">
                                             <div class="row mb-3 ingreds-container" data-id="<?= $ingred_info['INGREDIENT_ID'] ?>" data-type="0">
-                                                <div class="col-12">
-                                                    <label class="form-label"><?= $ingred_info['NAME'] ?></label>
+                                                <div class="col-12 required">
+                                                    <label class="form-label"><?= $ingred_info['NAME'] ?><span class="error-msg">* Required Field!</span></label>
                                                     <div class="input-group input-group-merge">
                                                         <input type="text" class="form-control ic-vol" value="<?= $ingred_info['VOLUME'] ?>">
                                                         <span class="input-group-text ic-unit_measure" data-id="<?= $ingred_info['UNIT_MEASURE_ID'] ?>"><?= $ingred_info['UNIT_MEASURE_LABEL'] ?></span>
@@ -139,8 +144,8 @@
                                     <?php foreach ($sub_recipe_list as $key => $srl_info) : ?>
                                         <label class="list-group-item ingred-row" data-id="<?= $srl_info['ID'] ?>" data-type="1">
                                             <div class="row mb-3 ingreds-container" data-id="<?= $srl_info['SUB_RECIPE_ID'] ?>">
-                                                <div class="col-12">
-                                                <label class="form-label"><span><a href="<?=base_url('admin/recipes/form?id=' . $srl_info['SUB_RECIPE_ID'])?>" target="_blank"><?= $srl_info['TITLE'] ?></a></span></label>
+                                                <div class="col-12 required">
+                                                <label class="form-label"><span><a href="<?=base_url('admin/recipes/form?id=' . $srl_info['SUB_RECIPE_ID'])?>" target="_blank"><?= $srl_info['TITLE'] ?></a></span><span class="error-msg">* Required Field!</span></label>
                                                     <div class="input-group input-group-merge">
                                                         <input type="text" class="form-control ic-vol" value="<?= $srl_info['VOLUME'] ?>">
                                                         <span class="input-group-text ic-unit_measure" data-id="<?= $srl_info['UNIT_MEASURE_ID'] ?>"><?= $srl_info['UNIT_MEASURE_LABEL'] ?></span>
@@ -172,8 +177,8 @@
                             </select>
                         </div>
 
-                        <div class="mt-5">
-                            <label class="form-label">Categories</label>
+                        <div class="mt-5 required checkbox">
+                            <label class="form-label">Categories<span class="error-msg">* Required Field!</span></label>
                             <?php foreach ($recipe_categories as $key => $rc_info): ?>
                                 <div class="form-check mb-1">
                                     <label class="form-check-label"><?= $rc_info['LABEL'] ?></label>
@@ -182,21 +187,21 @@
                             <?php endforeach; ?>
                         </div>
 
-                        <div class="mt-5">
-                            <label class="form-label">Recipe Image</label>
+                        <div class="mt-5 required">
+                            <label class="form-label">Recipe Image<span class="error-msg">* Required Field!</span></label>
                             <div class="recipe_img_preview">
                                 <img src="<?= base_url(isset( $recipe_img ) ? $recipe_img : 'assets/admin/img/default-img.jpg') ?>" alt="" style="width: 100%;max-height: 150px;object-fit: cover;" />
                             </div>
                             <input class="form-control form-control-sm mt-2" id="rfi-image" type="file" accept="image/*">
                         </div>
 
-                        <div class="mt-5">
-                            <label class="form-label">Time</label>
-                            <input type="text" class="form-control form-control-sm rfi-time" value="<?= $recipe_info['PREP_TIME'] ?>">
+                        <div class="mt-5 required">
+                            <label class="form-label">Time<span class="error-msg">* Required Field!</span></label>
+                            <input type="text" class="form-control form-control-sm rfi-time" placeholder="1 hr 20 mins" value="<?= $recipe_info['PREP_TIME'] ?>">
                         </div>
-                        <div class="mt-5">
-                            <label class="form-label">Servings</label>
-                            <input type="number" class="form-control form-control-sm rfi-servings" value="<?= $recipe_info['SERVINGS'] ?>">
+                        <div class="mt-5 required">
+                            <label class="form-label">Servings<span class="error-msg">* Required Field!</span></label>
+                            <input type="number" class="form-control form-control-sm rfi-servings" placeholder="1" value="<?= $recipe_info['SERVINGS'] ?>">
                         </div>
 
                     </div>

@@ -22,8 +22,8 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>LABEL</th>
-                            <th>DESCRIPTION</th>
+                            <th style="width: 25%;">LABEL</th>
+                            <th style="width: 25%;">DESCRIPTION</th>
                             <th>CREATED BY</th>
                             <th>CREATED AT</th>
                             <th>ACTIONS</th>

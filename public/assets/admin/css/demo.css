@@ -165,4 +165,43 @@
     display: inline-block;
     font-size: 11px;
     color: red;
+    padding-left: 10px;
+}
+
+.load-backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 50%);
+    z-index: 10000;
+    display: none;
+}
+.load-backdrop .loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 3rem;
+    color: #0000;
+    background: linear-gradient(90deg,#e37100 calc(50% + 0.5ch),#fff 0) right/calc(200% + 1ch) 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    animation: l7 2s infinite steps(11);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.load-backdrop .loader:before {
+    content:"Loading..."
+}
+@keyframes l7 {to{background-position: left}}
+
+.table-responsive td{
+    white-space: initial;
+}
+
+#toolbarContainer{
+    display: none!important;
 }
