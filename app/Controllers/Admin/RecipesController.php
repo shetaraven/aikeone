@@ -81,11 +81,31 @@ class RecipesController extends BaseController
 
     function partialIngredsList()
     {
-        $ingreds_model      = new IngredientsModel();
-        $ingredients_list   = $ingreds_model->findAll();
+        $request        = Services::request();
+        $post_data      = $request->getPost();
+        $ingredients_list   = [];
+        $recipe_list        = [];
 
+        # get ingredients not selected
+        $ingreds_model = new IngredientsModel();
+        $ingredients_list = $ingreds_model;
+        if (isset($post_data['SELECTED_INGREDS'])) {
+            $type_ingred = array_column($post_data['SELECTED_INGREDS'], 'id');
+
+            $ingredients_list->whereNotIn('ingredients.ID', $type_ingred);
+        }
+
+        $ingredients_list = $ingredients_list->withUnitMeasure()->findAll();
+
+        # get recipes not selected
         $recipes_model  = new RecipesModel();
-        $recipe_list    = $recipes_model->findAll();
+        $recipe_list    = $recipes_model;
+        if (isset($post_data['SELECTED_RECIPES'])) {
+            $type_recipe = array_column($post_data['SELECTED_RECIPES'], 'id');
+
+            $recipe_list->whereNotIn('recipes.ID', $type_recipe);
+        }
+        $recipe_list = $recipe_list->findAll();
 
         return view('admin/recipes/_template_ingred_list', [
             'ingredients_list' => $ingredients_list,

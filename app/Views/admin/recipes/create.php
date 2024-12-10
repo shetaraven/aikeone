@@ -120,7 +120,7 @@
                             <div class="col-12 placement">
                                 <?php if (isset($ingredients_list) && count($ingredients_list) > 0) : ?>
                                     <?php foreach ($ingredients_list as $key => $ingred_info) : ?>
-                                        <label class="list-group-item ingred-row" data-id="<?= $ingred_info['ID'] ?>" data-type="1">
+                                        <label class="list-group-item ingred-row" data-id="<?= $ingred_info['ID'] ?>" data-type="0">
                                             <div class="row mb-3 ingreds-container" data-id="<?= $ingred_info['INGREDIENT_ID'] ?>" data-type="0">
                                                 <div class="col-12">
                                                     <label class="form-label"><?= $ingred_info['NAME'] ?></label>

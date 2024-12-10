@@ -292,8 +292,11 @@ class RecipesController extends ResourceController
                             $update_ingred = [
                                 'VOLUME' => $ingredient['VOLUME'],
                             ];
-
-                            $this->ringred_model->update($ingredient['ID'], $update_ingred);
+                            if ($ingredient['TYPE'] == 0) {
+                                $this->ringred_model->update($ingredient['ID'], $update_ingred);
+                            } else {
+                                $this->rs_model->update($ingredient['ID'], $update_ingred);
+                            }
                         } else {
                             if ($ingredient['TYPE'] == 0) {
                                 $new_inged = [
@@ -306,21 +309,22 @@ class RecipesController extends ResourceController
                                 $this->ringred_model->insert($new_inged);
                             } else {
                                 $new_ringed = [
-                                    'RECIPE_ID' => $recipe_id,
+                                    'RECIPE_ID' => $id,
                                     'SUB_RECIPE_ID' => $ingredient['INGRED_ID'],
                                     'VOLUME' => $ingredient['VOLUME'],
                                     'UNIT_MEASURE_ID' => $ingredient['UNIT_MEASURE_ID'],
                                 ];
 
                                 $this->rs_model->insert($new_ringed);
-                                if ($this->rs_model->error()['code']) {
-                                    throw new DatabaseException($this->rs_model->error()['message']);
-                                }
                             }
                         }
 
                         if ($this->ringred_model->error()['code']) {
                             throw new DatabaseException($this->ringred_model->error()['message']);
+                        }
+
+                        if ($this->rs_model->error()['code']) {
+                            throw new DatabaseException($this->rs_model->error()['message']);
                         }
                     }
                 } else {

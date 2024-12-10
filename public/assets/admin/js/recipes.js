@@ -31,14 +31,14 @@ $(document)
         let selected_ingreds = []
         let selected_recipes = []
         $('.ingred-row').each(function () {
-            if ($(this).find('.ingreds-container').attr('data-type') == 0) {
+            if ($(this).attr('data-type') == 0) {
                 selected_ingreds.push({
-                    'type': $(this).find('.ingreds-container').attr('data-type'),
+                    'type': $(this).attr('data-type'),
                     'id': $(this).find('.ingreds-container').attr('data-id'),
                 })
             } else {
                 selected_recipes.push({
-                    'type': $(this).find('.ingreds-container').attr('data-type'),
+                    'type': $(this).attr('data-type'),
                     'id': $(this).find('.ingreds-container').attr('data-id'),
                 })
             }
@@ -191,11 +191,11 @@ $(document)
             processData: false,
             contentType: false,
             success: function (response) {
-                // clearForms('form-recipe')
-                // $('#success-alert').addClass('show');
-                // setTimeout(function() {
-                //     $('#success-alert .btn-close').click();
-                // }, 2000)
+                clearForms('form-recipe')
+                $('#success-alert').addClass('show');
+                setTimeout(function() {
+                    $('#success-alert .btn-close').click();
+                }, 2000)
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);
