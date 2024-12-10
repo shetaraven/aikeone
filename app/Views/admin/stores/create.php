@@ -5,10 +5,10 @@
         <div class="card">
 
             <div class="card-body">
-            <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
-                Store Name Already Existing!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+                <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
+                    <span>Store Name Already Existing!</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
 
                 <div class="mb-3 required">
                     <label for="csi-name" class="form-label">Store Name <span class="error-msg">* Required Field!</span></label>

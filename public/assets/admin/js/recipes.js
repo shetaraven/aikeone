@@ -137,70 +137,74 @@ $(document)
         }
     })
     .on('click', '.action-save_recipe', function () {
-        let formdata = new FormData()
+        if(validateForm('form-recipe')){
+            let formdata = new FormData()
 
-        let recipe_id = $('.form-recipe').find('.rfi-id').val()
+            let recipe_id = $('.form-recipe').find('.rfi-id').val()
 
-        formdata.append('ID', recipe_id)
-        formdata.append('TITLE', $('.form-recipe').find('.rfi-title').val())
-        formdata.append('DETAILS', $('.form-recipe').find('.rfi-details').val())
-        formdata.append('VISIBILITY', $('.form-recipe').find('.rfi-type').val())
-        formdata.append('TIME', $('.form-recipe').find('.rfi-time').val())
-        formdata.append('SERVINGS', $('.form-recipe').find('.rfi-servings').val())
+            formdata.append('ID', recipe_id)
+            formdata.append('TITLE', $('.form-recipe').find('.rfi-title').val())
+            formdata.append('DETAILS', $('.form-recipe').find('.rfi-details').val())
+            formdata.append('VISIBILITY', $('.form-recipe').find('.rfi-type').val())
+            formdata.append('TIME', $('.form-recipe').find('.rfi-time').val())
+            formdata.append('SERVINGS', $('.form-recipe').find('.rfi-servings').val())
 
-        let recipe_image = $('.form-recipe').find('#rfi-image')[0].files[0];
-        if (recipe_image) {
-            formdata.append('IMAGE', recipe_image)
+            let recipe_image = $('.form-recipe').find('#rfi-image')[0].files[0];
+            if (recipe_image) {
+                formdata.append('IMAGE', recipe_image)
+            }
+
+            $('.form-recipe').find('.rfi-category').each(function (i, e) {
+                if ($(this).is(':checked')) {
+                    formdata.append('CATEGORIES[]', $(this).val())
+                }
+            })
+
+            $('.form-recipe').find('.steps-container').each(function (i, e) {
+                let value = $(this).find('textarea').val()
+                if (value) {
+                    formdata.append('INSTRUCTIONS[]', JSON.stringify({
+                        'ID': $(this).attr('data-id'),
+                        'ORDER': i + 1,
+                        'INSTRUCTION': $(this).find('textarea').val()
+                    }))
+                }
+            })
+
+            $('.form-recipe').find('.ingred-row').each(function (i, e) {
+                let value = $(this).find('.ic-vol').val()
+                if (value) {
+                    formdata.append('INGREDIENTS[]', JSON.stringify({
+                        'ID': $(this).attr('data-id'),
+                        'TYPE': $(this).attr('data-type'),
+                        'INGRED_ID': $(this).find('.ingreds-container').attr('data-id'),
+                        'VOLUME': value,
+                        'UNIT_MEASURE_ID': $(this).find('.ic-unit_measure').attr('data-id'),
+                    }))
+                }
+            })
+
+
+            $.ajax({
+                url: '/admin/api/' + (recipe_id ? 'recipes/' + recipe_id : 'recipes'),
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if(!recipe_id){
+                        clearForms('form-recipe')
+                    }
+                    showSuccess();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    showError('Store Name Already Existing!');
+                }
+            });
+        }else{
+            showError('Fill Up all the required Fields!');
         }
-
-        $('.form-recipe').find('.rfi-category').each(function (i, e) {
-            if ($(this).is(':checked')) {
-                formdata.append('CATEGORIES[]', $(this).val())
-            }
-        })
-
-        $('.form-recipe').find('.steps-container').each(function (i, e) {
-            let value = $(this).find('textarea').val()
-            if (value) {
-                formdata.append('INSTRUCTIONS[]', JSON.stringify({
-                    'ID': $(this).attr('data-id'),
-                    'ORDER': i + 1,
-                    'INSTRUCTION': $(this).find('textarea').val()
-                }))
-            }
-        })
-
-        $('.form-recipe').find('.ingred-row').each(function (i, e) {
-            let value = $(this).find('.ic-vol').val()
-            if (value) {
-                formdata.append('INGREDIENTS[]', JSON.stringify({
-                    'ID': $(this).attr('data-id'),
-                    'TYPE': $(this).attr('data-type'),
-                    'INGRED_ID': $(this).find('.ingreds-container').attr('data-id'),
-                    'VOLUME': value,
-                    'UNIT_MEASURE_ID': $(this).find('.ic-unit_measure').attr('data-id'),
-                }))
-            }
-        })
-
-
-        $.ajax({
-            url: '/admin/api/' + (recipe_id ? 'recipes/' + recipe_id : 'recipes'),
-            type: 'POST',
-            data: formdata,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                clearForms('form-recipe')
-                $('#success-alert').addClass('show');
-                setTimeout(function() {
-                    $('#success-alert .btn-close').click();
-                }, 2000)
-            },
-            error: function (xhr, status, error) {
-                console.error('Error:', error);
-            }
-        });
     })
     .on('click', '.rta-delete', function () {
         let self = $(this)

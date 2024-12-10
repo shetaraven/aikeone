@@ -28,7 +28,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th style="width: 25%;">Name</th>
                             <th>Creator</th>
                             <th>Date Created</th>
                             <th>Last Edited By</th>

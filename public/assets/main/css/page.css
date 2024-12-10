@@ -305,6 +305,10 @@ strong {
     font-style: italic;
 }
 
+#toolbarContainer{
+    display: none!important;
+}
+
 .mobile-only{
     display: none;
 }

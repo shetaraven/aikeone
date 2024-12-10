@@ -3,13 +3,14 @@
 <div class="content-wrapper form-create_category">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
-            <h5 class="card-header">
-                Create New Category
-            </h5>
 
             <div class="card-body">
-                <div class="mb-3">
-                    <label for="cci-label" class="form-label">Label</label>
+                <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
+                    <span>Store Name Already Existing!</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="mb-3 required">
+                    <label for="cci-label" class="form-label">Category Name<span class="error-msg">* Required Field!</span></label>
                     <input type="text" class="form-control" id="cci-label">
                 </div>
                 <div>
@@ -37,7 +38,7 @@
         <!-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> -->
     </div>
     <div class="toast-body">
-        Store Successfully Created!
+        Category Successfully Created!
     </div>
 </div>
 <?= $this->endSection() ?>

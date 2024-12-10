@@ -124,9 +124,71 @@ $(document).on('click', '.unit-selector a.dropdown-item', function() {
 function clearForms(formClass){
     $('.'+formClass).find('.form-control').val('');
     if(formClass == 'form-recipe'){
-        $('.rfi-type').val(0);
+        $('.rfi-type').val(1);
         $('.recipe_img_preview img').attr('src','/assets/admin/img/default-img.jpg')
         $('.added-steps').remove();
         $('.remove-ingred').click();
+        $('.checkbox').find('.form-check-input').prop('checked',false);
     }
 }
+
+function validateForm(formClass){
+    $('.load-backdrop').show();
+    $('body').css('overflow','hidden');
+    var proceed = [];
+    $('.'+formClass).find('.required .form-control').each(function(){
+        if($(this).val() == ''){
+            $(this).closest('.required').addClass('error');
+            proceed.push(false);
+        }else{
+            proceed.push(true);
+        }
+    })
+    $('.'+formClass).find('.required.checkbox').each(function(){
+        if($(this).find('.form-check-input').is(':checked')){
+            proceed.push(true);
+        }else{
+            $(this).addClass('error');
+            proceed.push(false);
+        }
+    })
+
+    return (proceed.includes(false))? false : true;
+}
+
+function showError(text){
+    $('.load-backdrop').fadeOut();
+    $('body').css('overflow','auto');
+    $('#warningTop span').text(text);
+    $('#warningTop').fadeIn();
+    setTimeout(function(){
+        $(window).scrollTop(0);
+        setTimeout(function(){
+            $('#warningTop').fadeOut();
+        },5000)
+    },100)
+}
+
+function showSuccess(){
+    $('.load-backdrop').fadeOut();
+    $('body').css('overflow','auto');
+    $('#success-alert').addClass('show');
+    setTimeout(function(){
+        setTimeout(function () {
+            $('#success-alert').removeClass('show');
+        }, 2000)
+    },1000)
+}
+
+$(document)
+.on('change','.required .form-control',function(){
+    if($(this).val() != ''){
+        $(this).closest('.required').removeClass('error');
+    }
+})
+.on('click','.checkbox .form-check',function(){
+    console.log($(this).find('.form-check-input').is(':checked'))
+    if($(this).find('.form-check-input').is(':checked')){
+        $(this).closest('.required').removeClass('error');
+    }
+})

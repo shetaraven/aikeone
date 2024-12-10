@@ -6,19 +6,19 @@
     <div class="container-xxl flex-grow-1 container-p-y">
 
         <div class="card">
-            <h5 class="card-header">
-                Ingredient Details
-            </h5>
-
             <div class="card-body">
+                <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
+                    <span>Store Name Already Existing!</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <div class="row">
-                    <div class="col-md-8 mt-3">
-                        <label for="cii_inp-name" class="form-label">Name</label>
+                    <div class="col-md-8 mt-3 required">
+                        <label for="cii_inp-name" class="form-label">Name<span class="error-msg">* Required Field!</span></label>
                         <input type="text" class="form-control cii-name" id="cii_inp-name">
                     </div>
 
-                    <div class="col-md-4 mt-3">
-                        <label for="cii_inp-name" class="form-label">Quantity</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label for="cii_inp-name" class="form-label">Quantity<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group">
                             <!-- <span class="input-group-text">Volume</span> -->
                             <input type="text" class="form-control cii-vol" placeholder="100">
@@ -36,22 +36,22 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 mt-3">
-                        <label class="form-label">Volume to Weight (1g = ?ml)</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label class="form-label">Volume to Weight (1g = ?ml)<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" class="form-control cii-weight" placeholder="20">
                             <span class="input-group-text">ml</span>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
-                        <label class="form-label">Calories</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label class="form-label">Calories<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
-                            <input type="text" class="form-control cii-cal" placeholder="2000">
+                            <input type="text" class="form-control cii-cal" placeholder="0">
                             <span class="input-group-text">kcal</span>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
-                        <label class="form-label">Fat</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label class="form-label">Fat<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" class="form-control cii-fat" placeholder="0">
                             <span class="input-group-text">g</span>
@@ -60,22 +60,22 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 mt-3">
-                        <label class="form-label">Sugar</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label class="form-label">Sugar<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" class="form-control cii-sugar" placeholder="0">
                             <span class="input-group-text">g</span>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
-                        <label class="form-label">Protein</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label class="form-label">Protein<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" class="form-control cii-protein" placeholder="0">
                             <span class="input-group-text">g</span>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
-                        <label class="form-label">Carbs</label>
+                    <div class="col-md-4 mt-3 required">
+                        <label class="form-label">Carbs<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" class="form-control cii-carbs" placeholder="0">
                             <span class="input-group-text">g</span>
@@ -99,7 +99,7 @@
                                 <label class="form-label"><?= $store_info['NAME'] ?></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Price</span>
-                                    <input type="text" class="form-control sr-price" placeholder="1000">
+                                    <input type="text" class="form-control sr-price" placeholder="0" value="0">
                                     <span class="input-group-text">SEK</span>
                                 </div>
                             </div>
