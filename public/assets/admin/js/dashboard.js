@@ -18,10 +18,70 @@ function myFunction() {
     }
 }
 
-$(document).
-on('click', '#recipe-list label', function() {
-    if ($($(this).find('.form-check-input').is(':checked'))) {
-        $('#recipe-list .form-check-input').prop('checked', false);
-        $(this).find('.form-check-input').prop('checked', true);
-    }
-})
+$(document)
+    .on('click', '#recipe-list label', function () {
+        if ($($(this).find('.form-check-input').is(':checked'))) {
+            $('#recipe-list .form-check-input').prop('checked', false);
+            $(this).find('.form-check-input').prop('checked', true);
+        }
+    })
+    .on('click', '.btn-change_featured', function () {
+        let self = $(this)
+        let order = self.attr('data-order')
+
+        $.ajax({
+            url: '/admin/dashboard/partial-not-featured',
+            type: 'GET',
+            dataType: 'html',
+            data: {
+
+            },
+            success: function (response) {
+                $('#ChooseRecipe').find('.modal-body').html(response)
+                $('#ChooseRecipe').modal('show')
+                $('.btn-update_featured').attr('data-order', order)
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    })
+    .on('click', '.btn-update_featured', function () {
+        let self = $(this)
+        let order = self.attr('data-order')
+        let new_rid = $('.to_feature').find('input:checked').val()
+
+        $.ajax({
+            url: '/admin/api/dashboard',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                ORDER: order,
+                RECIPE_ID: new_rid
+            },
+            success: function (response) {
+                $('#ChooseRecipe').modal('hide')
+                refreshFeaturedList()
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    })
+
+function refreshFeaturedList() {
+    $.ajax({
+        url: '/admin/dashboard/partial-featured-list',
+        type: 'GET',
+        dataType: 'html',
+        data: {
+            
+        },
+        success: function (response) {
+            $('.contain-featured_list').find('.card-body ul').html(response)
+        },
+        error: function (xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+}

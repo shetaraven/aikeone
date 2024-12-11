@@ -36,6 +36,7 @@ class Filters extends BaseFilters
         'performance'   => PerformanceMetrics::class,
         'auth'          => \App\Filters\AuthenticationFilter::class,
         'user_type'     => \App\Filters\UserTypeFilter::class,
+        'visit_count'     => \App\Filters\VisitCountFilter::class,
     ];
 
     /**

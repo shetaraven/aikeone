@@ -31,6 +31,8 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
 
     $routes->group('dashboard', function ($routes) {
         $routes->get('/', 'Admin\DashboardController::index');
+        $routes->get('partial-featured-list', 'Admin\DashboardController::partialFeatured');
+        $routes->get('partial-not-featured', 'Admin\DashboardController::partialNotFeatured');
     });
 
     $routes->group('users', function ($routes) {
@@ -107,6 +109,9 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
         # recipe sub rest requests
         $routes->delete('recipe-sub/(:num)', 'Admin\Api\V1\RecipeSubController::delete/$1');
 
+        # dashboard rest requests
+        $routes->post('dashboard', 'Admin\Api\V1\DashboardController::update');
+
         # user rest requests
         $routes->get('users/(:num)', 'Admin\Api\V1\UsersController::show/$1');
         $routes->put('users/(:num)', 'Admin\Api\V1\UsersController::update/$1');
@@ -119,7 +124,7 @@ $routes->group('', function ($routes) {
 
     $routes->group('recipes', function ($routes) {
         $routes->get('/', 'Client\RecipesController::index');
-        $routes->get('details', 'Client\RecipesController::details');
+        $routes->get('details', 'Client\RecipesController::details', ['filter' => 'visit_count']);
         $routes->get('partials-ingreds-calc/(:num)', 'Client\RecipesController::partailIngredCalc/$1');
         $routes->get('partials-nutri-vals/(:num)', 'Client\RecipesController::partailNutriVals/$1');
         $routes->get('partials-serving-calc/(:num)', 'Client\RecipesController::partailServingCalc/$1');

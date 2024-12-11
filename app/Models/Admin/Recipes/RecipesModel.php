@@ -21,6 +21,8 @@ class RecipesModel extends Model
         'VISIBILITY',
         'PREP_TIME',
         'SERVINGS',
+        'FEATURED',
+        'VISIT_COUNT',
         'CREATED_BY',
         'UPDATED_BY',
     ];

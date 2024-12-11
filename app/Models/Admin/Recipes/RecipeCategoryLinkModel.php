@@ -19,8 +19,8 @@ class RecipeCategoryLinkModel extends Model
         $existingSelects = $this->QBSelect ?? ['recipe_category_link.*'];
         return $this->select([
             ...$existingSelects,
-            'recipe_categories.LABEL'
+            'categories.LABEL'
         ])
-            ->join('recipe_categories', 'recipe_category_link.CATEGORY_ID = recipe_categories.ID', 'LEFT');
+            ->join('categories', 'recipe_category_link.CATEGORY_ID = categories.ID', 'LEFT');
     }
 }
