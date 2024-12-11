@@ -63,45 +63,21 @@
             </div> -->
             <div class="col-12 negative-margin" style="margin-top: -120px;">
                 <div class="row">
-                    <div class="col-md-4 col-sm-12 mb-4 mb-lg-0">
-                        <div class="custom-block bg-white shadow-lg">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content">
-                                    <span class="tag text-white"><i class="bi-star"></i> Featured Recipe</span>
-                                    <h5 class="mb-2 custom-icon text-white">Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                    <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
-                                </div>
-                            </a>
+                    <?php foreach ($featured_list as $key => $recipe_info) : ?>
+                        <div class="col-md-4 col-sm-12 mb-4 mb-lg-0">
+                            <div class="custom-block bg-white shadow-lg">
+                                <a href="topics-detail.html">
+                                    <img src="<?= $recipe_info['IMAGE'] ? base_url($recipe_info['IMAGE']) : base_url('/assets/main/images/home-banner1.jpg') ?>" class="custom-block-image img-fluid" alt="" />
+                                    <div class="recipe-content">
+                                        <span class="tag text-white"><i class="bi-star-fill"></i> Featured Recipe</span>
+                                        <h5 class="mb-2 custom-icon text-white"><?= $recipe_info['TITLE'] ?></h5>
+                                        <p class="mb-0 text-white"><i class="bi-clock"></i> <?= $recipe_info['PREP_TIME'] ?></p>
+                                        <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12 mb-4 mb-lg-0">
-                        <div class="custom-block bg-white shadow-lg">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img2.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content">
-                                    <span class="tag text-white"><i class="bi-star"></i> Featured Recipe</span>
-                                    <h5 class="mb-2 custom-icon text-white">Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                    <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12 mb-lg-0">
-                        <div class="custom-block bg-white shadow-lg">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img3.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content">
-                                    <span class="tag text-white"><i class="bi-star"></i> Featured Recipe</span>
-                                    <h5 class="mb-2 custom-icon text-white">Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                    <!-- <span class="badge bg-design rounded-pill ms-auto">14</span> -->
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -137,64 +113,21 @@
             <div class="col-12">
                 <h5 class="text-blue mb-3 pl-3">Top 10 Recipes</h5>
                 <div class="slick-carousel">
-                    <div class="slick-carousel-item px-3">
-                        <div class="custom-block bg-white">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content px-3">
-                                    <h5 class="mb-2 custom-icon text-white">
-                                        <span class="tag text-white mb-0 mr-2" style="vertical-align: bottom;background-color: #F9A826!important;">1</span>Baked Ala mode
-                                    </h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                </div>
-                            </a>
+                    <?php foreach ($mv_list as $key => $recipe_info) : ?>
+                        <div class="slick-carousel-item px-3">
+                            <div class="custom-block bg-white">
+                                <a href="topics-detail.html">
+                                    <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
+                                    <div class="recipe-content px-3">
+                                        <h5 class="mb-2 custom-icon text-white">
+                                            <span class="tag text-white mb-0 mr-2" style="vertical-align: bottom;background-color: #F9A826!important;"><?=$key + 1?></span><?=$recipe_info['TITLE']?>
+                                        </h5>
+                                        <p class="mb-0 text-white"><i class="bi-clock"></i> <?=$recipe_info['PREP_TIME']?></p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <div class="custom-block bg-white">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content px-3">
-                                    <h5 class="mb-2 custom-icon text-white"><span class="tag text-white mb-0 mr-2" style="vertical-align: bottom;background-color: #F9A826!important;">2</span>Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <div class="custom-block bg-white">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content px-3">
-                                    <h5 class="mb-2 custom-icon text-white"><span class="tag text-white mb-0 mr-2" style="vertical-align: bottom;background-color: #F9A826!important;">3</span>Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <div class="custom-block bg-white">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content px-3">
-                                    <h5 class="mb-2 custom-icon text-white">
-                                        <span class="tag text-white mb-0 mr-2" style="vertical-align: bottom;background-color: #F9A826!important;">4</span>Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <div class="custom-block bg-white">
-                            <a href="topics-detail.html">
-                                <img src="assets/main/images/recipes/recipe-img1.jpg" class="custom-block-image img-fluid" alt="">
-                                <div class="recipe-content px-3">
-                                    <h5 class="mb-2 custom-icon text-white"><span class="tag text-white mb-0 mr-2" style="vertical-align: bottom;background-color: #F9A826!important;">5</span>Baked Ala mode</h5>
-                                    <p class="mb-0 text-white"><i class="bi-clock"></i> 1 Hour and 30 Mins</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

@@ -35,6 +35,13 @@ class RecipesController extends BaseController
         $this->module_data['recipe_list'] = $recipe_model->where('VISIBILITY', 1)->orderBy('CREATED_AT', 'DESC')->paginate(8, 'client');
         $this->module_data['pager'] = $recipe_model->pager;
 
+        $this->module_data['user_favs'] = [];
+        if( session()->get('ID') ) {
+            $user_favs_model = new UserFavoritesModel();
+            $user_fav_list = $user_favs_model->where('USER_ID', session()->get('ID') )->findAll();
+            $this->module_data['user_favs'] = array_column($user_fav_list, 'RECIPE_ID');
+        }
+
         return view('client/recipe/index',  $this->module_data);
     }
 

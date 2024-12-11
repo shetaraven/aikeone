@@ -18,14 +18,24 @@
                                 <img src="<?= base_url('/assets/main/images/home-banner1.jpg') ?>" />
                             <?php endif; ?>
                         </div>
-                        <!-- <span class="card-action"><i class="bi-bookmark-heart bookmark-btn" alt="Bookmark"></i></span> -->
+                        <?php if ($recipe_info['FEATURED']) : ?>
+                            <span class="card-action">
+                                <i class="bi-star-fill" alt="star"></i>
+                            </span>
+                        <?php endif; ?>
+
+                        <?php if (in_array($recipe_info['ID'], $user_favs) ) : ?>
+                            <span class="card-action">
+                                <i class="bi-bookmark-heart-fill bookmark-btn" alt="Bookmark"></i>
+                            </span>
+                        <?php endif; ?>
                         <div class="card-text">
                             <i class="bi-clock clock-btn" alt="clock">&nbsp;<?= $recipe_info['PREP_TIME'] ?></i>
                         </div>
                         <div class="card-heading">
                             <?= $recipe_info['TITLE'] ?>
                         </div>
-                        
+
                         <!-- <a href="#" class="card-button"> View Recipe</a> -->
                     </div>
                 </a>
