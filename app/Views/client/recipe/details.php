@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/client/main') ?>
 <?= $this->section('content') ?>
 
-<div class="details-banner">
+<div class="details-banner pb-5">
     <div class="container">
         <div class="row">
             <div class="col-12 mt-5 mb-3" style="position: relative;">
@@ -265,8 +265,7 @@
                             <h5 class="mb-0" style="font-family: cursive;font-size: 20px;color: #124f73;font-weight: 900;">Share Links:</h5>
                             <ul class="social-share">
                                 <!-- <li><a href=""><i class="bi-instagram"></i></a></li> -->
-                                <li><a target="_blank" href="https://pinterest.com/pin/create/button/?url=&media="><i class="bi-pinterest"></i></a></li>
-                                <li><a target="_blank" href="mailto:?"><i class="bi-google"></i></a></li>
+                                <li><a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php base_url().'id='.$recipe_info['ID'] ?>&media=<?php base_url($recipe_info['IMAGE']) ?>"><i class="bi-pinterest"></i></a></li>
                                 <li><a target="_blank" href="https://twitter.com/intent/tweet?text="><i class="bi-twitter"></i></a></li>
                                 <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u="><i class="bi-facebook"></i></a></li>
                             </ul>
@@ -279,5 +278,124 @@
         </div>
     </div>
 </div>
+
+<section class="py-5" style="background-color: #f2f2f2;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h5 class="text-blue text-center">Some Related Recipes</h5>
+                <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="Category1-tab" data-bs-toggle="tab" data-bs-target="#Category1" type="button" role="tab" aria-controls="Category1" aria-selected="true">Category1</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="Category2-tab" data-bs-toggle="tab" data-bs-target="#Category2" type="button" role="tab" aria-controls="Category2" aria-selected="false">Category2</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="Category3-tab" data-bs-toggle="tab" data-bs-target="#Category3" type="button" role="tab" aria-controls="Category3" aria-selected="false">Category3</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="Category4-tab" data-bs-toggle="tab" data-bs-target="#Category4" type="button" role="tab" aria-controls="Category4" aria-selected="false">Category4</button>
+                    </li>
+                  </ul>
+                  
+                  <!-- Tab panes -->
+                  <div class="tab-content mb-4" style="background: transparent;">
+                    <div class="tab-pane fade show active" id="Category1" role="tabpanel" aria-labelledby="Category1-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-6 col-md-3 mt-4">
+                                <div class="custom-card2">
+                                    <img src="/assets/main/images/home-banner1.jpg" alt="">
+                                    <div class="custom-card2-content">
+                                      <h2>
+                                        Recipe Title
+                                      </h2>
+                                      
+                                      <p>
+                                        <span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span><br>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt exercitationem iste, voluptatum, quia explicabo laboriosam rem adipisci voluptates cumque, veritatis atque nostrum corrupti ipsa asperiores harum? Dicta odio aut hic.
+                                      </p>
+                                      <a href="#" class=" featured-card-link">
+                                        <span>Check Recipe</span>
+                                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                            </svg> 
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 mt-4">
+                                <div class="custom-card2">
+                                    <img src="/assets/main/images/home-banner1.jpg" alt="">
+                                    <div class="custom-card2-content">
+                                      <h2>
+                                        Recipe Title
+                                      </h2>
+                                      
+                                      <p>
+                                        <span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span><br>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt exercitationem iste, voluptatum, quia explicabo laboriosam rem adipisci voluptates cumque, veritatis atque nostrum corrupti ipsa asperiores harum? Dicta odio aut hic.
+                                      </p>
+                                      <a href="#" class=" featured-card-link">
+                                        <span>Check Recipe</span>
+                                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                            </svg> 
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 mt-4">
+                                <div class="custom-card2">
+                                    <img src="/assets/main/images/home-banner1.jpg" alt="">
+                                    <div class="custom-card2-content">
+                                      <h2>
+                                        Recipe Title
+                                      </h2>
+                                      
+                                      <p>
+                                        <span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span><br>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt exercitationem iste, voluptatum, quia explicabo laboriosam rem adipisci voluptates cumque, veritatis atque nostrum corrupti ipsa asperiores harum? Dicta odio aut hic.
+                                      </p>
+                                      <a href="#" class=" featured-card-link">
+                                        <span>Check Recipe</span>
+                                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                            </svg> 
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 mt-4">
+                                <div class="custom-card2">
+                                    <img src="/assets/main/images/home-banner1.jpg" alt="">
+                                    <div class="custom-card2-content">
+                                      <h2>
+                                        Recipe Title
+                                      </h2>
+                                      
+                                      <p>
+                                        <span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span><br>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt exercitationem iste, voluptatum, quia explicabo laboriosam rem adipisci voluptates cumque, veritatis atque nostrum corrupti ipsa asperiores harum? Dicta odio aut hic.
+                                      </p>
+                                      <a href="#" class=" featured-card-link">
+                                        <span>Check Recipe</span>
+                                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                            </svg> 
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="Category2" role="tabpanel" aria-labelledby="Category2-tab" tabindex="0">...2</div>
+                    <div class="tab-pane fade" id="Category3" role="tabpanel" aria-labelledby="Category3-tab" tabindex="0">...3</div>
+                    <div class="tab-pane fade" id="Category4" role="tabpanel" aria-labelledby="Category4-tab" tabindex="0">...4</div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <?= $this->endSection() ?>
