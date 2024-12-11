@@ -5,6 +5,7 @@
 
 .recipe-link {
     height: 100%;
+    width: 100%;
 }
 
 .card-sl {
@@ -12,26 +13,27 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     overflow: hidden;
     height: 100%;
+    width: 100%;
 }
 
 .card-image img {
     height: 200px;
     object-fit: cover;
-    max-width: 100%;
     border-radius: 8px 8px 0px 0;
+    width: 100%;
 }
 
 .card-action {
     position: relative;
     float: right;
-    margin-top: -20px;
-    margin-right: 20px;
+    margin-top: -15px;
+    margin-right: 10px;
     z-index: 2;
     color: #E26D5C !important;
     background: #fff;
     border-radius: 100%;
-    padding: 3px 10px;
-    font-size: 20px;
+    padding: 3px 9px;
+    font-size: 15px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
 }
 

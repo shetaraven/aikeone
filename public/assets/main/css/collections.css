@@ -5,6 +5,7 @@
 
 .recipe-link {
     height: 100%;
+    width: 100%;
 }
 
 .card-sl {
@@ -12,12 +13,14 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     overflow: hidden;
     height: 100%;
+    width: 100%;
 }
 
 .card-image img {
-    max-height: 100%;
-    max-width: 100%;
     border-radius: 8px 8px 0px 0;
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
 }
 
 .card-action {
@@ -97,10 +100,20 @@
 } */
 
 .upper-container {
-    background: url('/assets/main/images/collection-banner.jpg')no-repeat center center;
+    background: url('https://kalynbrooke.com/wp-content/uploads/2016/10/disorganized-recipes.jpg')no-repeat center center;
     background-size: cover;
     min-height: 400px;
     position: relative;
+}
+
+.upper-container::before{
+    content: '';
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
 }
 
 .upper-container h1 {
