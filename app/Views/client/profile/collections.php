@@ -32,11 +32,13 @@
         <?php endforeach; ?>
     </div>
 
-    <div class="col-lg-12 col-12">
-        <div class="paginate">
-            <?= $pager->links('client', 'client') ?>
+    <?php if (isset($pager)) : ?>
+        <div class="col-lg-12 col-12">
+            <div class="paginate">
+                <?= $pager->links('client', 'client') ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 </div>
 
 <?= $this->endSection() ?>

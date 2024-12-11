@@ -30,9 +30,12 @@ class ProfileController extends BaseController
         $favorites_list = $user_favs_model->where('USER_ID', session()->get('ID'))->findAll();
         $favorites_list = array_column($favorites_list, 'RECIPE_ID');
 
-        $recipes_mode = new RecipesModel();
-        $this->module_data['recipe_list'] = $recipes_mode->whereIn('ID', $favorites_list)->paginate(5, 'admin');
-        $this->module_data['pager']       = $recipes_mode->pager;
+        $this->module_data['recipe_list']   = [];
+        if (! empty($favorites_list)) {
+            $recipes_mode = new RecipesModel();
+            $this->module_data['recipe_list'] = $recipes_mode->whereIn('ID', $favorites_list)->paginate(10, 'admin');
+            $this->module_data['pager']       = $recipes_mode->pager;
+        }
 
         return view('client/profile/collections',  $this->module_data);
     }
