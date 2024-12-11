@@ -88,11 +88,11 @@
                                                             </div>
                                                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                                 <div class="me-2" style="width: 75%;">
-                                                                    <small class="d-block">Top <?=$key + 1?></small>
-                                                                    <h6 class="fw-normal mb-0" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><?=$recipe_info['TITLE']?></h6>
+                                                                    <small class="d-block">Top <?= $key + 1 ?></small>
+                                                                    <h6 class="fw-normal mb-0" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><?= $recipe_info['TITLE'] ?></h6>
                                                                 </div>
                                                                 <div class="user-progress">
-                                                                    <h6 class="mb-0"><?=$recipe_info['VISIT_COUNT']?></h6>
+                                                                    <h6 class="mb-0"><?= $recipe_info['VISIT_COUNT'] ?></h6>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -111,11 +111,11 @@
                                                             </div>
                                                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                                 <div class="me-2" style="width: 75%;">
-                                                                    <small class="d-block">Top <?=$key + 6?></small>
-                                                                    <h6 class="fw-normal mb-0" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><?=$recipe_info['TITLE']?></h6>
+                                                                    <small class="d-block">Top <?= $key + 6 ?></small>
+                                                                    <h6 class="fw-normal mb-0" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"><?= $recipe_info['TITLE'] ?></h6>
                                                                 </div>
                                                                 <div class="user-progress">
-                                                                    <h6 class="mb-0"><?=$recipe_info['VISIT_COUNT']?></h6>
+                                                                    <h6 class="mb-0"><?= $recipe_info['VISIT_COUNT'] ?></h6>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="p-0 m-0" style="list-style: none;">
-                                        <?= $this->include('admin\dashboard\partials\_featured_list.php', ['featured_list' => $featured_list]) ?>
+                                        <?= $this->include('admin/dashboard/partials/_featured_list.php', ['featured_list' => $featured_list]) ?>
                                     </ul>
                                 </div>
                             </div>
