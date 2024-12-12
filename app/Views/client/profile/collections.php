@@ -22,7 +22,7 @@
                                     </span>
                                 <?php endif; ?>
 
-                                <?php if (in_array($recipe_info['ID'], $user_favs) ) : ?>
+                                <?php if (isset( $user_favs ) && in_array($recipe_info['ID'], $user_favs) ) : ?>
                                     <span class="card-action">
                                         <i class="bi-bookmark-heart-fill bookmark-btn" alt="Bookmark"></i>
                                     </span>
