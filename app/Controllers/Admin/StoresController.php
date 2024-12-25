@@ -24,13 +24,40 @@ class StoresController extends BaseController
 
     public function list()
     {
-        $this->module_data['title'] = 'Stores List';
+        $request = \Config\Services::request();
 
-        $stores_model = new StoresModel();
-        $this->module_data['store_list']    = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate( 5, 'admin');
-        $this->module_data['pager']         = $stores_model->pager;
+        if ($request->getMethod() == 'GET') {
+            $this->module_data['title'] = 'Stores List';
 
-        return view('admin/stores/list',  $this->module_data);
+            $stores_model = new StoresModel();
+            $this->module_data['store_list']    = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
+            $this->module_data['pager']         = $stores_model->pager;
+
+            return view('admin/stores/list',  $this->module_data);
+        } else {
+            $post_data = $request->getPost();
+
+            $stores_model   = new StoresModel();
+            if (isset($post_data['search'])) {
+                $stores_model->like('NAME', $post_data['search']);
+            }
+            $store_list = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
+
+            $table_data = view('admin/stores/partials/_table_data',  [
+                'store_list' => $store_list
+            ]);
+
+            $list_count_model = new StoresModel();
+            if ($post_data['search']) {
+                $list_count_model->like('NAME', $post_data['search']);
+            }
+            $list_count     = $list_count_model->countAllResults();
+
+            return $this->response->setJSON([
+                'table_data' => $table_data,
+                'pager' => $stores_model->pager->makeLinks(1, 5, $list_count, 'admin', 0, 'admin'),
+            ]);
+        }
     }
 
     public function partialEditForm()
@@ -41,7 +68,7 @@ class StoresController extends BaseController
         $stores_model = new StoresModel();
         $store_info = $stores_model->where('ID', $post_data['STORE_ID'])->first();
 
-        return view('admin/stores/_template_edit_store', [
+        return view('admin/stores/partials/_template_edit_store', [
             'store_info' => $store_info
         ]);
     }

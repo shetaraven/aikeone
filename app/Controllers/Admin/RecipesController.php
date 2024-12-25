@@ -25,13 +25,40 @@ class RecipesController extends BaseController
 
     public function list()
     {
-        $this->module_data['title'] = 'Recipes List';
+        $request = \Config\Services::request();
 
-        $recipe_model = new RecipesModel();
-        $this->module_data['recipe_list'] = $recipe_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
-        $this->module_data['pager'] = $recipe_model->pager;
+        if ($request->getMethod() == 'GET') {
+            $this->module_data['title'] = 'Recipes List';
 
-        return view('admin/recipes/list',  $this->module_data);
+            $recipe_model = new RecipesModel();
+            $this->module_data['recipe_list'] = $recipe_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
+            $this->module_data['pager'] = $recipe_model->pager;
+
+            return view('admin/recipes/list',  $this->module_data);
+        } else {
+            $post_data = $request->getPost();
+
+            $recipe_model   = new RecipesModel();
+            if (isset($post_data['search'])) {
+                $recipe_model->like('TITLE', $post_data['search']);
+            }
+            $recipe_list = $recipe_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
+
+            $table_data = view('admin/recipes/partials/_table_data',  [
+                'recipe_list' => $recipe_list
+            ]);
+
+            $list_count_model = new RecipesModel();
+            if ($post_data['search']) {
+                $list_count_model->like('TITLE', $post_data['search']);
+            }
+            $list_count     = $list_count_model->countAllResults();
+
+            return $this->response->setJSON([
+                'table_data' => $table_data,
+                'pager' => $recipe_model->pager->makeLinks(1, 5, $list_count, 'admin', 0, 'admin'),
+            ]);
+        }
     }
 
     public function form()
@@ -69,11 +96,6 @@ class RecipesController extends BaseController
             if (is_file(ROOTPATH . '/public' . $recipe_img_loc)) {
                 $this->module_data['recipe_img'] = $recipe_img_loc;
             }
-
-            // echo '<pre>';
-            // print_r( $recipe_img_loc  );
-            // echo "\n";
-            // die();
         }
 
         return view('admin/recipes/create',  $this->module_data);
@@ -107,7 +129,7 @@ class RecipesController extends BaseController
         }
         $recipe_list = $recipe_list->findAll();
 
-        return view('admin/recipes/_template_ingred_list', [
+        return view('admin/recipes/partials/_template_ingred_list', [
             'ingredients_list' => $ingredients_list,
             'recipe_list' => $recipe_list,
         ]);
@@ -134,7 +156,7 @@ class RecipesController extends BaseController
             $recipe_list = $recipes_model->whereIn('recipes.ID', $type_recipe)->findAll();
         }
 
-        return view('admin/recipes/_template_ingred_set', [
+        return view('admin/recipes/partials/_template_ingred_set', [
             'ingredients_list' => $ingredients_list,
             'recipe_list' => $recipe_list,
         ]);

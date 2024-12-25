@@ -19,7 +19,7 @@ class UsersController extends BaseController
     {
         $this->module_data['title'] = 'User List';
         $users_model = new UsersModel();
-        $this->module_data['user_list'] = $users_model->withUserType()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
+        $this->module_data['user_list'] = $users_model->where('USER_TYPE_ID !=', 0)->withUserType()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
         $this->module_data['pager']     = $users_model->pager;
 
         $user_type_model = new UserTypesModel();

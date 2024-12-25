@@ -1,4 +1,8 @@
 $(document)
+    .on('input', '.search-input', function () {
+        let self = $(this)
+        globalSearchHelper({ search_elem: self })
+    })
     .on('click', '.steps-action-add', function () {
         let existing_steps = $('.steps-container').length
         existing_steps++
@@ -137,7 +141,7 @@ $(document)
         }
     })
     .on('click', '.action-save_recipe', function () {
-        if(validateForm('form-recipe')){
+        if (validateForm('form-recipe')) {
             let formdata = new FormData()
 
             let recipe_id = $('.form-recipe').find('.rfi-id').val()
@@ -192,7 +196,7 @@ $(document)
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    if(!recipe_id){
+                    if (!recipe_id) {
                         clearForms('form-recipe')
                     }
                     showSuccess();
@@ -202,7 +206,7 @@ $(document)
                     showError('Store Name Already Existing!');
                 }
             });
-        }else{
+        } else {
             showError('Fill Up all the required Fields!');
         }
     })

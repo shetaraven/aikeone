@@ -2,6 +2,10 @@ $(document)
     .ready(function () {
 
     })
+    .on('input', '.search-input', function () {
+        let self = $(this)
+        globalSearchHelper({ search_elem: self })
+    })
     .on('click', '.dropdown-item', function () {
         console.log("Asdasd")
         $('.unit-selector').attr('data-selected', $(this).attr('data-id'))
@@ -10,7 +14,7 @@ $(document)
         $('.shop-prices').find('.selected-unit').text(measure);
     })
     .on('click', '.ci_action-create', function () {
-        if(validateForm('form-create_ingredient')){
+        if (validateForm('form-create_ingredient')) {
             let ingred_name = $('.form-create_ingredient').find('.cii-name').val()
             let ingred_vol = $('.form-create_ingredient').find('.cii-vol').val()
             let ingred_unit_measure = $('.form-create_ingredient').find('.unit-selector').attr('data-selected')
@@ -59,7 +63,7 @@ $(document)
                     showError('Store Name Already Existing!');
                 }
             });
-        }else{
+        } else {
             showError('Fill Up all the required Fields!');
         }
     })
@@ -84,11 +88,11 @@ $(document)
             }
         });
     })
-    .on('click', '.ita-delete', function() {
+    .on('click', '.ita-delete', function () {
         let self = $(this)
         store_id = self.attr('data-id')
 
-        $('#del_modal-ingred').find('.ita-delete-proceed').attr('data-id',store_id);
+        $('#del_modal-ingred').find('.ita-delete-proceed').attr('data-id', store_id);
         $('#del_modal-ingred').modal('show')
 
     })
@@ -110,7 +114,7 @@ $(document)
         });
     })
     .on('click', '.ema-save', function () {
-        if(validateForm('form-create_ingredient')){
+        if (validateForm('form-create_ingredient')) {
             let ingred_name = $('.form-create_ingredient').find('.eii-name').val()
             let ingred_vol = $('.form-create_ingredient').find('.cii-vol').val()
             let ingred_unit_measure = $('.form-create_ingredient').find('.unit-selector').attr('data-selected')
@@ -164,7 +168,7 @@ $(document)
                     showError('Store Name Already Existing!');
                 }
             });
-        }else{
+        } else {
             showError('Fill Up all the required Fields!');
         }
     })

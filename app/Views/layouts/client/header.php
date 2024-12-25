@@ -69,7 +69,7 @@
                             <a class="nav-link click-scroll" href="<?= base_url('profile/collections') ?>">Collections</a>
                         </li>
 
-                        <?php if (session()->get('USER_TYPE_ID') == 1) : ?>
+                        <?php if (session()->get('ID') && in_array(session()->get('USER_TYPE_ID'), [0, 1]) ) : ?>
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" href="<?= base_url('admin') ?>">Dashboard</a>
                             </li>

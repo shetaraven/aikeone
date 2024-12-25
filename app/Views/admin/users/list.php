@@ -46,8 +46,8 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item uta-edit" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-edit-alt me-1"></i> User Type</a>
-                                            <!-- <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ChooseRecipe"><i class="bx bx-trash me-1"></i> Recipe Access</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Disable</a> -->
+                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ChooseRecipe"><i class="bx bx-trash me-1"></i> Recipe Access</a>
+                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Disable</a>
                                         </div>
                                     </div>
                                 </td>

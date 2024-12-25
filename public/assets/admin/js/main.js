@@ -6,12 +6,12 @@
 
 let menu, animate;
 
-(function() {
+(function () {
     // Initialize menu
     //-----------------
 
     let layoutMenuEl = document.querySelectorAll('#layout-menu');
-    layoutMenuEl.forEach(function(element) {
+    layoutMenuEl.forEach(function (element) {
         menu = new Menu(element, {
             orientation: 'vertical',
             closeChildren: false
@@ -31,9 +31,9 @@ let menu, animate;
     });
 
     // Display menu toggle (layout-menu-toggle) on hover with delay
-    let delay = function(elem, callback) {
+    let delay = function (elem, callback) {
         let timeout = null;
-        elem.onmouseenter = function() {
+        elem.onmouseenter = function () {
             // Set timeout to be a timer which will invoke callback after 300ms (not for small screen)
             if (!Helpers.isSmallScreen()) {
                 timeout = setTimeout(callback, 300);
@@ -42,14 +42,14 @@ let menu, animate;
             }
         };
 
-        elem.onmouseleave = function() {
+        elem.onmouseleave = function () {
             // Clear any timers set to timeout
             document.querySelector('.layout-menu-toggle').classList.remove('d-block');
             clearTimeout(timeout);
         };
     };
     if (document.getElementById('layout-menu')) {
-        delay(document.getElementById('layout-menu'), function() {
+        delay(document.getElementById('layout-menu'), function () {
             // not for small screen
             if (!Helpers.isSmallScreen()) {
                 document.querySelector('.layout-menu-toggle').classList.add('d-block');
@@ -61,7 +61,7 @@ let menu, animate;
     let menuInnerContainer = document.getElementsByClassName('menu-inner'),
         menuInnerShadow = document.getElementsByClassName('menu-inner-shadow')[0];
     if (menuInnerContainer.length > 0 && menuInnerShadow) {
-        menuInnerContainer[0].addEventListener('ps-scroll-y', function() {
+        menuInnerContainer[0].addEventListener('ps-scroll-y', function () {
             if (this.querySelector('.ps__thumb-y').offsetTop) {
                 menuInnerShadow.style.display = 'block';
             } else {
@@ -75,12 +75,12 @@ let menu, animate;
 
     // Init BS Tooltip
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function(tooltipTriggerEl) {
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
     // Accordion active class
-    const accordionActiveFunction = function(e) {
+    const accordionActiveFunction = function (e) {
         if (e.type == 'show.bs.collapse' || e.type == 'show.bs.collapse') {
             e.target.closest('.accordion-item').classList.add('active');
         } else {
@@ -89,7 +89,7 @@ let menu, animate;
     };
 
     const accordionTriggerList = [].slice.call(document.querySelectorAll('.accordion'));
-    const accordionList = accordionTriggerList.map(function(accordionTriggerEl) {
+    const accordionList = accordionTriggerList.map(function (accordionTriggerEl) {
         accordionTriggerEl.addEventListener('show.bs.collapse', accordionActiveFunction);
         accordionTriggerEl.addEventListener('hide.bs.collapse', accordionActiveFunction);
     });
@@ -117,78 +117,110 @@ let menu, animate;
     window.Helpers.setCollapsed(true, false);
 })();
 
-$(document).on('click', '.unit-selector a.dropdown-item', function() {
+$(document).on('click', '.unit-selector a.dropdown-item', function () {
     $(this).closest('.input-group').find('.selected-unit').text($(this).text());
 })
 
-function clearForms(formClass){
-    $('.'+formClass).find('.form-control').val('');
-    if(formClass == 'form-recipe'){
+function clearForms(formClass) {
+    $('.' + formClass).find('.form-control').val('');
+    if (formClass == 'form-recipe') {
         $('.rfi-type').val(1);
-        $('.recipe_img_preview img').attr('src','/assets/admin/img/default-img.jpg')
+        $('.recipe_img_preview img').attr('src', '/assets/admin/img/default-img.jpg')
         $('.added-steps').remove();
         $('.remove-ingred').click();
-        $('.checkbox').find('.form-check-input').prop('checked',false);
+        $('.checkbox').find('.form-check-input').prop('checked', false);
     }
 }
 
-function validateForm(formClass){
+function validateForm(formClass) {
     $('.load-backdrop').show();
-    $('body').css('overflow','hidden');
+    $('body').css('overflow', 'hidden');
     var proceed = [];
-    $('.'+formClass).find('.required .form-control').each(function(){
-        if($(this).val() == ''){
+    $('.' + formClass).find('.required .form-control').each(function () {
+        if ($(this).val() == '') {
             $(this).closest('.required').addClass('error');
             proceed.push(false);
-        }else{
+        } else {
             proceed.push(true);
         }
     })
-    $('.'+formClass).find('.required.checkbox').each(function(){
-        if($(this).find('.form-check-input').is(':checked')){
+    $('.' + formClass).find('.required.checkbox').each(function () {
+        if ($(this).find('.form-check-input').is(':checked')) {
             proceed.push(true);
-        }else{
+        } else {
             $(this).addClass('error');
             proceed.push(false);
         }
     })
 
-    return (proceed.includes(false))? false : true;
+    return (proceed.includes(false)) ? false : true;
 }
 
-function showError(text){
+function showError(text) {
     $('.load-backdrop').fadeOut();
-    $('body').css('overflow','auto');
+    $('body').css('overflow', 'auto');
     $('#warningTop span').text(text);
     $('#warningTop').fadeIn();
-    setTimeout(function(){
+    setTimeout(function () {
         $(window).scrollTop(0);
-        setTimeout(function(){
+        setTimeout(function () {
             $('#warningTop').fadeOut();
-        },5000)
-    },100)
+        }, 5000)
+    }, 100)
 }
 
-function showSuccess(){
+function showSuccess() {
     $('.load-backdrop').fadeOut();
-    $('body').css('overflow','auto');
+    $('body').css('overflow', 'auto');
     $('#success-alert').addClass('show');
-    setTimeout(function(){
+    setTimeout(function () {
         setTimeout(function () {
             $('#success-alert').removeClass('show');
         }, 2000)
-    },1000)
+    }, 1000)
+}
+
+function globalSearchHelper({ search_elem }) {
+    let ongoingAjaxReq;
+    let requestDebounce;
+
+    let refreshLink = search_elem.attr('data-url')
+
+    clearTimeout(requestDebounce)
+
+    requestDebounce = setTimeout(() => {
+        if (ongoingAjaxReq) {
+            ongoingAjaxReq.abort()
+        }
+
+        ongoingAjaxReq = $.ajax({
+            url: refreshLink,
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                search: search_elem.val()
+            },
+            success: function (response) {
+                response = JSON.parse(response)
+                $('.gsh-data_table').find('tbody').html(response.table_data)
+                $('.gsh-data_pager').html(response.pager)
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }, 500);
 }
 
 $(document)
-.on('change','.required .form-control',function(){
-    if($(this).val() != ''){
-        $(this).closest('.required').removeClass('error');
-    }
-})
-.on('click','.checkbox .form-check',function(){
-    console.log($(this).find('.form-check-input').is(':checked'))
-    if($(this).find('.form-check-input').is(':checked')){
-        $(this).closest('.required').removeClass('error');
-    }
-})
+    .on('change', '.required .form-control', function () {
+        if ($(this).val() != '') {
+            $(this).closest('.required').removeClass('error');
+        }
+    })
+    .on('click', '.checkbox .form-check', function () {
+        console.log($(this).find('.form-check-input').is(':checked'))
+        if ($(this).find('.form-check-input').is(':checked')) {
+            $(this).closest('.required').removeClass('error');
+        }
+    })

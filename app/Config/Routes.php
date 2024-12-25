@@ -24,7 +24,7 @@ $routes->group('auth', function ($routes) {
 });
 
 # admin routes
-$routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) {
+$routes->group('admin', ['filter' => ['auth', 'is_admin']], function ($routes) {
     $routes->get('/', function () {
         return redirect()->to(base_url('/admin/dashboard'));
     });
@@ -46,6 +46,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
 
         # pages
         $routes->get('list', 'Admin\StoresController::list');
+        $routes->post('list', 'Admin\StoresController::list');
         $routes->get('form', 'Admin\StoresController::form');
         $routes->post('partial-edit-form', 'Admin\StoresController::partialEditForm');
     });
@@ -55,6 +56,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
 
         # pages
         $routes->get('list', 'Admin\IngredientsController::list');
+        $routes->post('list', 'Admin\IngredientsController::list');
         $routes->get('form', 'Admin\IngredientsController::form');
         $routes->post('partial-edit-form', 'Admin\IngredientsController::partialEditForm');
     });
@@ -62,6 +64,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
     $routes->group('recipes', function ($routes) {
         $routes->get('/', 'Admin\RecipesController::list');
         $routes->get('list', 'Admin\RecipesController::list');
+        $routes->post('list', 'Admin\RecipesController::list');
         $routes->get('form', 'Admin\RecipesController::form');
         $routes->post('partial-ingreds-list', 'Admin\RecipesController::partialIngredsList');
         $routes->post('partial-ingreds-set', 'Admin\RecipesController::partialIngredsSet');
@@ -70,6 +73,7 @@ $routes->group('admin', ['filter' => ['auth', 'user_type']], function ($routes) 
     $routes->group('categories', function ($routes) {
         $routes->get('/', 'Admin\CategoriesController::list');
         $routes->get('list', 'Admin\CategoriesController::list');
+        $routes->post('list', 'Admin\CategoriesController::list');
         $routes->get('form', 'Admin\CategoriesController::form');
         $routes->post('partial-edit-form', 'Admin\CategoriesController::partialEditForm');
     });

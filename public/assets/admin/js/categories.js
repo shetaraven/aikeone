@@ -1,6 +1,10 @@
 $(document)
+    .on('input', '.search-input', function () {
+        let self = $(this)
+        globalSearchHelper({search_elem: self})
+    })
     .on('click', '.cc_action-create', function () {
-        if(validateForm('form-create_category')){
+        if (validateForm('form-create_category')) {
             let label = $('.form-create_category').find('#cci-label').val()
             let description = $('.form-create_category').find('#cci-description').val()
 
@@ -21,7 +25,7 @@ $(document)
                     console.error('Error:', error);
                 }
             });
-        }else{
+        } else {
             showError('Fill Up all the required Fields!');
         }
     })
@@ -47,8 +51,8 @@ $(document)
             }
         });
     })
-    .on('click', '.rcem-save', function() {
-        if(validateForm('form-edit_rc')){
+    .on('click', '.rcem-save', function () {
+        if (validateForm('form-edit_rc')) {
             let self = $(this)
             let rc_id = self.attr('data-id')
             let label = $('.form-edit_rc').find('.erci-label').val()
@@ -61,39 +65,39 @@ $(document)
                     LABEL: label,
                     DESCRIPTION: description,
                 },
-                success: function(response) {
+                success: function (response) {
                     $('#edit_modal-category').modal('hide')
                     location.reload()
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     showError('Store Name Already Existing!');
                     console.error('Error:', error);
                 }
             });
-        }else{
+        } else {
             showError('Fill Up all the required Fields!');
         }
     })
-    .on('click', '.rcta-delete', function() {
+    .on('click', '.rcta-delete', function () {
         let self = $(this)
         category_id = self.attr('data-id')
 
-        $('#del_modal-category').find('.rcta-delete-proceed').attr('data-id',category_id);
+        $('#del_modal-category').find('.rcta-delete-proceed').attr('data-id', category_id);
         $('#del_modal-category').modal('show')
 
     })
-    .on('click','.rcta-delete-proceed', function(){
+    .on('click', '.rcta-delete-proceed', function () {
         let self = $(this)
         category_id = self.attr('data-id')
 
         $.ajax({
             url: '/admin/api/categories/' + category_id,
             type: 'DELETE',
-            success: function(response) {
+            success: function (response) {
                 console.log('Success:', response);
                 location.reload()
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
             }
         });

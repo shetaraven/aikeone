@@ -7,7 +7,7 @@
                 <div class="navbar-nav" style="display: inline-block">
                     <div class="nav-item d-flex align-items-center" style="border-bottom: solid 1px #d3d3d3">
                         <i class="bx bx-search bx-md" style="cursor: pointer"></i>
-                        <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search..." />
+                        <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2 search-input" placeholder="Search..." aria-label="Search..." data-url="/admin/categories/list" />
                     </div>
                 </div>
 
@@ -18,7 +18,7 @@
                 </a>
             </div>
 
-            <div class="table-responsive text-nowrap">
+            <div class="table-responsive text-nowrap gsh-data_table">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -30,30 +30,12 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <?php foreach ($category_list as $key => $category) : ?>
-                            <tr>
-                                <td><?= $category['LABEL'] ?></td>
-                                <td><?= $category['DESCRIPTION'] ?></td>
-                                <td><?= $category['CREATOR'] ?></td>
-                                <td><?= $category['CREATED_AT'] ?></td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <button class="dropdown-item rcta-edit" data-id="<?= $category['ID'] ?>"><i class="bx bx-edit-alt me-1"></i> Edit</button>
-                                            <button class="dropdown-item rcta-delete" data-id="<?= $category['ID'] ?>"><i class="bx bx-trash me-1"></i> Delete</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <?= $this->include('admin/categories/partials/_table_data.php', ['category_list' => $category_list]) ?>
                     </tbody>
                 </table>
             </div>
 
-            <div class="paginate">
+            <div class="paginate gsh-data_pager">
                 <?= $pager->links('admin', 'admin') ?>
             </div>
         </div>
