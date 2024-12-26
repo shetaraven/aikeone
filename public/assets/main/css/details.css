@@ -264,7 +264,7 @@
 }
 
 table.responsive {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-collapse: collapse;
     margin: 0;
     padding: 0;
@@ -282,11 +282,21 @@ table.responsive tr {
     border: 1px solid #ddd;
     padding: .35em;
 }
+table.responsive thead tr{
+    background-color: transparent!important;
+    border: none!important;
+}
+table.responsive thead .store-name{
+    background-color: #f8f8f8;
+    line-height: 20px;
+    padding: 30px 10px;
+}
 
 table.responsive th,
 table.responsive td {
     padding: .625em;
     text-align: center;
+    border: 1px solid #ddd;
 }
 
 table.responsive th {
@@ -486,3 +496,191 @@ table.responsive th {
     border: 0;
     padding: 0;
 }
+
+body {
+    --white: #F7F1E1;
+    --cream: #F6E6CB;
+    --dcream: #EACEA3;
+    --beige: #CDAD93;
+    --terracotta: var(--secondary-color);
+    --dterracotta: #885444;
+    --peach: var(--secondary-color);
+    --orange: #BF835A;
+    --green: #124f73;
+    --dgreen: #2C3834;
+    
+    /*FONTS*/
+    --mono: 'source-code-pro';
+    --display: 'lust-sans';
+  }
+
+.rotd {
+    width: 100%;
+    height: 450px;
+    margin: 60px auto 0;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0px 0px 5px var(--terracotta);
+    max-width: 400px;
+  }
+  
+  .rotd .mg {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: grid;
+    grid-template-columns: 250px 50px;
+    grid-template-rows: 100px 150px;
+    grid-template-areas: 
+      'clr group'
+      'clr .....';
+    transition:
+      grid-template-columns .6s linear,
+      grid-template-rows .6s linear;
+  }
+  .rotd:hover .mg {
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 50px 300px;
+    transition:
+      grid-template-columns .6s linear,
+      grid-template-rows .6s linear;
+  }
+  .rotd .mg .clr {
+    grid-area: clr;
+    background: var(--peach);
+  }
+  .rotd .mg .group {
+    font: 10px/10px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    writing-mode: vertical-lr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rotd .mg .group span {
+    display: block;
+    transform: rotate(180deg);
+    font-weight: 900;
+    transition:
+      transform .6s linear;
+  }
+  .rotd:hover .mg .group span {
+    transform: rotate(270deg);
+    transition:
+      transform .6s linear;
+  }
+  
+  .rotd .av {
+    width: 80%;
+    height: 350px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background: var(--green);
+    background-position: top center;
+    background-size: cover;
+    transition:
+      width .6s linear,
+      height .6s linear;
+  }
+  .rotd:hover .av {
+    width: calc(100% - 50px);
+    height: 400px;
+    transition:
+      width .6s linear,
+      height .6s linear;
+  }
+  
+  .rotd .info {
+    width: 70%;
+    max-height: 200px;
+    padding: 25px;
+    position: absolute;
+    bottom: 100px;
+    left: 0px;
+    background: var(--dgreen);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: flex-start;
+    transition: 
+      bottom .6s linear;
+  }
+  .rotd:hover .info {
+    bottom: 50px;
+    transition:
+      bottom .6s linear;
+  }
+  .rotd .info name {
+    display: block;
+    font: 200 25px/30px var(--display);
+    text-indent: -25px;
+    letter-spacing: 1px;
+    margin: 0px 0px 0px 25px;
+    color: #fff;
+  }
+  .rotd .info deets {
+    font: 10px/15px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+  
+  .rotd a.plot {
+    width: 110px;
+    height: 30px;
+    position: absolute;
+    bottom: 85px;
+    left: 85px;
+    background: var(--peach);
+    font: 10px/10px var(--mono);
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 
+      bottom .6s linear;
+  }
+  .rotd:hover a.plot {
+    bottom: 35px;
+    transition: 
+      bottom .6s linear;
+  }
+
+  .custom_share{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 8;
+    transform: translate(-50%,0);
+    font-weight: 900;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 0 5px 0px #d3d3d3 !important;
+    background: #f5f3ed;
+  }
+
+  .custom_share.btn-close{
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    z-index: 4!important;
+    transform: translate(-50%,0);
+    font-weight: 900;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 15px 15px 0 0;
+    opacity: 1;
+    box-shadow:none !important;
+    background: #fff;
+    width: auto;
+    height: auto;
+    bottom: auto;
+  }

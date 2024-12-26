@@ -1,22 +1,42 @@
-<h3 class="text-center">Nutritional Facts</h3>
-
-<div class="card p-4 mb-4" style="border: solid 2px #a6a6a6;background-color: #bedba7;filter: brightness(1.5);">
-    <p class="text-center" style="font-size: 18px;
-                                            font-weight: 900;
-                                            font-family: monospace;
-                                            color: #000;">Total Nutritional Values:</p>
-    <div class="row">
-        <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Calories: </span></div>
-        <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Fat: </span></div>
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="box p-3 text-center" style="border: solid 2px #dcdedf;">
+            <p class="small mb-0" style="color: #000;">Total Calories:</p>
+            <p style="font-size: 2em;color: #000;" class="mb-0">000</p>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Sugar: </span></div>
-        <div class="col-12 col-md-6 mb-2"><span style="font-weight: 900;font-family: sans-serif;">Protien: </span></div>
+    <div class="col-md-4 mb-4">
+        <div class="box p-3 text-center" style="border: solid 2px #dcdedf;">
+            <p class="small mb-0" style="color: #000;">Total Fat:</p>
+            <p style="font-size: 2em;color: #000;" class="mb-0">000</p>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-6"><span style="font-weight: 900;font-family: sans-serif;">Carbs: </span></div>
+    <div class="col-md-4 mb-4">
+        <div class="box p-3 text-center" style="border: solid 2px #dcdedf;">
+            <p class="small mb-0" style="color: #000;">Total Sugar:</p>
+            <p style="font-size: 2em;color: #000;" class="mb-0">000</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="box p-3 text-center" style="border: solid 2px #dcdedf;">
+            <p class="small mb-0" style="color: #000;">Total Protien:</p>
+            <p style="font-size: 2em;color: #000;" class="mb-0">000</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="box p-3 text-center" style="border: solid 2px #dcdedf;">
+            <p class="small mb-0" style="color: #000;">Total Carbs:</p>
+            <p style="font-size: 2em;color: #000;" class="mb-0">000</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="box p-3 text-center" style="border: solid 2px #dcdedf;">
+            <p class="small mb-0" style="color: #000;">Servings:</p>
+            <p style="font-size: 2em;color: #000;" class="mb-0">000</p>
+        </div>
     </div>
 </div>
+
 
 <div class="accordion">
     <?php foreach ($recipe_ingredients as $key => $ri_info) : ?>

@@ -73,6 +73,8 @@ class RecipesController extends BaseController
             $this->module_data['is_favorite'] = $uf_model->where('RECIPE_ID', $get_data['id'])->where('USER_ID', session()->get('ID'))->find() ? true : false;
         }
 
+        // echo "<pre>"; print_r( $this->module_data);die();
+
         return view('client/recipe/details',  $this->module_data);
     }
 

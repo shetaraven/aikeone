@@ -5,6 +5,8 @@ $(document)
     })
     .on('click', '.modal_open', function (e) {
         e.preventDefault();
+        $('body').css('overflow','hidden');
+        resizeModal($(this).attr('data-target'));
 
         let self = $(this)
         let type_id = self.attr('data-type');
@@ -40,6 +42,7 @@ $(document)
     })
     .on('click', '.popup__close', function (e) {
         e.preventDefault();
+        $('body').css('overflow','auto');
 
         let self = $(this)
         self.closest('.popup').removeClass('show');
@@ -76,3 +79,24 @@ $(document)
             }
         });
     })
+
+$('#calculate-serv').click(function(e){
+    e.preventDefault();
+    var Servings = parseInt($('#servings-count').text());
+    var CalServings = parseInt($(this).parent().find('input').val());
+    console.log('Serving: '+Servings)
+    $('#serving-modal .curr_volume').each(function(){
+        console.log(parseInt($(this).text()))
+        var inServ = (parseInt($(this).text()) / Servings);
+        var CurUnit = $(this).parent().find('.curr_unit').text();
+
+        $(this).closest('tr').find('.curr_cal_val').text((inServ * CalServings) + ' ' + CurUnit);
+        $('.no_servings').text(CalServings);
+    })
+})
+
+function resizeModal(elem){
+    var body = $('#'+elem).find('.popup-inner').outerHeight();
+    var head = $('#'+elem).find('.popup__photo').outerHeight();
+    $('#'+elem).find('.popup__text').css('height',(body-head))
+}
