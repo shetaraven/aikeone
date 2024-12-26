@@ -20,9 +20,11 @@ class VisitCountFilter implements FilterInterface
             $recipes_model = new RecipesModel();
             $recipe_info = $recipes_model->where('ID', $get_data['id'])->first();
 
-            $recipes_model->update($recipe_info['ID'], [
-                'VISIT_COUNT' => $recipe_info['VISIT_COUNT'] + 1
-            ]);
+            if( $recipe_info ) {
+                $recipes_model->update($recipe_info['ID'], [
+                    'VISIT_COUNT' => $recipe_info['VISIT_COUNT'] + 1
+                ]);
+            }
         }
     }
 

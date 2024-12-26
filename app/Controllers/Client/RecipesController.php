@@ -12,6 +12,7 @@ use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use App\Models\Admin\Recipes\RecipeInstructionsModel;
 use App\Models\Admin\Recipes\RecipesModel;
 use App\Models\Client\Users\UserFavoritesModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
@@ -57,6 +58,10 @@ class RecipesController extends BaseController
         $recipe_model = new RecipesModel();
         $this->module_data['recipe_info'] = $recipe_model->where('ID', $get_data['id'])->first();
 
+        if( ! $this->module_data['recipe_info'] ) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
         $rcl_model = new RecipeCategoryLinkModel();
         $this->module_data['recipe_categories'] = $rcl_model->where('RECIPE_ID', $get_data['id'])->withCategoryInfo()->findAll();
 
@@ -96,7 +101,7 @@ class RecipesController extends BaseController
                     'STORE_NAME' => $price_info['STORE_NAME'],
                 ];
 
-                $ri_info['STORE_PRICES'][$price_info['STORE_ID']] = $price_info['STORE_ID'];
+                $ri_info['STORE_PRICES'][$price_info['STORE_ID']] = $price_info['PRICE'];
             }
         }
 
@@ -105,8 +110,13 @@ class RecipesController extends BaseController
             'recipe_ingredients' => $recipe_ingredients,
         ]);
 
+        $orig_ingreds_model = new IngredientsModel();
+        $orig_ingreds = $orig_ingreds_model->whereIn('ingredients.ID', array_column($recipe_ingredients, 'INGREDIENT_ID'))->withUnitMeasure()->findAll();
+
         return json_res('success', [
             'html_content' => $html_content,
+            'recipe_ingredients' => $recipe_ingredients,
+            'orig_ingreds' => $orig_ingreds,
         ]);
     }
 
