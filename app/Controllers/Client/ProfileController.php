@@ -5,6 +5,7 @@ namespace App\Controllers\Client;
 use App\Controllers\BaseController;
 use App\Models\Admin\Recipes\RecipesModel;
 use App\Models\Client\Users\UserFavoritesModel;
+use Config\Database;
 
 class ProfileController extends BaseController
 {
@@ -32,9 +33,9 @@ class ProfileController extends BaseController
 
         $this->module_data['recipe_list']   = [];
         if (! empty($favorites_list)) {
-            $recipes_mode = new RecipesModel();
-            $this->module_data['recipe_list'] = $recipes_mode->whereIn('ID', $favorites_list)->paginate(10, 'admin');
-            $this->module_data['pager']       = $recipes_mode->pager;
+            $recipes_model = new RecipesModel();
+            $this->module_data['recipe_list'] = $recipes_model->whereIn('ID', $favorites_list)->withPrivateRecipes()->paginate(10, 'admin');
+            $this->module_data['pager']       = $recipes_model->pager;
         }
 
         return view('client/profile/collections',  $this->module_data);

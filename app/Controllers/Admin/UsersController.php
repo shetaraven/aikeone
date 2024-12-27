@@ -3,6 +3,8 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\Recipes\RecipePrivatesAccessLink;
+use App\Models\Admin\Recipes\RecipesModel;
 use App\Models\Admin\Users\UsersModel;
 use App\Models\Admin\Users\UserTypesModel;
 
@@ -42,6 +44,27 @@ class UsersController extends BaseController
         return view('admin/users/partials/_edit_user', [
             'user_info' => $user_info,
             'user_types' => $user_types
+        ]);
+    }
+
+    public function partialPrivRecipesList()
+    {
+        $request = \Config\Services::request();
+        $post_data = $request->getPost();
+        
+        $prl_model = new RecipesModel();
+        $prl_model->where('VISIBILITY', 0);
+        $prl_list = $prl_model->findAll();
+
+        $upr_model = new RecipePrivatesAccessLink();
+        $upr_model->where('USER_ID', $post_data['USER_ID']);
+        $upr_list = $upr_model->findAll();
+        $upr_list = set_array_key('RECIPE_ID', $upr_list);
+
+        return view('admin/users/partials/_priv_recipe_list', [
+            'user_id' => $post_data['USER_ID'],
+            'prl_list' => $prl_list,
+            'upr_list' => $upr_list,
         ]);
     }
 }

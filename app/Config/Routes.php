@@ -39,6 +39,7 @@ $routes->group('admin', ['filter' => ['auth', 'is_admin']], function ($routes) {
         $routes->get('/', 'Admin\UsersController::list');
         $routes->get('list', 'Admin\UsersController::list');
         $routes->post('partial-edit-form', 'Admin\UsersController::partialEditForm');
+        $routes->post('partial-priv-recipe-list', 'Admin\UsersController::partialPrivRecipesList');
     });
 
     $routes->group('stores', function ($routes) {
@@ -119,6 +120,10 @@ $routes->group('admin', ['filter' => ['auth', 'is_admin']], function ($routes) {
         # user rest requests
         $routes->get('users/(:num)', 'Admin\Api\V1\UsersController::show/$1');
         $routes->put('users/(:num)', 'Admin\Api\V1\UsersController::update/$1');
+
+        # priv recipe rest requests
+        $routes->post('priv-recipe-link', 'Admin\Api\V1\RecipePrivatesAccessLinkController::create');
+        $routes->delete('priv-recipe-link/(:num)', 'Admin\Api\V1\RecipePrivatesAccessLinkController::delete/$1');
     });
 });
 

@@ -15,7 +15,7 @@ if (! function_exists('get_menu_list')) {
 
         $model_menu_children = new MenuChildrenModel();
         $menu_children = $model_menu_children->findAll();
-        $menu_children = set_array_key('MENU_ID', $menu_children);
+        $menu_children = set_array_group_key('MENU_ID', $menu_children);
 
         $full_current_uri = uri_string();
         $current_url = explode('/', $full_current_uri);
@@ -39,7 +39,7 @@ if (! function_exists('get_menu_list')) {
             }
         }
 
-        $menu_list = set_array_key('GROUP_ID', $menu_list);
+        $menu_list = set_array_group_key('GROUP_ID', $menu_list);
 
         # assign menu to group
         $final_list = [];

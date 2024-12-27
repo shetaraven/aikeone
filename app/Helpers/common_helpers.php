@@ -5,6 +5,19 @@ if (! function_exists('set_array_key')) {
         $fin_list = [];
 
         foreach ($array as $array_key => $value) {
+            $fin_list[$value[$key]] = $value;
+        }
+
+        return $fin_list;
+    }
+}
+
+if (! function_exists('set_array_group_key')) {
+    function set_array_group_key($key, $array)
+    {
+        $fin_list = [];
+
+        foreach ($array as $array_key => $value) {
             $fin_list[$value[$key]][] = $value;
         }
 

@@ -39,17 +39,25 @@ class UsersController extends ResourceController
      */
     public function update($id = null)
     {
-        $post_data = $this->request->getRawInput();
-        $store_info = $this->model->find($id);
-        if (!$store_info) {
+        $post_data      = $this->request->getRawInput();
+        $update_data    = [];
+        $valid_rules    = [];
+        $user_info      = $this->model->find($id);
+        if (!$user_info) {
             return $this->failNotFound('User not found');
         }
 
-        $valid = $this->validate(
-            [
-                'USER_TYPE_ID' => 'required',
-            ]
-        );
+        if (isset($post_data['USER_TYPE_ID'])) {
+            $update_data['USER_TYPE_ID'] = $post_data['USER_TYPE_ID'];
+            $valid_rules['USER_TYPE_ID'] = 'required';
+        }
+
+        if (isset($post_data['UPDATE_TO'])) {
+            $update_data['ACTIVE'] = $post_data['UPDATE_TO'];
+            $valid_rules['UPDATE_TO'] = 'required';
+        }
+        
+        $valid = $this->validate($valid_rules);
 
         if (! $valid) {
             return $this->failValidationErrors($this->validator->getErrors());
@@ -58,10 +66,6 @@ class UsersController extends ResourceController
         $db = Config::connect();
         $db->transStart();
         try {
-
-            $update_data = [
-                'USER_TYPE_ID' => $post_data['USER_TYPE_ID'],
-            ];
 
             $this->model->update($id, $update_data);
 
@@ -85,17 +89,18 @@ class UsersController extends ResourceController
      */
     public function delete($id = null)
     {
-        $store_info = $this->model->find($id);
-        if (!$store_info) {
-            return $this->failNotFound('Store not found');
+        $user_info = $this->model->find($id);
+        if (!$user_info) {
+            return $this->failNotFound('User not found');
         }
+        
         $db = Config::connect();
         $db->transStart();
         try {
             $this->model->update($id, ['ACTIVE' => 0]);
 
             $db->transCommit();
-            return $this->respond(['message' => 'Store deleted successfully'], 200);
+            return $this->respond(['message' => 'User deleted successfully'], 200);
         } catch (DatabaseException $e) {
             $db->transRollback();
             return $this->failServerError($e->getMessage());

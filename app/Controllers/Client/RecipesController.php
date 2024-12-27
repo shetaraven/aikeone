@@ -3,20 +3,15 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
-use App\Filters\AuthenticationFilter;
 use App\Models\Admin\Ingredients\IngredientsModel;
 use App\Models\Admin\Ingredients\IngredientStorePricesModel;
-use App\Models\Admin\Recipes\CategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
 use App\Models\Admin\Recipes\RecipeIngredientLinkModel;
 use App\Models\Admin\Recipes\RecipeInstructionsModel;
 use App\Models\Admin\Recipes\RecipesModel;
 use App\Models\Client\Users\UserFavoritesModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use CodeIgniter\HTTP\RequestInterface;
-use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
-use Psr\Log\LoggerInterface;
 
 class RecipesController extends BaseController
 {
@@ -33,7 +28,7 @@ class RecipesController extends BaseController
         $this->module_data['js']    = [];
 
         $recipe_model = new RecipesModel();
-        $this->module_data['recipe_list'] = $recipe_model->where('VISIBILITY', 1)->orderBy('CREATED_AT', 'DESC')->paginate(8, 'client');
+        $this->module_data['recipe_list'] = $recipe_model->withPrivateRecipes()->orderBy('CREATED_AT', 'DESC')->paginate(8, 'client');
         $this->module_data['pager'] = $recipe_model->pager;
 
         $this->module_data['user_favs'] = [];

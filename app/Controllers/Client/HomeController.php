@@ -32,10 +32,10 @@ class HomeController extends BaseController
         ];
 
         $featured_model = new RecipesModel();
-        $this->module_data['featured_list'] = $featured_model->where('FEATURED !=', 0)->orderBy('FEATURED', 'ASC')->limit(3)->findAll();
+        $this->module_data['featured_list'] = $featured_model->where('FEATURED !=', 0)->orderBy('FEATURED', 'ASC')->withPrivateRecipes()->limit(3)->findAll();
 
         $most_visited_model = new RecipesModel();
-        $this->module_data['mv_list'] = $most_visited_model->orderBy('VISIT_COUNT', 'DESC')->limit(10)->findAll();
+        $this->module_data['mv_list'] = $most_visited_model->orderBy('VISIT_COUNT', 'DESC')->withPrivateRecipes()->limit(10)->findAll();
 
         return view('client/home/index',  $this->module_data);
     }

@@ -46,8 +46,8 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item uta-edit" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-edit-alt me-1"></i> User Type</a>
-                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#ChooseRecipe"><i class="bx bx-trash me-1"></i> Recipe Access</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Disable</a>
+                                            <a class="dropdown-item uta-show_modal" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-hide me-1"></i> Recipe Access</a>
+                                            <a class="dropdown-item uta-delete" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>" data-type="<?=$user_info['ACTIVE']?>"><i class='bx bxs-<?= $user_info['ACTIVE'] ? 'minus' : 'plus' ?>-circle' ></i> <?= $user_info['ACTIVE'] ? 'Deactivate' : 'Activate' ?></a>
                                         </div>
                                     </div>
                                 </td>
@@ -91,40 +91,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <div class="input-group input-group-merge">
-                            <span class="input-group-text"><i class="bx bx-search"></i></span>
-                            <input type="text" id="searchRecipe" class="form-control" placeholder="Search..." aria-label="Search..." onkeyup="myFunction()">
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div class="list-group" id="recipe-list">
-                            <label class="list-group-item">
-                                <input class="form-check-input me-3" type="checkbox" value="">
-                                <span>Soufflé pastry pie ice</span>
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-3" type="checkbox" value="">
-                                <span>Bear claw cake biscuit</span>
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-3" type="checkbox" value="">
-                                <span>Tart tiramisu cake</span>
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-3" type="checkbox" value="">
-                                <span>Bonbon toffee muffin</span>
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-3" type="checkbox" value="">
-                                <span>Dragée tootsie roll</span>
-                            </label>
-                        </div>
-                    </div>
+                    <!-- contents here -->
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">
-                        Select
+                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                        Done
                     </button>
                 </div>
             </div>
