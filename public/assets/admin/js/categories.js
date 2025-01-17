@@ -67,7 +67,9 @@ $(document)
                 },
                 success: function (response) {
                     $('#edit_modal-category').modal('hide')
-                    location.reload()
+                    globalSearchHelper({search_elem: $('.search-input')})
+
+                    pageLoading('hide')
                 },
                 error: function (xhr, status, error) {
                     showError('Store Name Already Existing!');
@@ -94,8 +96,9 @@ $(document)
             url: '/admin/api/categories/' + category_id,
             type: 'DELETE',
             success: function (response) {
-                console.log('Success:', response);
-                location.reload()
+                globalSearchHelper({search_elem: $('.search-input')})
+                $('#del_modal-category').modal('hide')
+                pageLoading('hide')
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);

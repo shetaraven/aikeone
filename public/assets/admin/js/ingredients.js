@@ -104,8 +104,9 @@ $(document)
             url: '/admin/api/ingredients/' + store_id,
             type: 'DELETE',
             success: function (response) {
-                // console.log('Success:', response);
-                location.reload()
+                globalSearchHelper({search_elem: $('.search-input')})
+                $('#del_modal-ingred').modal('hide')
+                pageLoading('hide')
             },
             error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -159,8 +160,10 @@ $(document)
                     STORE_PRICES: store_prices,
                 },
                 success: function (response) {
-                    $('#store_edit_modal').modal('hide')
-                    location.reload()
+                    globalSearchHelper({search_elem: $('.search-input')})
+                    pageLoading('hide');
+
+                    $('#edit_modal-ingred').modal('hide')
                 },
                 error: function (xhr, status, error) {
                     // console.log(xhr.responseJSON.messages)

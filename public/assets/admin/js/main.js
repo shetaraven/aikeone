@@ -180,11 +180,29 @@ function showSuccess() {
     }, 1000)
 }
 
+function pageLoading(action) {
+    if(action == 'show') {
+        $('.load-backdrop').show();
+    } else {
+        $('.load-backdrop').hide();
+    }
+}
+
 function globalSearchHelper({ search_elem }) {
     let ongoingAjaxReq;
     let requestDebounce;
 
+    
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+    let current_page = urlParams.get('page_admin');
+
     let refreshLink = search_elem.attr('data-url')
+    let search_val = search_elem.val()
+    let page = current_page ? current_page : 1
+
+    refreshLink = refreshLink + '?page_admin=' + page + '&search=' + search_val
+    history.replaceState(null, '', refreshLink);
 
     clearTimeout(requestDebounce)
 
@@ -198,7 +216,7 @@ function globalSearchHelper({ search_elem }) {
             type: 'POST',
             dataType: 'html',
             data: {
-                search: search_elem.val()
+                search: search_val
             },
             success: function (response) {
                 response = JSON.parse(response)

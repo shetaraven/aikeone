@@ -45,7 +45,10 @@ class RecipesController extends BaseController
     {
         $this->module_data['title'] = 'Recipe Details';
         $this->module_data['css'] = ['/assets/main/css/details.css'];
-        $this->module_data['js'] = ['/assets/client/js/recipes.js'];
+        $this->module_data['js'] = [
+            '/assets/client/js/recipes.js',
+            '/assets/client/js/common_functions.js',
+        ];
 
         $request = Services::request();
         $get_data = $request->getGet();
@@ -72,8 +75,6 @@ class RecipesController extends BaseController
             $uf_model = new UserFavoritesModel();
             $this->module_data['is_favorite'] = $uf_model->where('RECIPE_ID', $get_data['id'])->where('USER_ID', session()->get('ID'))->find() ? true : false;
         }
-
-        // echo "<pre>"; print_r( $this->module_data);die();
 
         return view('client/recipe/details',  $this->module_data);
     }

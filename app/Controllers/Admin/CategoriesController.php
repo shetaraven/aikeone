@@ -27,10 +27,15 @@ class CategoriesController extends BaseController
         $request = \Config\Services::request();
 
         if ($request->getMethod() == 'GET') {
+            $get_data = $request->getGet();
             $categories_model   = new CategoriesModel();
-            $category_list      = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
+            if (isset($get_data['search'])) {
+                $categories_model->like('LABEL', $get_data['search']);
+            }
+            $category_list      = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $this->module_data['title'] = 'Category List';
+            $this->module_data['search'] = $get_data['search'] ?? '';
             $this->module_data['category_list'] = $category_list;
             $this->module_data['pager']         = $categories_model->pager;
             return view('admin/categories/list',  $this->module_data);
@@ -41,7 +46,7 @@ class CategoriesController extends BaseController
             if (isset($post_data['search'])) {
                 $categories_model->like('LABEL', $post_data['search']);
             }
-            $category_list = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
+            $category_list = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $table_data = view('admin/categories/partials/_table_data',  [
                 'category_list' => $category_list
@@ -55,7 +60,7 @@ class CategoriesController extends BaseController
 
             return $this->response->setJSON([
                 'table_data' => $table_data,
-                'pager' => $categories_model->pager->makeLinks(1, 5, $list_count, 'admin', 0, 'admin'),
+                'pager' => $categories_model->pager->makeLinks(1, 10, $list_count, 'admin', 0, 'admin'),
             ]);
         }
     }

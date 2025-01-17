@@ -46,8 +46,9 @@ $(document)
             url: '/admin/api/stores/' + store_id,
             type: 'DELETE',
             success: function (response) {
-                // console.log('Success:', response);
-                location.reload()
+                globalSearchHelper({search_elem: $('.search-input')})
+                $('#del_modal-store').modal('hide')
+                pageLoading('hide')
             },
             error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
@@ -91,8 +92,9 @@ $(document)
                     COMMENT: store_comment,
                 },
                 success: function (response) {
+                    globalSearchHelper({search_elem: $('.search-input')})
                     $('#edit_modal-store').modal('hide')
-                    location.reload()
+                    pageLoading('hide')
                 },
                 error: function (xhr, status, error) {
                     // console.log(xhr.responseJSON.messages)

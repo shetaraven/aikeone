@@ -218,8 +218,8 @@ $(document)
             url: '/admin/api/recipes/' + recipe_id,
             type: 'DELETE',
             success: function (response) {
-                console.log('Success:', response);
-                location.reload()
+                globalSearchHelper({search_elem: $('.search-input')})
+                pageLoading('hide')
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);

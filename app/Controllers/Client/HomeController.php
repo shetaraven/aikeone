@@ -3,6 +3,8 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\Recipes\CategoriesModel;
+use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
 use App\Models\Admin\Recipes\RecipesModel;
 
 class HomeController extends BaseController
@@ -25,6 +27,8 @@ class HomeController extends BaseController
         ];
 
         $this->module_data['js'] = [
+            '/assets/client/js/home.js',
+            '/assets/client/js/common_functions.js',
             'assets/main/slick/slick.min.js',
             'assets/main/js/owl.carousel.min.js',
             'assets/main/js/homepage.js',
@@ -37,6 +41,29 @@ class HomeController extends BaseController
         $most_visited_model = new RecipesModel();
         $this->module_data['mv_list'] = $most_visited_model->orderBy('VISIT_COUNT', 'DESC')->withPrivateRecipes()->limit(10)->findAll();
 
+        $random_categs = new CategoriesModel();
+        $this->module_data['random_categs'] = $random_categs->orderBy('RAND()')->limit(5)->findAll();
+
         return view('client/home/index',  $this->module_data);
+    }
+
+    public function partialsCategoryRecipes() {
+        $request = \Config\Services::request();
+        $post_data = $request->getPost();
+
+        $rcl_model = new RecipeCategoryLinkModel();
+        $rcl_list = $rcl_model->where('CATEGORY_ID', $post_data['CATEGORY_ID'])->findAll();
+
+        $recipe_ids = array_column($rcl_list, 'RECIPE_ID');
+
+        $recipe_list = [];
+        if( ! empty($recipe_ids ) ) {
+            $recipe_model = new RecipesModel();
+            $recipe_list = $recipe_model->withPrivateRecipes()->whereIn('ID', $recipe_ids)->limit(10)->findAll();
+        }
+
+        return view('client/home/partials/categ_recipes',  [
+            'recipe_list' => $recipe_list
+        ]);
     }
 }

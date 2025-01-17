@@ -131,6 +131,10 @@ $routes->group('admin', ['filter' => ['auth', 'is_admin']], function ($routes) {
 $routes->group('', function ($routes) {
     $routes->get('/', 'Client\HomeController::index');
 
+    $routes->group('home', function ($routes) {
+        $routes->post('partials-category-recipes', 'Client\HomeController::partialsCategoryRecipes');
+    });
+
     $routes->group('recipes', function ($routes) {
         $routes->get('/', 'Client\RecipesController::index');
         $routes->get('details', 'Client\RecipesController::details', ['filter' => 'visit_count']);

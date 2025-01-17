@@ -1,11 +1,14 @@
 $(document)
+    .ready(function () {
+        $('.rand_category-tab.active').click()
+    })
     .on('click', '.action-go_back', function (e) {
         e.preventDefault();
         window.history.back();
     })
     .on('click', '.modal_open', function (e) {
         e.preventDefault();
-        $('body').css('overflow','hidden');
+        $('body').css('overflow', 'hidden');
         resizeModal($(this).attr('data-target'));
 
         let self = $(this)
@@ -42,19 +45,19 @@ $(document)
     })
     .on('click', '.popup__close', function (e) {
         e.preventDefault();
-        $('body').css('overflow','auto');
+        $('body').css('overflow', 'auto');
 
         let self = $(this)
         self.closest('.popup').removeClass('show');
     })
     .on('click', '.bookmark-btn', function () {
-        let self    = $(this)
-        let rid     = self.attr('data-rid')
+        let self = $(this)
+        let rid = self.attr('data-rid')
         let is_fave = parseInt(self.attr('data-fav'))
 
         $.ajax({
-            url: '/api/' + ( is_fave ? 'user-fav/' + rid : 'user-fav' ),
-            type: ( is_fave ? 'DELETE' : 'POST' ),
+            url: '/api/' + (is_fave ? 'user-fav/' + rid : 'user-fav'),
+            type: (is_fave ? 'DELETE' : 'POST'),
             dataType: 'json',
             data: {
                 'RECIPE_ID': rid
@@ -62,7 +65,7 @@ $(document)
             success: function (response) {
                 console.log(is_fave)
                 // switch icon
-                if( is_fave ) {
+                if (is_fave) {
                     console.log(0)
                     self.removeClass('bi-bookmark-heart-fill')
                     self.addClass('bi-bookmark-heart')
@@ -80,12 +83,12 @@ $(document)
         });
     })
 
-$('#calculate-serv').click(function(e){
+$('#calculate-serv').click(function (e) {
     e.preventDefault();
     var Servings = parseInt($('#servings-count').text());
     var CalServings = parseInt($(this).parent().find('input').val());
-    console.log('Serving: '+Servings)
-    $('#serving-modal .curr_volume').each(function(){
+    console.log('Serving: ' + Servings)
+    $('#serving-modal .curr_volume').each(function () {
         console.log(parseInt($(this).text()))
         var inServ = (parseInt($(this).text()) / Servings);
         var CurUnit = $(this).parent().find('.curr_unit').text();
@@ -95,8 +98,8 @@ $('#calculate-serv').click(function(e){
     })
 })
 
-function resizeModal(elem){
-    var body = $('#'+elem).find('.popup-inner').outerHeight();
-    var head = $('#'+elem).find('.popup__photo').outerHeight();
-    $('#'+elem).find('.popup__text').css('height',(body-head))
+function resizeModal(elem) {
+    var body = $('#' + elem).find('.popup-inner').outerHeight();
+    var head = $('#' + elem).find('.popup__photo').outerHeight();
+    $('#' + elem).find('.popup__text').css('height', (body - head))
 }

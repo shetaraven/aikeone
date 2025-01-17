@@ -7,7 +7,7 @@
                 <div class="navbar-nav" style="display: inline-block">
                     <div class="nav-item d-flex align-items-center" style="border-bottom: solid 1px #d3d3d3">
                         <i class="bx bx-search bx-md" style="cursor: pointer"></i>
-                        <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2 search-input" placeholder="Search..." aria-label="Search..." data-url="/admin/categories/list" />
+                        <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2 search-input" placeholder="Search..." aria-label="Search..." data-url="/admin/categories/list" value="<?=$search?>" />
                     </div>
                 </div>
 
