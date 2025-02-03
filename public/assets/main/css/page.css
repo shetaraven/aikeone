@@ -1635,6 +1635,7 @@ blockquote {
     font-weight: 900;
     transform: translate(0);
     padding: 0;
+    background: transparent;
   }
   .custom-card2:hover h2 {
     inset: auto auto 220px 15px;

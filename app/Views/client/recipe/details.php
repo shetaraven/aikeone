@@ -126,6 +126,14 @@
                                         </div> -->
                                         <h3 class="text-center">Price List on our Record</h3>
                                         <p class="text-center mb-5" style="margin: auto;max-width: 700px;"><strong>Note:</strong> The prices indicated in the table are based on our own research and may vary from the actual prices at the time of purchase. Please check with the relevant providers for the most accurate and up-to-date information.</p>
+
+                                        <div style="text-align: right;">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="convert_php">
+                                                <label class="form-check-label" for="convert_php">Convert to PHP</label>
+                                            </div>
+                                        </div>
+
                                         <table class="responsive append_area">
                                             <!-- contents here -->
                                         </table>

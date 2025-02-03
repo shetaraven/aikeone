@@ -11,7 +11,7 @@
         <tr>
             <td data-label="Ingredient"><?= $ri_info['VOLUME'] ?><?= $ri_info['UNIT_MEASURE_LABEL'] ?>&nbsp;<?= $ri_info['NAME'] ?></td>
             <?php foreach ($stores_used as $key => $store_data) : ?>
-                <th scope="col"><?=isset( $ri_info['STORE_PRICES'][$store_data['STORE_ID']]) ? $ri_info['STORE_PRICES'][$store_data['STORE_ID']] . ' <span class="currency">SEK</span>' : '--'?></th>
+                <th scope="col"><?=isset( $ri_info['STORE_PRICES'][$store_data['STORE_ID']]) ? '<span class="sek_price">' . $ri_info['STORE_PRICES'][$store_data['STORE_ID']] . ' SEK</span><span class="php_price" style="display:none;">' . round($ri_info['STORE_PRICES'][$store_data['STORE_ID']] * 5.33,2) . ' PHP</span>' : '--'?></th>
             <?php endforeach; ?>
         </tr>
     <?php endforeach; ?>
