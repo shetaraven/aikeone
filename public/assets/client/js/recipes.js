@@ -37,6 +37,7 @@ $(document)
                 let modal_id = self.attr('data-target');
                 $('#' + modal_id).find('.append_area').html(response.data.html_content)
                 $('#' + modal_id).find('.popup').addClass('show')
+                $('#convert_php').prop('checked',false)
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error)
@@ -103,3 +104,13 @@ function resizeModal(elem) {
     var head = $('#' + elem).find('.popup__photo').outerHeight();
     $('#' + elem).find('.popup__text').css('height', (body - head))
 }
+
+$('#convert_php').change(function(){
+    if($(this).is(':checked')){
+        $('.sek_price').hide();
+        $('.php_price').fadeIn();
+    }else{
+        $('.php_price').hide();
+        $('.sek_price').fadeIn();
+    }
+})

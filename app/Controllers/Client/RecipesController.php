@@ -86,6 +86,14 @@ class RecipesController extends BaseController
         $ril_model = new RecipeIngredientLinkModel();
         $recipe_ingredients = $ril_model->where('RECIPE_ID', $rid)->withIngredient()->withUnitMeasure()->findAll();
 
+        $orig_ingreds_model = new IngredientsModel();
+        $orig_ingreds = $orig_ingreds_model->whereIn('ingredients.ID', array_column($recipe_ingredients, 'INGREDIENT_ID'))->withUnitMeasure()->findAll();
+        $orig_ingreds_dets = [];
+
+        foreach ($orig_ingreds as $key => $or_ingrd){
+            $orig_ingreds_dets[$or_ingrd['ID']] = $or_ingrd;
+        }
+
         $isp_model = new IngredientStorePricesModel();
         foreach ($recipe_ingredients as $key => &$ri_info) {
             $ri_info['STORE_PRICES'] = [];
@@ -97,7 +105,7 @@ class RecipesController extends BaseController
                     'STORE_NAME' => $price_info['STORE_NAME'],
                 ];
 
-                $ri_info['STORE_PRICES'][$price_info['STORE_ID']] = $price_info['PRICE'];
+                $ri_info['STORE_PRICES'][$price_info['STORE_ID']] = round(($price_info['PRICE'] / $orig_ingreds_dets[$ri_info['INGREDIENT_ID']]['VOLUME']) * $ri_info['VOLUME'],2);
             }
         }
 
@@ -105,9 +113,6 @@ class RecipesController extends BaseController
             'stores_used' => $stores_used,
             'recipe_ingredients' => $recipe_ingredients,
         ]);
-
-        $orig_ingreds_model = new IngredientsModel();
-        $orig_ingreds = $orig_ingreds_model->whereIn('ingredients.ID', array_column($recipe_ingredients, 'INGREDIENT_ID'))->withUnitMeasure()->findAll();
 
         return json_res('success', [
             'html_content' => $html_content,
