@@ -130,14 +130,42 @@ class RecipesController extends BaseController
         $ingred_model = new IngredientsModel();
         $ingredients_list = $ingred_model->whereIn('ID', $ingredient_ids)->findAll();
 
+        $orig_ingreds_dets = [];
+        foreach ($ingredients_list as $key => $or_ingrd){
+            $orig_ingreds_dets[$or_ingrd['ID']] = $or_ingrd;
+        }
+
+        $TotalRef = [
+            'CALORIE' => 0,
+            'FAT' => 0,
+            'SUGAR' => 0,
+            'PROTEIN' => 0,
+            'CARBS' => 0,
+        ];
+        foreach($recipe_ingredients as $key => &$ritem){
+            $selectRef = $orig_ingreds_dets[$ritem['INGREDIENT_ID']];
+            $ritem['CALORIE'] = round(($selectRef['CALORIES'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
+            $ritem['FAT'] = round(($selectRef['FAT'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
+            $ritem['SUGAR'] = round(($selectRef['SUGAR'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
+            $ritem['PROTEIN'] = round(($selectRef['PROTEIN'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
+            $ritem['CARBS'] = round(($selectRef['CARBS'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
+
+            $TotalRef['CALORIE'] += $ritem['CALORIE'];
+            $TotalRef['FAT'] += $ritem['FAT'];
+            $TotalRef['SUGAR'] += $ritem['SUGAR'];
+            $TotalRef['PROTEIN'] += $ritem['PROTEIN'];
+            $TotalRef['CARBS'] += $ritem['CARBS'];
+        }
+
         $html_content = view('client/recipe/partials/_nutri_vals', [
-            'recipe_ingredients' => $recipe_ingredients
+            'recipe_ingredients' => $recipe_ingredients,
+            'TotalRef' => $TotalRef
         ]);
 
         return json_res('success', [
             'html_content' => $html_content,
             'recipe_ingredients' => $recipe_ingredients,
-            'ingredients_list' => $ingredients_list,
+            'TotalRef' => $TotalRef,
         ]);
     }
 

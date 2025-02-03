@@ -146,7 +146,7 @@
                         <div class="container" id="calorie-modal">
                             <div class="popup">
                                 <div class="popup-inner horizontal">
-                                    <div class="popup__photo p-5" style="background-color: #e6efef;height: auto;">
+                                    <div class="popup__photo p-4" style="background-color: #e6efef;height: auto;">
                                         <!-- <img src="https://www.simplyrecipes.com/thmb/OxV-yFV0VvfSdlpdQukYOaB4VU4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Pyrex-Love-Letter-LEAD-02-88172516204a4fdeb5f2e7465d613bd3.jpg" alt=""> -->
                                         <h3 class="text-center">Nutritional Facts</h3>
                                         <p class="text-center mb-0" style="color: #393939;

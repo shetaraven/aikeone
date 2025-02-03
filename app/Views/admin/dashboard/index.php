@@ -68,6 +68,24 @@
                 </div>
                 <!-- Total Revenue -->
                 <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6">
+                    <div class="card mb-6">
+                        <div class="row row-bordered g-0">
+                            <div class="col-12">
+                                <div class="card-header d-flex align-items-center justify-content-between">
+                                    <div class="card-title mb-0">
+                                        <h5 class="m-0 me-2">SEK - PHP Conversion</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <small class="text-light fw-medium d-block mb-2">Input Conversion Value of 1 SEK to ? PHP</small>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" placeholder="PHP Value">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2">Set</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="row row-bordered g-0">
                             <div class="col-lg-12">
