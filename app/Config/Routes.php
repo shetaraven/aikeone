@@ -24,7 +24,7 @@ $routes->group('auth', function ($routes) {
 });
 
 # admin routes
-$routes->group('admin', ['filter' => ['auth', 'is_admin']], function ($routes) {
+$routes->group('admin', ['filter' => ['auth', 'dashboard']], function ($routes) {
     $routes->get('/', function () {
         return redirect()->to(base_url('/admin/dashboard'));
     });
@@ -35,7 +35,7 @@ $routes->group('admin', ['filter' => ['auth', 'is_admin']], function ($routes) {
         $routes->get('partial-not-featured', 'Admin\DashboardController::partialNotFeatured');
     });
 
-    $routes->group('users', function ($routes) {
+    $routes->group('users', ['filter' => ['is_admin']] , function ($routes) {
         $routes->get('/', 'Admin\UsersController::list');
         $routes->get('list', 'Admin\UsersController::list');
         $routes->post('partial-edit-form', 'Admin\UsersController::partialEditForm');

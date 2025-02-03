@@ -31,6 +31,9 @@ class RecipesController extends BaseController
             $this->module_data['title'] = 'Recipes List';
 
             $recipe_model = new RecipesModel();
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $recipe_model->where('CREATED_BY', session()->get('ID'));
+            }
             $this->module_data['recipe_list'] = $recipe_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
             $this->module_data['pager'] = $recipe_model->pager;
 
@@ -39,19 +42,24 @@ class RecipesController extends BaseController
             $post_data = $request->getPost();
 
             $recipe_model   = new RecipesModel();
+            $list_count_model = new RecipesModel();
+
             if (isset($post_data['search'])) {
                 $recipe_model->like('TITLE', $post_data['search']);
+                $list_count_model->like('TITLE', $post_data['search']);
             }
+            
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $recipe_model->where('CREATED_BY', session()->get('ID'));
+                $list_count_model->where('CREATED_BY', session()->get('ID'));
+            }
+            
             $recipe_list = $recipe_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $table_data = view('admin/recipes/partials/_table_data',  [
                 'recipe_list' => $recipe_list
             ]);
-
-            $list_count_model = new RecipesModel();
-            if ($post_data['search']) {
-                $list_count_model->like('TITLE', $post_data['search']);
-            }
+            
             $list_count     = $list_count_model->countAllResults();
 
             return $this->response->setJSON([

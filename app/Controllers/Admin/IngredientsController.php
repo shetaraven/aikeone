@@ -40,6 +40,10 @@ class IngredientsController extends BaseController
             $this->module_data['title'] = 'Ingredient List';
 
             $ingreds_model = new IngredientsModel();
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $ingreds_model->where('CREATED_BY', session()->get('ID'));
+            }
+            
             $this->module_data['ingredients_list'] = $ingreds_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
             $this->module_data['pager'] = $ingreds_model->pager;
 
@@ -48,19 +52,24 @@ class IngredientsController extends BaseController
             $post_data = $request->getPost();
 
             $ingredients_model   = new IngredientsModel();
+            $list_count_model = new IngredientsModel();
+
             if (isset($post_data['search'])) {
                 $ingredients_model->like('NAME', $post_data['search']);
+                $list_count_model->like('NAME', $post_data['search']);
             }
+
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $ingredients_model->where('CREATED_BY', session()->get('ID'));
+                $list_count_model->where('CREATED_BY', session()->get('ID'));
+            }
+
             $ingredients_list = $ingredients_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $table_data = view('admin/ingredients/partials/_table_data',  [
                 'ingredients_list' => $ingredients_list
             ]);
-
-            $list_count_model = new IngredientsModel();
-            if ($post_data['search']) {
-                $list_count_model->like('NAME', $post_data['search']);
-            }
+            
             $list_count     = $list_count_model->countAllResults();
 
             return $this->response->setJSON([

@@ -30,6 +30,10 @@ class StoresController extends BaseController
             $this->module_data['title'] = 'Stores List';
 
             $stores_model = new StoresModel();
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $stores_model->where('CREATED_BY', session()->get('ID'));
+            }
+
             $this->module_data['store_list']    = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
             $this->module_data['pager']         = $stores_model->pager;
 
@@ -38,20 +42,24 @@ class StoresController extends BaseController
             $post_data = $request->getPost();
 
             $stores_model   = new StoresModel();
+            $list_count_model = new StoresModel();
+
             if (isset($post_data['search'])) {
                 $stores_model->like('NAME', $post_data['search']);
+                $list_count_model->like('NAME', $post_data['search']);
             }
-            $store_list = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
 
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $stores_model->where('CREATED_BY', session()->get('ID'));
+                $list_count_model->where('CREATED_BY', session()->get('ID'));
+            }
+
+            $store_list = $stores_model->where('stores.ACTIVE', 1)->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(5, 'admin');
             $table_data = view('admin/stores/partials/_table_data',  [
                 'store_list' => $store_list
             ]);
 
-            $list_count_model = new StoresModel();
-            if ($post_data['search']) {
-                $list_count_model->like('NAME', $post_data['search']);
-            }
-            $list_count     = $list_count_model->countAllResults();
+            $list_count = $list_count_model->countAllResults();
 
             return $this->response->setJSON([
                 'table_data' => $table_data,

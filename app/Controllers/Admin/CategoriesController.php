@@ -29,9 +29,11 @@ class CategoriesController extends BaseController
         if ($request->getMethod() == 'GET') {
             $get_data = $request->getGet();
             $categories_model   = new CategoriesModel();
-            if (isset($get_data['search'])) {
-                $categories_model->like('LABEL', $get_data['search']);
+            
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $categories_model->where('CREATED_BY', session()->get('ID'));
             }
+
             $category_list      = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $this->module_data['title'] = 'Category List';
@@ -43,19 +45,24 @@ class CategoriesController extends BaseController
             $post_data = $request->getPost();
 
             $categories_model   = new CategoriesModel();
+            $list_count_model = new CategoriesModel();
+
             if (isset($post_data['search'])) {
                 $categories_model->like('LABEL', $post_data['search']);
+                $list_count_model->like('LABEL', $post_data['search']);
             }
+
+            if (session()->get('USER_TYPE_ID') == 2) {
+                $categories_model->where('CREATED_BY', session()->get('ID'));
+                $list_count_model->where('CREATED_BY', session()->get('ID'));
+            }
+            
             $category_list = $categories_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $table_data = view('admin/categories/partials/_table_data',  [
                 'category_list' => $category_list
             ]);
-
-            $list_count_model = new CategoriesModel();
-            if ($post_data['search']) {
-                $list_count_model->like('LABEL', $post_data['search']);
-            }
+            
             $list_count     = $list_count_model->countAllResults();
 
             return $this->response->setJSON([

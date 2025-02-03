@@ -35,8 +35,9 @@ class Filters extends BaseFilters
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
         'auth'          => \App\Filters\AuthenticationFilter::class,
-        'is_admin'     => \App\Filters\IsAdminFilter::class,
-        'visit_count'     => \App\Filters\VisitCountFilter::class,
+        'dashboard'     => \App\Filters\DashboardFilter::class,
+        'is_admin'      => \App\Filters\IsAdminFilter::class,
+        'visit_count'   => \App\Filters\VisitCountFilter::class,
     ];
 
     /**
