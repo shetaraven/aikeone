@@ -38,6 +38,10 @@ $(document)
                 $('#' + modal_id).find('.append_area').html(response.data.html_content)
                 $('#' + modal_id).find('.popup').addClass('show')
                 $('#convert_php').prop('checked',false)
+
+                if(type_id == 1){
+                    $('#nutriServings').html($('#servings-count').text());
+                }
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error)
