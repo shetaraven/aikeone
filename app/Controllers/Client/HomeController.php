@@ -50,10 +50,6 @@ class HomeController extends BaseController
 
         $rotd_model = new RecipesModel();
         $this->module_data['rotd_info'] = $rotd_model->where('ID', $roth_info['VALUE'])->first();
-        echo "<pre>";
-        print_r( $this->module_data['rotd_info'] );
-        echo "</pre>";
-
 
         return view('client/home/index',  $this->module_data);
     }
