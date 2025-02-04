@@ -32,12 +32,12 @@ class RecipesController extends BaseController
         $this->module_data['js']    = [];
 
         $recipe_model = new RecipesModel();
-        if ($get_data['search']) {
+        if (isset($get_data['search'])) {
             $recipe_model->like('TITLE', $get_data['search']);
+            $this->module_data['search_val'] = $get_data['search'];
         }
         $this->module_data['recipe_list'] = $recipe_model->withPrivateRecipes()->orderBy('CREATED_AT', 'DESC')->paginate(8, 'client');
         $this->module_data['pager'] = $recipe_model->pager;
-        $this->module_data['search_val'] = $get_data['search'];
 
         $this->module_data['user_favs'] = [];
         if (session()->get('ID')) {

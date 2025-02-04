@@ -48,8 +48,8 @@
             <div class="input-group input-group-lg">
                 <span class="input-group-text bi-search" id="basic-addon1">
                 </span>
-                <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Search for a Recipe Title ..." aria-label="Search">
-                <button type="submit" class="form-control">Search</button>
+                <input name="keyword" type="search" class="form-control inp-search_recipe" id="keyword" placeholder="Search for a Recipe Title ..." aria-label="Search">
+                <button type="submit" class="form-control action-search">Search</button>
             </div>
         </form>
     </div>

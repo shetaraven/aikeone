@@ -9,7 +9,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text bi-search" id="basic-addon1">
                     </span>
-                    <input name="search" type="search" class="form-control inp-search_recipe" id="keyword" value="<?=$search_val?>" placeholder="Search for a Recipe Title ..." aria-label="Search" data-url="/recipes">
+                    <input name="search" type="search" class="form-control inp-search_recipe" id="keyword" value="<?= isset($search_val) ? $search_val :  '' ?>" placeholder="Search for a Recipe Title ..." aria-label="Search" data-url="/recipes">
                     <button type="submit" class="form-control action-search">Search</button>
                 </div>
             </form>
@@ -25,7 +25,9 @@
                     <img src="<?= $recipe_info['IMAGE'] ? base_url($recipe_info['IMAGE']) : base_url('/assets/main/images/home-banner1.jpg') ?>" class="custom-card1-image" alt="" />
                     <div class="custom-card1-overlay">
                         <div class="custom-card1-header text-center" style="width: 100%;">
-                            <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg"><path /></svg> 
+                            <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
+                                <path />
+                            </svg>
                             <div class="action-section">
                                 <?php if ($recipe_info['FEATURED']) : ?>
                                     <span class="card-action">
@@ -33,7 +35,7 @@
                                     </span>
                                 <?php endif; ?>
 
-                                <?php if (in_array($recipe_info['ID'], $user_favs) ) : ?>
+                                <?php if (in_array($recipe_info['ID'], $user_favs)) : ?>
                                     <span class="card-action">
                                         <i class="bi-bookmark-heart-fill bookmark-btn" alt="Bookmark"></i>
                                     </span>
