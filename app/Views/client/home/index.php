@@ -105,13 +105,12 @@
             </div> -->
             <div class="col-12">
                 <div class="row">
-                    <div class="col-md-6 rotd-img" style="background-image: url(assets/main/images/recipes/recipe-img1.jpg);background-size: cover;min-height: 400px;background-position: center;border-radius: 10px;"></div>
+                    <div class="col-md-6 rotd-img" style="background-image: url(<?= $rotd_info['IMAGE'] != '' ? $rotd_info['IMAGE'] : '/assets/main/images/home-banner1.jpg' ?>);background-size: cover;min-height: 400px;background-position: center;border-radius: 10px;"></div>
                     <div class="col-md-6" style="align-self: center;">
                         <h5 class="text-blue ps-md-5">RECIPE OF THE DAY</h5>
-                        <h3 class="ps-md-5">Homemade marshmallows with sugar powder.</h3>
-                        <p class="ps-md-5">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from
-                            it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                        <a href="#" class="btn custom-btn ms-md-5">Check out Recipe</a>
+                        <h3 class="ps-md-5"><?= $rotd_info['TITLE'] ?></h3>
+                        <p class="ps-md-5"><?= $rotd_info['DETAILS'] ?></p>
+                        <a href="<?= base_url('/recipes/details?id=' . $rotd_info['ID']) ?>" class="btn custom-btn ms-md-5">Check out Recipe</a>
                     </div>
                 </div>
             </div>
@@ -423,7 +422,7 @@
                 <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
                     <?php foreach ($random_categs as $key => $category_info) : ?>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link <?=$key == 0 ? 'active' : ''?> rand_category-tab" type="button" data-id="<?=$category_info['ID']?>"><?=$category_info['LABEL']?></button>
+                            <button class="nav-link <?= $key == 0 ? 'active' : '' ?> rand_category-tab" type="button" data-id="<?= $category_info['ID'] ?>"><?= $category_info['LABEL'] ?></button>
                         </li>
                     <?php endforeach; ?>
                 </ul>

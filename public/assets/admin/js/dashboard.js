@@ -68,6 +68,24 @@ $(document)
             }
         });
     })
+    .on('click', '.btn-set_exchange_rate', function () {
+        let self = $(this)
+        let new_rate = $('.inp-exchange_rate').val()
+        console.log(new_rate)
+        $.ajax({
+            url: '/admin/api/system/rate/update',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                RATE: new_rate
+            },
+            success: function (response) {
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    })
 
 function refreshFeaturedList() {
     $.ajax({

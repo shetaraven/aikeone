@@ -191,7 +191,6 @@ function pageLoading(action) {
 function globalSearchHelper({ search_elem }) {
     let ongoingAjaxReq;
     let requestDebounce;
-
     
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);

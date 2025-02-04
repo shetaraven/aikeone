@@ -3,6 +3,7 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\Dashboard\SysVariablesModel;
 use App\Models\Admin\Recipes\CategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
 use App\Models\Admin\Recipes\RecipesModel;
@@ -43,6 +44,16 @@ class HomeController extends BaseController
 
         $random_categs = new CategoriesModel();
         $this->module_data['random_categs'] = $random_categs->orderBy('RAND()')->limit(5)->findAll();
+
+        $sys_vars_model = new SysVariablesModel();
+        $roth_info = $sys_vars_model->where('LABEL', 'ROTD')->first();
+
+        $rotd_model = new RecipesModel();
+        $this->module_data['rotd_info'] = $rotd_model->where('ID', $roth_info['VALUE'])->first();
+        echo "<pre>";
+        print_r( $this->module_data['rotd_info'] );
+        echo "</pre>";
+
 
         return view('client/home/index',  $this->module_data);
     }

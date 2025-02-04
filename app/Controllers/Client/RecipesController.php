@@ -23,18 +23,26 @@ class RecipesController extends BaseController
 
     public function index()
     {
+
+        $request = Services::request();
+        $get_data = $request->getGet();
+
         $this->module_data['title'] = 'Recipes';
         $this->module_data['css']   = ['/assets/main/css/all-recipe.css'];
         $this->module_data['js']    = [];
 
         $recipe_model = new RecipesModel();
+        if ($get_data['search']) {
+            $recipe_model->like('TITLE', $get_data['search']);
+        }
         $this->module_data['recipe_list'] = $recipe_model->withPrivateRecipes()->orderBy('CREATED_AT', 'DESC')->paginate(8, 'client');
         $this->module_data['pager'] = $recipe_model->pager;
+        $this->module_data['search_val'] = $get_data['search'];
 
         $this->module_data['user_favs'] = [];
-        if( session()->get('ID') ) {
+        if (session()->get('ID')) {
             $user_favs_model = new UserFavoritesModel();
-            $user_fav_list = $user_favs_model->where('USER_ID', session()->get('ID') )->findAll();
+            $user_fav_list = $user_favs_model->where('USER_ID', session()->get('ID'))->findAll();
             $this->module_data['user_favs'] = array_column($user_fav_list, 'RECIPE_ID');
         }
 
@@ -56,7 +64,7 @@ class RecipesController extends BaseController
         $recipe_model = new RecipesModel();
         $this->module_data['recipe_info'] = $recipe_model->where('ID', $get_data['id'])->first();
 
-        if( ! $this->module_data['recipe_info'] ) {
+        if (! $this->module_data['recipe_info']) {
             throw PageNotFoundException::forPageNotFound();
         }
 
@@ -90,7 +98,7 @@ class RecipesController extends BaseController
         $orig_ingreds = $orig_ingreds_model->whereIn('ingredients.ID', array_column($recipe_ingredients, 'INGREDIENT_ID'))->withUnitMeasure()->findAll();
         $orig_ingreds_dets = [];
 
-        foreach ($orig_ingreds as $key => $or_ingrd){
+        foreach ($orig_ingreds as $key => $or_ingrd) {
             $orig_ingreds_dets[$or_ingrd['ID']] = $or_ingrd;
         }
 
@@ -105,7 +113,7 @@ class RecipesController extends BaseController
                     'STORE_NAME' => $price_info['STORE_NAME'],
                 ];
 
-                $ri_info['STORE_PRICES'][$price_info['STORE_ID']] = round(($price_info['PRICE'] / $orig_ingreds_dets[$ri_info['INGREDIENT_ID']]['VOLUME']) * $ri_info['VOLUME'],2);
+                $ri_info['STORE_PRICES'][$price_info['STORE_ID']] = round(($price_info['PRICE'] / $orig_ingreds_dets[$ri_info['INGREDIENT_ID']]['VOLUME']) * $ri_info['VOLUME'], 2);
             }
         }
 
@@ -131,7 +139,7 @@ class RecipesController extends BaseController
         $ingredients_list = $ingred_model->whereIn('ID', $ingredient_ids)->findAll();
 
         $orig_ingreds_dets = [];
-        foreach ($ingredients_list as $key => $or_ingrd){
+        foreach ($ingredients_list as $key => $or_ingrd) {
             $orig_ingreds_dets[$or_ingrd['ID']] = $or_ingrd;
         }
 
@@ -142,13 +150,13 @@ class RecipesController extends BaseController
             'PROTEIN' => 0,
             'CARBS' => 0,
         ];
-        foreach($recipe_ingredients as $key => &$ritem){
+        foreach ($recipe_ingredients as $key => &$ritem) {
             $selectRef = $orig_ingreds_dets[$ritem['INGREDIENT_ID']];
-            $ritem['CALORIE'] = round(($selectRef['CALORIES'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
-            $ritem['FAT'] = round(($selectRef['FAT'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
-            $ritem['SUGAR'] = round(($selectRef['SUGAR'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
-            $ritem['PROTEIN'] = round(($selectRef['PROTEIN'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
-            $ritem['CARBS'] = round(($selectRef['CARBS'] / $selectRef['VOLUME']) * $ritem['VOLUME'],2);
+            $ritem['CALORIE'] = round(($selectRef['CALORIES'] / $selectRef['VOLUME']) * $ritem['VOLUME'], 2);
+            $ritem['FAT'] = round(($selectRef['FAT'] / $selectRef['VOLUME']) * $ritem['VOLUME'], 2);
+            $ritem['SUGAR'] = round(($selectRef['SUGAR'] / $selectRef['VOLUME']) * $ritem['VOLUME'], 2);
+            $ritem['PROTEIN'] = round(($selectRef['PROTEIN'] / $selectRef['VOLUME']) * $ritem['VOLUME'], 2);
+            $ritem['CARBS'] = round(($selectRef['CARBS'] / $selectRef['VOLUME']) * $ritem['VOLUME'], 2);
 
             $TotalRef['CALORIE'] += $ritem['CALORIE'];
             $TotalRef['FAT'] += $ritem['FAT'];
@@ -164,8 +172,6 @@ class RecipesController extends BaseController
 
         return json_res('success', [
             'html_content' => $html_content,
-            'recipe_ingredients' => $recipe_ingredients,
-            'TotalRef' => $TotalRef,
         ]);
     }
 
@@ -180,7 +186,6 @@ class RecipesController extends BaseController
 
         return json_res('success', [
             'html_content' => $html_content,
-            'recipe_ingredients' => $recipe_ingredients,
         ]);
     }
 }

@@ -37,9 +37,9 @@ $(document)
                 let modal_id = self.attr('data-target');
                 $('#' + modal_id).find('.append_area').html(response.data.html_content)
                 $('#' + modal_id).find('.popup').addClass('show')
-                $('#convert_php').prop('checked',false)
+                $('#convert_php').prop('checked', false)
 
-                if(type_id == 1){
+                if (type_id == 1) {
                     $('#nutriServings').html($('#servings-count').text());
                 }
             },
@@ -109,11 +109,11 @@ function resizeModal(elem) {
     $('#' + elem).find('.popup__text').css('height', (body - head))
 }
 
-$('#convert_php').change(function(){
-    if($(this).is(':checked')){
+$('#convert_php').change(function () {
+    if ($(this).is(':checked')) {
         $('.sek_price').hide();
         $('.php_price').fadeIn();
-    }else{
+    } else {
         $('.php_price').hide();
         $('.sek_price').fadeIn();
     }

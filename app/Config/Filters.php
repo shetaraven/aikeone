@@ -38,6 +38,7 @@ class Filters extends BaseFilters
         'dashboard'     => \App\Filters\DashboardFilter::class,
         'is_admin'      => \App\Filters\IsAdminFilter::class,
         'visit_count'   => \App\Filters\VisitCountFilter::class,
+        'daily_crons'   => \App\Filters\DailyCronFilter::class,
     ];
 
     /**

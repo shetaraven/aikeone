@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\Dashboard\SysVariablesModel;
 use App\Models\Admin\Ingredients\IngredientsModel;
 use App\Models\Admin\Recipes\RecipesModel;
 use App\Models\Admin\Stores\StoresModel;
@@ -41,6 +42,9 @@ class DashboardController extends BaseController
         $most_visited_model = new RecipesModel();
         $this->module_data['mvl_pt1'] = $most_visited_model->orderBy('VISIT_COUNT', 'DESC')->limit(5, 0)->findAll();
         $this->module_data['mvl_pt2'] = $most_visited_model->orderBy('VISIT_COUNT', 'DESC')->limit(5, 5)->findAll();
+
+        $sys_var_model = new SysVariablesModel();
+        $this->module_data['exchange_rate'] = $sys_var_model->where('LABEL', 'EXCHANGE_RATE' )->first();
 
         $this->module_data['stats'] = $stats;
         return view('admin/dashboard/index',  $this->module_data);

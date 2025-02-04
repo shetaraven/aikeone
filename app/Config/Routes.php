@@ -35,7 +35,7 @@ $routes->group('admin', ['filter' => ['auth', 'dashboard']], function ($routes) 
         $routes->get('partial-not-featured', 'Admin\DashboardController::partialNotFeatured');
     });
 
-    $routes->group('users', ['filter' => ['is_admin']] , function ($routes) {
+    $routes->group('users', ['filter' => ['is_admin']], function ($routes) {
         $routes->get('/', 'Admin\UsersController::list');
         $routes->get('list', 'Admin\UsersController::list');
         $routes->post('partial-edit-form', 'Admin\UsersController::partialEditForm');
@@ -107,7 +107,7 @@ $routes->group('admin', ['filter' => ['auth', 'dashboard']], function ($routes) 
         $routes->post('categories', 'Admin\Api\V1\CategoriesController::create');
         $routes->put('categories/(:num)', 'Admin\Api\V1\CategoriesController::update/$1');
         $routes->delete('categories/(:num)', 'Admin\Api\V1\CategoriesController::delete/$1');
-        
+
         # recipe ingredient rest requests
         $routes->delete('recipe-ingredients/(:num)', 'Admin\Api\V1\RecipeIngredientController::delete/$1');
 
@@ -121,6 +121,9 @@ $routes->group('admin', ['filter' => ['auth', 'dashboard']], function ($routes) 
         $routes->get('users/(:num)', 'Admin\Api\V1\UsersController::show/$1');
         $routes->put('users/(:num)', 'Admin\Api\V1\UsersController::update/$1');
 
+        # user system variables requests
+        $routes->post('system/rate/update', 'Admin\Api\V1\SysVariablesController::updateExhangeRate/');
+
         # priv recipe rest requests
         $routes->post('priv-recipe-link', 'Admin\Api\V1\RecipePrivatesAccessLinkController::create');
         $routes->delete('priv-recipe-link/(:num)', 'Admin\Api\V1\RecipePrivatesAccessLinkController::delete/$1');
@@ -128,7 +131,7 @@ $routes->group('admin', ['filter' => ['auth', 'dashboard']], function ($routes) 
 });
 
 # client routes
-$routes->group('', function ($routes) {
+$routes->group('', ['filter' => ['daily_crons']], function ($routes) {
     $routes->get('/', 'Client\HomeController::index');
 
     $routes->group('home', function ($routes) {
