@@ -97,26 +97,28 @@
 
 </section>
 
-<section class="section-padding" id="section_3" style="background-color: #f2f2f2;">
-    <div class="container">
-        <div class="row">
-            <!-- <div class="col-12 text-center">
-                <h2 class="mb-4">Featured Recipes</h1>
-            </div> -->
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-md-6 rotd-img" style="background-image: url(<?= $rotd_info['IMAGE'] != '' ? $rotd_info['IMAGE'] : '/assets/main/images/home-banner1.jpg' ?>);background-size: cover;min-height: 400px;background-position: center;border-radius: 10px;"></div>
-                    <div class="col-md-6" style="align-self: center;">
-                        <h5 class="text-blue ps-md-5">RECIPE OF THE DAY</h5>
-                        <h3 class="ps-md-5"><?= $rotd_info['TITLE'] ?></h3>
-                        <p class="ps-md-5"><?= $rotd_info['DETAILS'] ?></p>
-                        <a href="<?= base_url('/recipes/details?id=' . $rotd_info['ID']) ?>" class="btn custom-btn ms-md-5">Check out Recipe</a>
+<?php if (!empty($rotd_info)) : ?>
+    <section class="section-padding" id="section_3" style="background-color: #f2f2f2;">
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-12 text-center">
+                    <h2 class="mb-4">Featured Recipes</h1>
+                </div> -->
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 rotd-img" style="background-image: url(<?= $rotd_info['IMAGE'] != '' ? $rotd_info['IMAGE'] : '/assets/main/images/home-banner1.jpg' ?>);background-size: cover;min-height: 400px;background-position: center;border-radius: 10px;"></div>
+                        <div class="col-md-6" style="align-self: center;">
+                            <h5 class="text-blue ps-md-5">RECIPE OF THE DAY</h5>
+                            <h3 class="ps-md-5"><?= $rotd_info['TITLE'] ?></h3>
+                            <p class="ps-md-5"><?= $rotd_info['DETAILS'] ?></p>
+                            <a href="<?= base_url('/recipes/details?id=' . $rotd_info['ID']) ?>" class="btn custom-btn ms-md-5">Check out Recipe</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section>
     <div class="container py-5">
