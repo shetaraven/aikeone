@@ -150,7 +150,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-12">
                 <h5 class="text-blue mb-3 pl-3 text-center">Recommended Recipes</h5>
@@ -413,7 +413,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </section>
 
 <section class="section-padding" style="background-color: #f2f2f2;">
