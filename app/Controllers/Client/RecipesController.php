@@ -3,6 +3,7 @@
 namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
+use App\Models\Admin\Dashboard\SysVariablesModel;
 use App\Models\Admin\Ingredients\IngredientsModel;
 use App\Models\Admin\Ingredients\IngredientStorePricesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
@@ -76,6 +77,12 @@ class RecipesController extends BaseController
 
         $ri_model = new RecipeInstructionsModel();
         $this->module_data['recipe_instructions'] = $ri_model->where('RECIPE_ID', $get_data['id'])->orderBy('ORDER', 'ASC')->findAll();
+
+        $sys_vars_model = new SysVariablesModel();
+        $roth_info = $sys_vars_model->where('LABEL', 'ROTD')->first();
+
+        $rotd_model = new RecipesModel();
+        $this->module_data['rotd_info'] = $rotd_model->where('ID', $roth_info['VALUE'])->first();
 
         $this->module_data['is_favorite'] = false;
 

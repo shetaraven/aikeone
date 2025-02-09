@@ -217,86 +217,30 @@
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                        <!-- <div class="accordion" id="multiple-layout" style="display: none;">
-                            <div class="accordion-item" style="border: none;">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: var(--primary-color);font-weight: 900;border-radius: 50px;">
-                                        Part 1 : Lorem Ipsum Doler Simut
-                                    </button>
-                                </h2>
-
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#multiple-layout">
-                                    <div class="accordion-body">
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 1: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 2: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 3: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 4: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 5: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item" style="border: none;">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: var(--primary-color);font-weight: 900;border-radius: 50px;">
-                                        Part 2 : Lorem Ipsum Doler Simut
-                                    </button>
-                                </h2>
-
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#multiple-layout">
-                                    <div class="accordion-body">
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 1: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 2: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 3: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 4: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                        <p><span style="color: #454545;font-weight: 900;font-family: 'Montserrat';font-size: 14px;">Step 5: </span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae
-                                            nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore.Doloremque, repudiandae?
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
-
                 </div>
             </div>
 
-            <div class="rotd">
-                <div class="mg">
-                    <div class="clr"></div>
-                    <div class="group">
-                        <span>Featured</span>
+            <?php if (isset($rotd_info) && ($recipe_info['ID'] !=  $rotd_info['ID'])) : ?>
+                <div class="rotd">
+                    <div class="mg">
+                        <div class="clr"></div>
+                        <div class="group">
+                            <span>Featured</span>
+                        </div>
                     </div>
+                    <div class="av" style="background-image: url(<?= $rotd_info['IMAGE'] != '' ? $rotd_info['IMAGE'] : '/assets/main/images/home-banner1.jpg' ?>);"></div>
+                    <div class="info">
+                        <deets>
+                            Recipe of the Day!
+                        </deets>
+                        <name><?= $rotd_info['TITLE'] ?></name>
+                    </div>
+                    <a class="plot" title="plot with jinkyu" href="<?= base_url('/recipes/details?id=' . $rotd_info['ID']) ?>">
+                        View Recipe →
+                    </a>
                 </div>
-                <div class="av" style="background-image: url(<?= base_url('/assets/main/images/home-banner1.jpg') ?>);"></div>
-                <div class="info">
-                    <deets>
-                        Recipe of the Day!
-                    </deets>
-                    <name>Recipe Name</name>
-                </div>
-                <a class="plot" title="plot with jinkyu" href="/">
-                    View Recipe →
-                </a>
-            </div>
-
+            <?php endif; ?>
         </div>
     </div>
 </div>

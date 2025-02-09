@@ -19,7 +19,7 @@ class DailyCronFilter implements FilterInterface
 
         if (date('Y-m-d', strtotime($roth_info['UPDATED_AT'])) !== date('Y-m-d')) {
             $random_recipe = new RecipesModel();
-            $random_recipe = $random_recipe->orderBy('RAND()')->first();
+            $random_recipe = $random_recipe->where('VISIBILITY', 1)->orderBy('RAND()')->first();
             if( $random_recipe ) {
                 $update_featured = new SysVariablesModel();
                 $update_featured->where('LABEL', 'ROTD')->set(['VALUE' => $random_recipe['ID']])->update();

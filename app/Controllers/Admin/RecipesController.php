@@ -48,18 +48,18 @@ class RecipesController extends BaseController
                 $recipe_model->like('TITLE', $post_data['search']);
                 $list_count_model->like('TITLE', $post_data['search']);
             }
-            
+
             if (session()->get('USER_TYPE_ID') == 2) {
                 $recipe_model->where('CREATED_BY', session()->get('ID'));
                 $list_count_model->where('CREATED_BY', session()->get('ID'));
             }
-            
+
             $recipe_list = $recipe_model->withCreator()->orderBy('CREATED_AT', 'DESC')->paginate(10, 'admin');
 
             $table_data = view('admin/recipes/partials/_table_data',  [
                 'recipe_list' => $recipe_list
             ]);
-            
+
             $list_count     = $list_count_model->countAllResults();
 
             return $this->response->setJSON([

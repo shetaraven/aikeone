@@ -52,7 +52,7 @@ class DashboardController extends BaseController
 
     public function partialFeatured() {
         $recipe_model = new RecipesModel();
-        $featured_list = $recipe_model->where('FEATURED !=', 0)->orderBy('FEATURED', 'ASC')->limit(3)->findAll();
+        $featured_list = $recipe_model->where('FEATURED !=', 0)->where('VISIBILITY', 1)->orderBy('FEATURED', 'ASC')->limit(3)->findAll();
 
         return view('admin/dashboard/partials/_featured_list', [
             'featured_list' => $featured_list
