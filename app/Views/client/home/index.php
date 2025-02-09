@@ -128,7 +128,7 @@
                 <div class="slick-carousel">
                     <?php foreach ($mv_list as $key => $recipe_info) : ?>
                         <div class="slick-carousel-item px-3">
-                            <a href="" class="custom-card1">
+                            <a href="<?= base_url('/recipes/details?id=' . $recipe_info['ID']) ?>" class="custom-card1">
                                 <img src="<?= $recipe_info['IMAGE'] ? base_url($recipe_info['IMAGE']) : base_url('/assets/main/images/home-banner1.jpg') ?>" class="custom-card1-image" alt="" />
                                 <div class="custom-card1-overlay">
                                     <div class="custom-card1-header">
@@ -150,270 +150,69 @@
             </div>
         </div>
     </div>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h5 class="text-blue mb-3 pl-3 text-center">Recommended Recipes</h5>
-                <div class="slick-carousel">
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
+
+    <?php if (! empty($rc_list)) : ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="text-blue mb-3 pl-3 text-center">Recommended Recipes</h5>
+                    <div class="slick-carousel">
+                        <?php foreach ($rc_list as $key => $recipe_info) : ?>
+                            <div class="slick-carousel-item px-3">
+                                <a href="<?= base_url('/recipes/details?id=' . $recipe_info['ID']) ?>" class="custom-card1">
+                                    <img src="<?= $recipe_info['IMAGE'] ? base_url($recipe_info['IMAGE']) : base_url('/assets/main/images/home-banner1.jpg') ?>" class="custom-card1-image" alt="" />
+                                    <div class="custom-card1-overlay">
+                                        <div class="custom-card1-header text-center" style="width: 100%;">
+                                            <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
+                                                <path />
+                                            </svg>
+                                            <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
+                                                <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
+                                                <h3 class="custom-card1-title mb-0"><?= $recipe_info['TITLE'] ?></h3>
+                                                <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;<?= $recipe_info['PREP_TIME'] ?></span></span>
+                                            </div>
+                                        </div>
+                                        <p class="custom-card1-description"><?= $recipe_info['DETAILS'] ?></p>
                                     </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-12">
-                <h5 class="text-blue mb-3 pl-3 text-center">Recently Opened Recipes</h5>
-                <div class="slick-carousel-recent">
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
+    <?php endif; ?>
+
+    <?php if (! empty($ro_list)) : ?>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="text-blue mb-3 pl-3 text-center">Recently Opened Recipes</h5>
+                    <div class="slick-carousel-recent">
+                        <?php foreach ($ro_list as $key => $recipe_info) : ?>
+                            <div class="slick-carousel-item px-3">
+                                <a href="<?= base_url('/recipes/details?id=' . $recipe_info['ID']) ?>" class="custom-card1">
+                                    <img src="<?= $recipe_info['IMAGE'] ? base_url($recipe_info['IMAGE']) : base_url('/assets/main/images/home-banner1.jpg') ?>" class="custom-card1-image" alt="" />
+                                    <div class="custom-card1-overlay">
+                                        <div class="custom-card1-header text-center" style="width: 100%;">
+                                            <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
+                                                <path />
+                                            </svg>
+                                            <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
+                                                <h3 class="custom-card1-title mb-0"><?= $recipe_info['TITLE'] ?></h3>
+                                                <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;<?= $recipe_info['PREP_TIME'] ?></span></span>
+                                            </div>
+                                        </div>
+                                        <p class="custom-card1-description"><?= $recipe_info['DETAILS'] ?></p>
                                     </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slick-carousel-item px-3">
-                        <a href="" class="custom-card1">
-                            <img src="/assets/main/images/home-banner1.jpg" class="custom-card1-image" alt="" />
-                            <div class="custom-card1-overlay">
-                                <div class="custom-card1-header text-center" style="width: 100%;">
-                                    <svg class="custom-card1-arc" xmlns="http://www.w3.org/2000/svg">
-                                        <path />
-                                    </svg>
-                                    <div class="custom-card1-header-text" style="line-height: 20px;width: 100%;">
-                                        <span class="tag text-white" style="background-color: #00B0FF!important;"><i class="bi-check"></i> Highly Recommended</span>
-                                        <h3 class="custom-card1-title mb-0">Baked Ala mode</h3>
-                                        <span class="custom-card1-status"><span><i class="bi-clock"></i>&nbsp;1 Hr and 30 Mins</span></span>
-                                    </div>
-                                </div>
-                                <p class="custom-card1-description">Because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
-                            </div>
-                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    <?php endif; ?>
 </section>
 
 <section class="section-padding" style="background-color: #f2f2f2;">

@@ -45,6 +45,7 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu">
+                                            <a class="dropdown-item uta-recommend_recipe" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-edit-alt me-1"></i> Recommend Recipe</a>
                                             <a class="dropdown-item uta-edit" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-edit-alt me-1"></i> User Type</a>
                                             <a class="dropdown-item uta-show_modal" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>"><i class="bx bx-hide me-1"></i> Recipe Access</a>
                                             <a class="dropdown-item uta-delete" href="javascript:void(0);" data-id="<?= $user_info['ID'] ?>" data-type="<?=$user_info['ACTIVE']?>"><i class='bx bxs-<?= $user_info['ACTIVE'] ? 'minus' : 'plus' ?>-circle' ></i> <?= $user_info['ACTIVE'] ? 'Deactivate' : 'Activate' ?></a>
@@ -87,7 +88,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ChooseFeatured">Select Allowed Recipe for this User</h5>
+                    <h5 class="modal-title" id="ChooseFeatured">Select User Featured Recipe</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

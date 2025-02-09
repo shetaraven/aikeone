@@ -113,4 +113,25 @@ class RecipesModel extends Model
 
         return $this;
     }
+
+    public function withUserPrivateRecipes( $user_id )
+    {
+        $this->groupStart();
+                  
+        $this->orWhere('VISIBILITY', 1);
+
+        if ($user_id) {
+            $upal_model = new RecipePrivatesAccessLink();
+            $upal_model->where('USER_ID', $user_id);
+            $upal_list = $upal_model->findAll();
+
+            if( ! empty( $upal_list ) ) {
+                $this->orWhereIn( 'ID', array_column($upal_list, 'RECIPE_ID') );
+            }
+        }
+
+        $this->groupEnd();
+
+        return $this;
+    }
 }

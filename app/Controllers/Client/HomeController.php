@@ -7,6 +7,8 @@ use App\Models\Admin\Dashboard\SysVariablesModel;
 use App\Models\Admin\Recipes\CategoriesModel;
 use App\Models\Admin\Recipes\RecipeCategoryLinkModel;
 use App\Models\Admin\Recipes\RecipesModel;
+use App\Models\Admin\Recipes\RecipeUserRecentLinkModel;
+use App\Models\Admin\Recipes\RecipeUserRecommendLinkModel;
 
 class HomeController extends BaseController
 {
@@ -39,6 +41,31 @@ class HomeController extends BaseController
         $featured_model = new RecipesModel();
         $this->module_data['featured_list'] = $featured_model->where('FEATURED !=', 0)->orderBy('FEATURED', 'ASC')->withPrivateRecipes()->limit(3)->findAll();
 
+        $rurl_model = new RecipeUserRecommendLinkModel();
+        $recommended_ids = $rurl_model->where('USER_ID', session()->get('ID'))->findAll();
+        $recommended_ids = array_column($recommended_ids, 'RECIPE_ID');
+
+        $this->module_data['rc_list'] = [];
+        if (! empty($recommended_ids)) {
+            $recomended_recipes = new RecipesModel();
+            $this->module_data['rc_list'] = $recomended_recipes->whereIn('ID', $recommended_ids)->findAll();
+        }
+
+        $rurl_model = new RecipeUserRecentLinkModel();
+        $recent_ids = $rurl_model->where('USER_ID', session()->get('ID'))->orderBy('UPDATED_AT', 'DESC')->findAll();
+        $recent_ids = array_column($recent_ids, 'RECIPE_ID');
+
+        $this->module_data['ro_list'] = [];
+        if (! empty($recent_ids)) {
+            $recent_recipes = new RecipesModel();
+            $this->module_data['ro_list'] = $recent_recipes->whereIn('ID', $recent_ids)->orderBy("UPDATED_AT", 'DESC', false)->findAll();
+        }
+        // echo "<pre>";
+        // print_r( $recent_ids );
+        // print_r( $this->module_data['ro_list'] );
+        // echo "</pre>";
+        // die();
+
         $most_visited_model = new RecipesModel();
         $this->module_data['mv_list'] = $most_visited_model->orderBy('VISIT_COUNT', 'DESC')->withPrivateRecipes()->limit(10)->findAll();
 
@@ -54,7 +81,8 @@ class HomeController extends BaseController
         return view('client/home/index',  $this->module_data);
     }
 
-    public function partialsCategoryRecipes() {
+    public function partialsCategoryRecipes()
+    {
         $request = \Config\Services::request();
         $post_data = $request->getPost();
 
@@ -64,7 +92,7 @@ class HomeController extends BaseController
         $recipe_ids = array_column($rcl_list, 'RECIPE_ID');
 
         $recipe_list = [];
-        if( ! empty($recipe_ids ) ) {
+        if (! empty($recipe_ids)) {
             $recipe_model = new RecipesModel();
             $recipe_list = $recipe_model->withPrivateRecipes()->whereIn('ID', $recipe_ids)->limit(10)->findAll();
         }

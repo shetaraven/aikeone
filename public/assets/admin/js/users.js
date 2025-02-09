@@ -30,18 +30,18 @@ $(document)
             data: {
                 USER_ID: user_id
             },
-            success: function(response) {
+            success: function (response) {
                 $('#EditModal').find('.modal-body').html(response)
                 $('#EditModal').find('.uta-update').attr('data-id', user_id)
                 $('#EditModal').modal('show')
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
         });
     })
-    .on('click', '.uta-update', function() {
+    .on('click', '.uta-update', function () {
         let self = $(this)
         let user_id = self.attr('data-id')
         let user_type = $('#select-user_type').val()
@@ -53,17 +53,17 @@ $(document)
             data: {
                 USER_TYPE_ID: user_type
             },
-            success: function(response) {
+            success: function (response) {
                 $('#EditModal').modal('hide')
                 location.reload()
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
         });
     })
-    .on('click', '.uta-delete', function() {
+    .on('click', '.uta-delete', function () {
         let self = $(this)
         let user_id = self.attr('data-id')
         let status_type = self.attr('data-type') == 0 ? 1 : 0
@@ -75,10 +75,10 @@ $(document)
             data: {
                 UPDATE_TO: status_type
             },
-            success: function(response) {
+            success: function (response) {
                 location.reload()
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 // console.log(xhr.responseJSON.messages)
                 console.error('Error:', error);
             }
@@ -95,16 +95,37 @@ $(document)
             data: {
                 USER_ID: user_id
             },
-            success: function(response) {
+            success: function (response) {
                 $('#ChooseRecipe').modal('show')
                 $('#ChooseRecipe').find('.modal-body').html(response)
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
             }
         });
     })
-    .on('change', '.checkbox-priv_recipe', function() {
+    .on('click', '.uta-recommend_recipe', function () {
+        let self = $(this)
+        let user_id = self.attr('data-id')
+
+        $.ajax({
+            url: '/admin/users/partial-user-recommend-recipe-list',
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                USER_ID: user_id
+            },
+            success: function (response) {
+                $('#ChooseRecipe').modal('show')
+                $('#ChooseRecipe').find('.uta-set_user_ferured').attr('data-id', user_id)
+                $('#ChooseRecipe').find('.modal-body').html(response)
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    })
+    .on('change', '.checkbox-priv_recipe', function () {
         let self = $(this)
         let user_id = $('#priv-recipe-list').attr('data-uid')
         let pr_id = self.val()
@@ -113,17 +134,41 @@ $(document)
         let uprl_id = self.closest('.list-group-item').attr('data-prl-id')
 
         $.ajax({
-            url:  '/admin/api/priv-recipe-link' +( pr_is_checked ? '' : '/' + uprl_id ),
+            url: '/admin/api/priv-recipe-link' + (pr_is_checked ? '' : '/' + uprl_id),
             type: pr_is_checked ? 'POST' : 'DELETE',
             dataType: 'json',
             data: {
                 USER_ID: user_id,
                 PRIV_RECIPE_ID: pr_id,
             },
-            success: function(response) {
-                
+            success: function (response) {
+
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    })
+    .on('change', '.checkbox-recipe_user_featured', function () {
+        let self = $(this)
+        let user_id = $('#recipe-user-featured-list').attr('data-uid')
+        let pr_id = self.val()
+        let pr_is_checked = self.is(':checked')
+
+        let uprl_id = self.closest('.list-group-item').attr('data-prl-id')
+
+        $.ajax({
+            url: '/admin/api/recipe-user-recommend-link' + (pr_is_checked ? '' : '/' + uprl_id),
+            type: pr_is_checked ? 'POST' : 'DELETE',
+            dataType: 'json',
+            data: {
+                USER_ID: user_id,
+                PRIV_RECIPE_ID: pr_id,
+            },
+            success: function (response) {
+
+            },
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
             }
         });
