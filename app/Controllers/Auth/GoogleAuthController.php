@@ -35,7 +35,11 @@ class GoogleAuthController extends Controller
                     $users_model = new UsersModel();
                     $user_info = $users_model->where(['GOOGLE_ID' => $google_user_info['id']])->withUserType()->first();
 
-                    if (!$user_info) {
+                    if ($user_info) {
+                        if( $user_info['ACTIVE'] == 0 ) {
+                            return view('errors/html/denied');
+                        }
+                    } else {
                         $users_model->insert([
                             'GOOGLE_ID' => $google_user_info['id'],
                             'GIVEN_NAME' => $google_user_info['given_name'],
