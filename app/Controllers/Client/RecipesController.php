@@ -96,6 +96,9 @@ class RecipesController extends BaseController
 
     public function partailIngredCalc($rid)
     {
+        $sys_var_model = new SysVariablesModel();
+        $exchange_rate = $sys_var_model->where('LABEL', 'EXCHANGE_RATE' )->first();
+
         $stores_used = [];
 
         $ril_model = new RecipeIngredientLinkModel();
