@@ -42,7 +42,7 @@ class GoogleAuthController extends Controller
                             'FAMILY_NAME' => $google_user_info['family_name'],
                             'EMAIL' => $google_user_info['email'],
                             'IMAGE' => $google_user_info['picture'],
-                            'USER_TYPE_ID' => 2,
+                            'USER_TYPE_ID' => 3,
                         ]);
 
                         $user_info = $users_model->where(['GOOGLE_ID' => $google_user_info['id']])->withUserType()->first();
