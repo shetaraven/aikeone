@@ -1,6 +1,6 @@
 <div class="template-edit_ingred form-create_ingredient">
     <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
-        <span>Store Name Already Existing!</span>
+        <span>Ingredient Name Name Already Existing!</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <div class="required">
@@ -25,7 +25,7 @@
             </ul>
         </div>
     </div>
-    <div class="mt-3 required">
+    <div class="mt-3" style="display: none;">
         <label class="form-label">Volume to Weight (1g = ?ml)<span class="error-msg">* Required Field!</span></label>
         <div class="input-group input-group-merge">
             <input type="text" class="form-control eii-weight" placeholder="20" value="<?= $ingredient_info['WEIGHT'] ?>">

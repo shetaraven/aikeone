@@ -8,17 +8,27 @@
         <div class="card">
             <div class="card-body">
                 <div class="alert alert-danger alert-dismissible" role="alert" id="warningTop" style="display: none;">
-                    <span>Store Name Already Existing!</span>
+                    <span>Ingredient Name Already Existing!</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 mt-3 required">
+                    <div class="col-md-12 mt-3 required">
                         <label for="cii_inp-name" class="form-label">Name<span class="error-msg">* Required Field!</span></label>
                         <input type="text" class="form-control cii-name" id="cii_inp-name">
                     </div>
 
+                    <div class="col-md-4 mt-3" style="display: none;">
+                        <label class="form-label">Volume to Weight (1g = ?ml)<span class="error-msg">* Required Field!</span></label>
+                        <div class="input-group input-group-merge">
+                            <input type="text" class="form-control cii-weight" value="0" placeholder="20">
+                            <span class="input-group-text">ml</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-4 mt-3 required">
-                        <label for="cii_inp-name" class="form-label">Quantity<span class="error-msg">* Required Field!</span></label>
+                        <label for="cii_inp-name" class="form-label">Volume<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group">
                             <!-- <span class="input-group-text">Volume</span> -->
                             <input type="text" class="form-control cii-vol" placeholder="100">
@@ -33,16 +43,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 mt-3 required">
-                        <label class="form-label">Volume to Weight (1g = ?ml)<span class="error-msg">* Required Field!</span></label>
-                        <div class="input-group input-group-merge">
-                            <input type="text" class="form-control cii-weight" placeholder="20">
-                            <span class="input-group-text">ml</span>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-4 mt-3 required">
                         <label class="form-label">Calories<span class="error-msg">* Required Field!</span></label>
                         <div class="input-group input-group-merge">
