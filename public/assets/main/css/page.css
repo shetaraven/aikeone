@@ -1212,7 +1212,7 @@ blockquote {
         height: 75%;
     }
     .timeline-container .vertical-scrollable-timeline li {
-        padding-left: 135px;
+        padding-left: 70px;
     }
     .subscribe-form-wrap {
         padding-top: 30px;
@@ -1384,7 +1384,7 @@ blockquote {
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
     flex-direction: column;
     width: 100%;
     font-size: 1.5rem;
@@ -1507,7 +1507,7 @@ blockquote {
   
   .custom-card1-title {
     font-size: 1em;
-    margin: 0 0 .3em;
+    margin: 0.5em 0 .3em;
     color: #13547a;
   }
   
@@ -1695,4 +1695,25 @@ blockquote {
   }
   .bi-bookmark-heart-fill{
     color: #ff6060;
+  }
+
+  @media screen and (max-width: 639px){
+    .custom-prev-btn{
+        left: -15px;
+        z-index: 1;
+        height: 50px !important;
+        width: 50px !important;
+        font-size: 25px;
+    }
+    .custom-next-btn{
+        right: 5px;
+        z-index: 1;
+        height: 50px !important;
+        width: 50px !important;
+        font-size: 25px;
+    }
+  }
+
+  .custom-tabs .nav-item{
+    padding-bottom: 8px;
   }

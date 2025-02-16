@@ -199,11 +199,11 @@
 
                     </div>
 
-                    <div class="col-md-8 col-12 mb-4 mb-lg-0 pl-md-5 pl-1">
+                    <div class="col-md-8 col-12 mb-4 mb-lg-0 pl-md-5">
                         <h4 class="mb-3 text-center">Recipe Steps</h4>
                         <div class="timeline-container" id="single-layout">
                             <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
-                                <div class="list-progress" style="height: calc(100% - (100%/5) + 40px);">
+                                <div class="list-progress" style="height: calc(100% - 20px);display: none;">
                                     <div class="inner"></div>
                                 </div>
 

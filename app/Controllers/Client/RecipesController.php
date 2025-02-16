@@ -130,12 +130,14 @@ class RecipesController extends BaseController
         $html_content = view('client/recipe/partials/_ingred_prices', [
             'stores_used' => $stores_used,
             'recipe_ingredients' => $recipe_ingredients,
+            'exchange_rate' => $exchange_rate
         ]);
 
         return json_res('success', [
             'html_content' => $html_content,
             'recipe_ingredients' => $recipe_ingredients,
             'orig_ingreds' => $orig_ingreds,
+            'exchange_rate' => $exchange_rate
         ]);
     }
 
