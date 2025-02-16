@@ -98,7 +98,7 @@ $('#calculate-serv').click(function (e) {
         var inServ = (parseInt($(this).text()) / Servings);
         var CurUnit = $(this).parent().find('.curr_unit').text();
 
-        $(this).closest('tr').find('.curr_cal_val').text((inServ * CalServings) + ' ' + CurUnit);
+        $(this).closest('tr').find('.curr_cal_val').text((inServ * CalServings).toFixed(2) + ' ' + CurUnit);
         $('.no_servings').text(CalServings);
     })
 })
