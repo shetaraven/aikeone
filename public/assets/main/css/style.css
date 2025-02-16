@@ -11102,3 +11102,7 @@ button:focus {
     -ms-touch-action: pan-y;
     touch-action: pan-y;
 }
+
+.custom-card1-header-text{
+    width: calc(100% - 50px);
+}
